@@ -78,3 +78,61 @@ test('keyboard navigation and requested removals',async()=>{
   assert.equal(await page.locator('#reporter-filter,.topics,#reporter-directory,#refresh,.refresh-control').count(),0);assert.doesNotMatch(await page.locator('body').innerText(),/Nostr|Mastodon|About Nostr|All sources/);
   assert.equal(await page.locator('#world-news article a').first().getAttribute('rel'),'noopener noreferrer');await page.close();
 });
+
+const branding = JSON.parse(await readFile(new URL('./fixtures/branding.json', import.meta.url), 'utf8'));
+const cssValue = (locator, property) => locator.evaluate((el, prop) => getComputedStyle(el)[prop], property);
+test('Stringer logo is visible, loaded, correctly sized, and linked on desktop and mobile', async () => {
+  for (const [width, expected] of [[1440, branding.desktop], [375, branding.mobile]]) {
+    const page = await pageAt('/', width);
+    const logo = page.locator('header .brand img');
+    assert.equal(await logo.isVisible(), true);
+    assert.equal(await logo.evaluate(el => el.complete && el.naturalWidth > 0), true);
+    const box = await logo.boundingBox();
+    assert.equal(box.width, expected.logoWidth); assert.equal(box.height, expected.logoHeight);
+    assert.equal(await page.locator('header .brand').getAttribute('href'), branding.source);
+    assert.equal(await page.locator('footer img').evaluate(el => el.complete && el.naturalWidth > 0), true);
+    await page.close();
+  }
+});
+test('favicons load as correctly sized images at the domain root and project path', async () => {
+  for (const path of ['/', '/ingestr/']) {
+    const page = await pageAt(path);
+    for (const size of [16, 32, 192, 180]) {
+      const selector = size === 180 ? 'link[rel="apple-touch-icon"]' : `link[rel="icon"][sizes="${size}x${size}"]`;
+      const url = await page.locator(selector).evaluate(el => el.href);
+      assert.equal(new URL(url).pathname, `${path}assets/favicon-${size}.png`);
+      const response = await page.request.get(url);
+      assert.equal(response.status(), 200);
+      const image = await response.body();
+      assert.equal(image.readUInt32BE(16), size); assert.equal(image.readUInt32BE(20), size);
+    }
+    await page.close();
+  }
+});
+test('header and footer use main-site type sizes, colours, and hover treatments', async () => {
+  const page = await pageAt('/', 1440);
+  const nav = page.locator('.main-nav a').filter({ hasText: /^Mission$/ });
+  assert.match(await cssValue(nav, 'fontFamily'), /Barlow/);
+  assert.equal(await cssValue(nav, 'fontSize'), branding.desktop.navFontSize);
+  assert.equal(await cssValue(nav, 'fontWeight'), branding.desktop.navFontWeight);
+  assert.equal(await cssValue(nav, 'color'), branding.colors.ink);
+  await nav.hover(); assert.equal(await cssValue(nav, 'color'), branding.colors.navHover);
+  const icon = page.locator('.social-links a').first();
+  assert.equal(await cssValue(icon, 'color'), branding.colors.ink);
+  assert.equal((await icon.locator('svg').boundingBox()).width, branding.desktop.iconSize);
+  await icon.hover(); assert.equal(await cssValue(icon, 'color'), branding.colors.accent);
+  for (const location of ['header', 'footer']) {
+    const button = page.locator(`${location} .donate`);
+    assert.equal(await cssValue(button, 'backgroundColor'), branding.colors.ink);
+    assert.equal(await cssValue(button, 'color'), branding.colors.white);
+    assert.match(await cssValue(button, 'fontFamily'), /Montserrat/);
+    assert.equal(await cssValue(button, 'fontSize'), branding.desktop.buttonFontSize);
+    assert.equal(await cssValue(button, 'borderRadius'), branding.desktop.buttonRadius);
+    assert.equal(await cssValue(button, 'padding'), branding.desktop.buttonPadding);
+    await button.hover(); assert.equal(await cssValue(button, 'backgroundColor'), branding.colors.accent);
+    assert.equal(await cssValue(button, 'color'), branding.colors.white);
+  }
+  assert.equal(await cssValue(page.locator('.footer-appeal'), 'fontSize'), '16px');
+  assert.equal(await cssValue(page.locator('.nonprofit'), 'fontSize'), '15px');
+  await page.close();
+});

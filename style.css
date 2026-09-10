@@ -4,110 +4,97 @@
 @media(max-width:767px){.site-header,main,footer{padding-inline:20px}.page-intro{align-items:flex-start;padding-top:25px;gap:15px}.page-intro .eyebrow{font-size:9px}h1{font-size:25px}.refresh-status{line-height:1.5;margin-bottom:15px}.jump-links{display:flex;gap:18px;padding-bottom:19px;font-size:12px;font-weight:600}.desk{grid-template-columns:minmax(0,1fr)}.column{padding:22px 0 0}.column+.column{padding:25px 0 0;border-left:0;border-top:4px solid var(--ink);margin-top:28px}.column-heading{min-height:0;margin-bottom:18px}.column-heading h2{font-size:25px}.feed-status{min-height:0}.story h3{font-size:18px}.story:first-child h3{font-size:23px}.story .summary{font-size:15px}}
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-/* Main-site navigation and donation footer. */
+/* Values measured on stringerjournalism.org; see tests/fixtures/branding.json. */
 .site-header {
-  max-width: 1720px;
-  display: flex;
+  max-width: 1272px;
+  display: grid;
+  grid-template-columns: 350px minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  padding-block: 44px 30px;
+  gap: 10px;
+  padding: 20px 16px;
 }
-.main-nav { flex: 1; min-width: 0; }
+.brand { display: block; width: 350px; }
+.brand img { display: block; width: 350px; height: 141px; object-fit: contain; }
+.main-nav { min-width: 0; }
 .nav-primary, .nav-secondary {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 12px 20px;
+  gap: 10px;
 }
-.nav-secondary { margin-top: 24px; gap: 16px 28px; }
+.nav-secondary { margin-top: 16px; gap: 16px; }
 .main-nav a {
-  font-size: clamp(16px, 1.65vw, 28px);
+  font-family: Barlow, Arial, sans-serif;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 1.35;
-  padding-block: 5px;
+  line-height: 1.5;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
 }
 .main-nav a[aria-current], .main-nav a:hover {
-  color: #111;
+  color: #000;
   text-decoration: underline;
-  text-underline-offset: 12px;
+  text-underline-offset: 8px;
   text-decoration-thickness: 1px;
 }
-.header-actions { display: flex; align-items: center; gap: 30px; }
-.social-links { display: flex; align-items: center; gap: 14px; }
-.social-links a { display: grid; place-items: center; width: 40px; height: 44px; }
-.social-links svg { display: block; width: 32px; height: 32px; }
-.social-links a:hover { color: #111; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.social-links { display: flex; align-items: center; gap: 16px; }
+.social-links a { display: grid; place-items: center; width: 20px; min-height: 44px; }
+.social-links svg { display: block; width: 20px; height: 20px; }
+.social-links a:hover, .social-links a:focus-visible { color: var(--accent); }
 .donate {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--ink);
   color: #fff;
-  border-radius: 999px;
-  padding: 24px 36px;
+  border-radius: 25px;
+  padding: 16px 40px;
   font-family: Montserrat, Arial, sans-serif;
-  font-size: clamp(19px, 1.8vw, 30px);
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: normal;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
 }
-.header-actions .donate { min-width: clamp(210px, 21.6vw, 388px); padding-block: 32px; }
-.donate:hover { background: #341b12; }
-.site-footer { padding-block: 48px 28px; margin-top: 55px; color: var(--ink); }
-.footer-appeal {
-  max-width: 1060px;
-  margin: 68px 0 26px;
-  font-size: clamp(21px, 2.1vw, 30px);
-  font-weight: 700;
-  line-height: 1.08;
-  text-transform: uppercase;
-}
-.nonprofit { margin: 0; font-size: clamp(18px, 2vw, 30px); line-height: 1.4; }
-.footer-bottom {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 30px;
-  margin-top: 42px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 12px;
-}
-.footer-bottom a { flex-shrink: 0; font-weight: 600; }
-.footer-bottom p { margin: 0; max-width: 540px; line-height: 1.5; }
-@media (max-width: 1199px) {
-  .site-header { flex-direction: column; gap: 24px; padding-block: 28px; }
-  .main-nav { width: 100%; }
-  .main-nav a { font-size: 20px; }
-  .nav-secondary { margin-top: 16px; }
-  .header-actions { gap: 36px; }
-  .header-actions .donate { padding: 20px 32px; }
+.donate:hover, .donate:focus-visible { background: var(--accent); color: #fff; }
+.site-footer { padding-block: 36px 24px; margin-top: 56px; border-top: 1px solid var(--line); color: var(--ink); }
+.footer-main { display: grid; grid-template-columns: 1fr 1.4fr .65fr; gap: 48px; align-items: start; }
+.footer-identity img { display: block; width: 200px; height: 81px; object-fit: contain; }
+.nonprofit { max-width: 275px; margin: 18px 0 0; font-size: 15px; line-height: 1.55; }
+.site-footer h2 { font-family: Barlow, Arial, sans-serif; font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 12px; }
+.footer-appeal { margin: 0 0 20px; font-size: 16px; line-height: 1.55; max-width: 440px; }
+.footer-nav { display: flex; flex-direction: column; align-items: start; gap: 10px; }
+.footer-nav h2 { margin-bottom: 2px; }
+.footer-nav a { font-size: 15px; line-height: 1.5; text-decoration: none; }
+.footer-nav a:hover, .collection-link:hover, .story a:hover { color: #000; text-decoration: underline; text-underline-offset: 4px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: start; gap: 30px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.footer-bottom span { flex-shrink: 0; }
+.footer-bottom p { margin: 0; max-width: 620px; line-height: 1.5; }
+@media (max-width: 1100px) {
+  .site-header { grid-template-columns: 200px 1fr; gap: 18px; }
+  .brand, .brand img { width: 200px; }
+  .brand img { height: 81px; }
+  .header-actions { justify-self: end; }
+  .main-nav { grid-column: 1 / -1; grid-row: 2; }
+  .footer-main { gap: 28px; grid-template-columns: 1fr 1.2fr; }
+  .footer-nav { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: 12px 24px; }
+  .footer-nav h2 { width: 100%; }
 }
 @media (max-width: 767px) {
-  .site-header { padding-block: 22px 18px; gap: 22px; }
-  .nav-primary { gap: 8px 16px; }
-  .nav-secondary { gap: 10px 20px; margin-top: 12px; }
-  .main-nav a { font-size: 15px; }
-  .main-nav a[aria-current], .main-nav a:hover { text-underline-offset: 6px; }
-  .header-actions { width: 100%; justify-content: center; flex-wrap: wrap; gap: 12px; }
-  .social-links { gap: 2px; }
-  .social-links a { width: 36px; }
-  .social-links svg { width: 25px; height: 25px; }
-  .header-actions .donate { min-width: 0; padding: 17px 20px; font-size: 15px; }
-  .site-footer { padding-block: 30px 24px; margin-top: 30px; }
-  .site-footer .donate { padding: 20px 28px; font-size: 21px; }
-  .footer-appeal { margin-top: 40px; line-height: 1.15; }
-  .nonprofit { font-size: 19px; }
-  .footer-bottom { flex-direction: column; gap: 15px; margin-top: 30px; }
+  .site-header { grid-template-columns: minmax(0, 1fr); padding: 10px 16px 20px; gap: 18px; }
+  .brand { justify-self: center; }
+  .header-actions { justify-self: center; grid-row: 2; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .main-nav { grid-row: 3; }
+  .nav-primary { gap: 10px 14px; }
+  .nav-secondary { margin-top: 14px; }
+  .site-footer { padding-block: 28px 22px; margin-top: 32px; }
+  .footer-main { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .nonprofit { max-width: 340px; }
+  .footer-bottom { flex-direction: column; gap: 12px; margin-top: 24px; }
 }
-
 .refresh-status:empty, .feed-status:empty { display: none; }
 .page-intro { padding-bottom: 28px; }

@@ -36,6 +36,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check && npm test
+      - name: Install browser for visual and branding checks
+        if: github.event_name != 'schedule'
+        run: npx playwright install --with-deps chromium
+      - name: Check responsive layout and main-site branding
+        if: github.event_name != 'schedule'
+        run: npm run test:browser
       - uses: actions/configure-pages@v5
         id: pages
       - name: Recover previous collection and collect current news

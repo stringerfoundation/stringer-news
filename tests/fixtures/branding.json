@@ -1,0 +1,31 @@
+{
+  "source": "https://stringerjournalism.org/",
+  "measuredOn": "2026-09-10",
+  "colors": {
+    "ink": "rgb(80, 44, 30)",
+    "accent": "rgb(254, 59, 31)",
+    "navHover": "rgb(0, 0, 0)",
+    "white": "rgb(255, 255, 255)"
+  },
+  "desktop": {
+    "logoWidth": 350,
+    "logoHeight": 141,
+    "navFontSize": "15px",
+    "navFontWeight": "500",
+    "iconSize": 20,
+    "buttonFontSize": "15px",
+    "buttonRadius": "25px",
+    "buttonPadding": "16px 40px"
+  },
+  "mobile": {
+    "logoWidth": 200,
+    "logoHeight": 81
+  },
+  "assets": {
+    "stringer-logo.png": "76b06e9ee3c6f9dbb6ee9910af40ea230b9db00320199a5de0ddc12d407a9b75",
+    "favicon-16.png": "9a50b7ab92a466d301b182ec221dc753bd5f6ce016f5ce7f9714fc56f644826f",
+    "favicon-32.png": "dd97aaab87bfedf6fcf7b97cb8fbec11faa5bcf72278ac5e3038087416625f9e",
+    "favicon-180.png": "c86026973bc73161be015c0fe92cbb1a39e74c6627c7517e604112c8126c017b",
+    "favicon-192.png": "15da8328e56d850b150fae11e96b00615e372d89db69c72fadd2f989ed649734"
+  }
+}

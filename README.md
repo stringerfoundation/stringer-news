@@ -67,3 +67,7 @@ The current GitHub Pages hostname is not changed by this implementation. When do
 No repository `CNAME` file is required for a custom Actions deployment. Follow GitHub's domain instructions: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 
 The logo and typography follow the Stringer website. All story links retain their original publisher attribution; the site does not rehost articles.
+
+## Branding regression checks
+
+`tests/fixtures/branding.json` records logo dimensions, navigation/button sizes, colours, and image hashes measured from the main Stringer website. Tests require a loaded linked logo at desktop/mobile sizes, working favicons at both URL paths, the matching brown-to-orange button and icon hover states, and black navigation hover. The footer keeps donation and nonprofit information at readable body sizes. Asset checks run on every collection; browser checks also run before push/manual deployments. Update the baseline only after reviewing an intentional main-site branding change.
