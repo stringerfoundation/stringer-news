@@ -1,0 +1,1393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/modules/syndication/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dwsyn="http://rss.dw.com/syndication/dwsyn/">
+ <channel rdf:about="https://rss.dw.com/syndication/feeds/rss-en-all.1573.rdf">
+  <description>Deutsche Welle</description>
+  <link>https://www.dw.com/english/?maca=en-rss-en-all-1573-rdf</link>
+  <title>Deutsche Welle</title>
+  <sy:updatePeriod>hourly</sy:updatePeriod>
+  <sy:updateFequency>4</sy:updateFequency>
+  <sy:updateBase>2002-05-01T00:00:00Z</sy:updateBase>
+  <dc:date>2026-09-10T08:26:30Z</dc:date>
+  <image rdf:resource="https://rss.dw.com/images/DW-L-RGB_whitebg.png"/>
+  <items>
+   <rdf:Seq>
+    <rdf:li rdf:resource="https://www.dw.com/en/ecuador-ex-president-bucaram-sentenced-in-corruption-case/a-79209321?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-energy-boss-urges-better-infrastructure-protection/live-79209302?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/serbia-the-conflicted-eu-candidate/a-79203774?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/august-hottest-month-ever-recorded-says-eu-monitor/a-79208462?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/trump-promises-americans-5-000-if-republicans-win-midterms/a-79208399?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/philippines-several-killed-dozens-missing-after-fire-on-ferry/a-79208236?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/finland-google-announces-€13-billion-ai-energy-investment/a-79208034?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/norway-s-pm-zelenskyy-s-plane-almost-hit-by-drone/a-79207528?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/china-english-to-be-removed-as-a-graded-core-subject/a-79199629?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/ceuta-documents-show-spanish-intelligence-warned-of-crisis/a-79206505?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-s-connection-to-the-september-11-2001-attacks/a-79202918?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/switzerland-two-killed-in-power-plant-explosion/a-79205516?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/iran-tightens-social-control-with-crackdown-on-cafes/a-79204988?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/how-ethiopia-s-constitutional-reform-gives-pm-more-power/a-79172262?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/oil-prices-rise-as-middle-east-conflict-escalates/a-79203547?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/syria-arms-depot-explosion-kills-at-least-14/a-79203314?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/how-belarusians-still-find-hope-in-a-silenced-country/a-79127285?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/why-we-re-still-looking-for-dark-matter/a-79189395?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/cambodia-s-floating-schools-hit-by-rising-fuel-costs/a-79202008?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/eu-proposes-more-restrictions-for-airbnb-holiday-rentals/a-79202023?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/liv-golf-in-financial-turmoil-what-s-next-for-the-sport/a-79199569?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/conspiracy-theories-can-provide-answers-but-not-peace/a-79022756?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/the-billion-euro-trade-driving-europe-s-eels-to-extinction/a-78523145?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/the-bayeux-tapestry-in-london-what-s-behind-the-hype/a-78488629?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/eu-sports-commissioner-says-fifa-is-damaging-to-football/a-79193424?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/brics-leaders-gather-in-india-but-does-the-group-have-a-clear-purpose/a-79195234?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/putin-rejects-mobilization-rumors-many-russians-unconvinced/a-79193386?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/german-economy-frets-about-saxony-anhalt-election-results/a-79162871?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/ratko-mladic-s-funeral-casts-shadow-over-bosnia-and-herzegovina-vote/a-79189319?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/bsw-and-afd-a-political-love-hate-relationship-in-germany/a-79185782?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/afghanistan-s-women-a-national-soccer-team-without-a-home/a-79139500?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/pisa-2025-results-reading-and-math-scores-plummet-worldwide/a-79147293?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/elversberg-bundesliga-newcomers-from-tiny-town-make-waves/a-77194483?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/egg-freezing-in-women-s-football-choice-or-pressure/a-79145259?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/werner-herzog-germany-s-wild-man-of-cinema-is-back/a-78949324?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/nicaragua-challenges-german-arms-exports-to-israel-at-icj/a-79148044?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/saxony-anhalt-germany-wakes-up-to-unsettling-afd-victory/live-78754934?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/afd-wants-to-form-a-government-in-saxony-anhalt-but-how/a-79107331?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/war-criminal-ratko-mladic-buried-with-military-honors-in-belgrade-serbia/a-79148678?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/chancellor-merz-says-afd-result-changes-all-of-germany/a-79150560?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/us-envoys-witkoff-and-kushner-hold-ukraine-talks-after-meeting-putin/a-79054779?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/saxony-anhalt-digesting-the-afd-s-landmark-election-win/a-79103981?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/fact-check-election-fraud-claims-spread-in-saxony-anhalt/a-79093254?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-set-to-feel-the-impact-of-saxony-anhalt-s-afd-win/a-78874569?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/saxony-anhalt-election-why-the-afd-is-so-strong/a-78482588?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-kosovo-unite-against-ticks-carrying-deadly-virus/a-78655223?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-plans-anti-drone-shield-over-leipzig-attack-report/a-79052604?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/hungary-begins-hunt-for-corrupt-regime-s-billions/a-79047176?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/croatia-toxic-waste-protest-draws-tens-of-thousands/a-79049228?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-from-emigration-to-immigration-destination/a-78805541?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-news-thousands-march-at-saxony-anhalt-rallies/live-79041302?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/what-would-an-afd-government-in-saxony-anhalt-really-mean/a-78869947?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/outrage-as-maltese-tycoon-acquitted-in-journalist-s-murder/a-79027008?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/in-saxony-anhalt-election-small-parties-will-be-kingmakers/a-78482460?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-s-civil-society-alliance-takes-on-the-far-right/a-79009105?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/how-vulnerable-is-germany-s-infrastructure/a-78990131?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/majority-of-germans-see-russia-as-a-threat/a-78970396?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/the-hidden-environmental-cost-of-ai-data-centers/a-78789889?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/serbia-how-the-funeral-of-ratko-mladic-is-dividing-a-nation/a-78948890?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-is-saxony-anhalt-s-economy-really-struggling/a-78867143?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/why-north-korea-s-women-s-football-team-is-so-good/a-70313505?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/2026-beethoven-festival-evokes-a-sense-of-home/a-78892997?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/how-volkswagen-s-huge-workforce-became-a-costly-burden/a-77766154?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/berlin-ber-airport-terminal-1-reopened-after-security-scare/a-78895207?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/norway-seizes-russian-ship-in-svalbard-to-compensate-ukraine/a-78889005?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/is-germany-s-economic-slump-finally-over/a-78815447?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/macron-visits-bayeux-tapestry-with-king-charles-pm-andy-burnham/a-78772317?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/austria-women-ice-hockey-team-fight-for-future-generations/a-78771578?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/eu-summons-russian-envoy-over-failed-leipzig-drone-attack/a-78687280?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/women-s-football-anyomi-london-city-and-the-german-exodus/a-78446131?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/ukraine-russia-threatens-devastating-baltic-response/live-78582421?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-says-russia-behind-attempted-drone-attack-at-leipzig-airport/a-78584589?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/can-communities-be-protected-from-melting-glaciers/a-78615775?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/mladic-s-death-bosnia-and-serbia-s-unfinished-reckoning/a-78602733?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/norway-s-new-king-haakon-viii-takes-oath-in-parliament/a-78606923?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/us-irks-germany-europe-with-russian-g20-invite-press-bans/a-78583919?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/can-new-apple-ceo-john-ternus-fix-the-tech-giant-s-ai-woes/a-78575898?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/at-venice-film-festival-politics-take-center-stage/a-78493761?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/canada-s-carney-holds-firm-against-trump-tariffs/a-78542754?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/inside-the-sea-cucumber-smuggling-boom/a-78005662?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/ailing-djokovic-despised-every-moment-of-us-open-defeat/a-78572187?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/eu-wants-drones-to-spray-pesticides-but-it-could-backfire/a-78557154?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/greece-turkey-clash-over-protected-aegean-marine-areas/a-78550021?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/russian-american-heads-trump-s-planned-caucasus-trade-route/a-78547064?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/this-extremely-successful-author-polarizes-german-readers/a-78500452?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/serbia-keeps-eu-russia-in-play-ahead-of-key-election/a-78543495?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/what-the-odyssey-can-teach-us-about-climate-chaos/a-78545407?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/influential-humanists-these-are-the-winners-of-the-goethe-medal-2026/a-78497975?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/germany-s-military-wants-to-recruit-tech-savvy-gamers/a-78536462?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/norway-s-king-harald-dies-at-89/a-78524572?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/spain-thieves-steal-bronze-age-gold-in-lightning-raid-on-villena-museum/a-78538027?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/tragedy-in-nepal-how-do-flash-floods-happen/a-78526421?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/andre-rankel-named-germany-s-new-men-s-ice-hockey-coach/a-78532470?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/new-study-shows-german-football-remains-male-dominated/a-78532569?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/venus-us-open-invitation-raises-questions-about-wild-cards/a-78524056?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/the-great-lake-divide-collapse-vs-comeback/a-78460263?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/why-social-media-addiction-is-so-hard-to-regulate/a-78482023?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/bundesliga-season-2026-27-all-you-need-to-know/a-78061925?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/japanese-artist-yayoi-kusama-dies-at-97/a-78518473?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/was-the-heat-of-this-summer-really-normal/a-78513682?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/tim-curry-of-the-rocky-horror-picture-show-dies-at-80/a-78514945?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/reports-uefa-backs-off-fifa-boycott-threat/a-78511519?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/gamescom-2026-what-s-next-for-the-gaming-industry/a-78502849?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/remembering-dolly-parton-8-facts-about-the-icon/a-75503168?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/us-country-music-legend-dolly-parton-dies-aged-80/a-78501931?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/schalke-coach-looks-to-bosnia-bond-in-bundesliga-return/a-78486008?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/why-germany-s-volkswagen-could-cut-100-000-jobs/a-78483715?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/can-new-us-sanctions-cripple-iran-s-shadow-economy/a-78494630?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/trees-are-vital-for-cooler-cities-but-they-need-help-too/a-78488665?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/the-new-bundesliga-season-is-here-but-has-the-glow-gone/a-78062032?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/star-violinist-anne-sophie-mutter-50-years-on-stage/a-78484739?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/scientists-discover-new-immune-hubs-in-skull-bone-marrow/a-78460417?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/spiraling-health-costs-force-iranians-to-delay-care/a-78455430?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/sydney-marathon-medal-wrongly-shows-german-landmark/a-78473705?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/masha-and-the-bear-ukraine-sanctions-russian-cartoon/a-78464406?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/bauhaus-manifesto-broad-alliance-promoting-artistic-freedom/a-78456460?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/ronaldinho-to-make-football-comeback-aged-46/a-78453950?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/why-germany-s-gas-storage-levels-are-so-low/a-78440677?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/how-europe-can-better-protect-against-extreme-wildfires/a-78435243?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/bernadette-amani-living-her-dream-at-bayern-munich/a-78141213?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/evergrande-founder-hui-ka-yan-sentenced-to-life-in-prison/a-78439153?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/bayern-munich-s-jamal-musiala-collapses-on-pitch-again/a-78426021?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/who-really-owns-the-caspian-sea/a-78396946?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/in-drought-stricken-france-tankers-supply-drinking-water/a-78420016?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/will-germany-s-drought-push-up-food-prices/a-78408203?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/dressed-for-power-giorgia-meloni-and-the-language-of-fashion/a-78413559?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/how-to-grow-food-for-more-people-in-a-hotter-world/a-78413324?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/do-not-inhale-how-wildfire-smoke-affects-the-whole-body/a-76039654?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/norway-wealth-fund-sounds-alarm-on-ai-stock-market-bubble/a-78351371?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/can-the-cool-north-handle-a-surge-in-climate-tourism/a-78362462?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/fatty-food-raises-risk-of-colorectal-cancer/a-78284704?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/hunger-stones-the-history-behind-if-you-see-me-weep/a-78345729?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/can-a-drug-help-prevent-trauma-study-with-mice-suggests-so/a-78301961?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/can-we-go-green-without-forever-chemicals/a-77888704?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/eurovision-bars-countries-at-war-from-hosting/a-78341915?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/eu-waste-packaging-rules-why-small-businesses-are-worried/a-78326555?maca=en-rss-en-all-1573-rdf"/>
+    <rdf:li rdf:resource="https://www.dw.com/en/solar-eclipse-what-to-look-forward-to/a-78330594?maca=en-rss-en-all-1573-rdf"/>
+   </rdf:Seq>
+  </items>
+ </channel>
+ <image rdf:about="https://rss.dw.com/images/DW-L-RGB_whitebg.png">
+  <url>https://rss.dw.com/images/DW-L-RGB_whitebg.png</url>
+  <link>https://www.dw.com/english/?maca=en-rss-en-all-1573-rdf</link>
+  <title>DW</title>
+  <description>News, Analysis and Service from Germany and Europe - in 30 Languages</description>
+ </image>
+ <item rdf:about="https://www.dw.com/en/ecuador-ex-president-bucaram-sentenced-in-corruption-case/a-79209321?maca=en-rss-en-all-1573-rdf">
+  <title>Ecuador: Ex-president Bucaram sentenced in corruption case</title>
+  <link>https://www.dw.com/en/ecuador-ex-president-bucaram-sentenced-in-corruption-case/a-79209321?maca=en-rss-en-all-1573-rdf</link>
+  <description>Abdala Bucaram, Ecuador&apos;s former president, was convicted of organized crime for his role in the illegal sale of COVID-19 tests and medical supplies, receiving a prison sentence of over nine years.</description>
+  <dc:date>2026-09-10T08:09:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79209321</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-energy-boss-urges-better-infrastructure-protection/live-79209302?maca=en-rss-en-all-1573-rdf">
+  <title>Germany: Energy boss urges better infrastructure protection</title>
+  <link>https://www.dw.com/en/germany-energy-boss-urges-better-infrastructure-protection/live-79209302?maca=en-rss-en-all-1573-rdf</link>
+  <description>The chief of power giant RWE says Germany&apos;s rules for protecting vital infrastructure are outdated, calling for greater secrecy. Meanwhile, German inflation rose as the ECB consideres interest rates. DW has the latest.</description>
+  <dc:date>2026-09-10T07:44:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79209302</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/serbia-the-conflicted-eu-candidate/a-79203774?maca=en-rss-en-all-1573-rdf">
+  <title>Serbia, the conflicted EU candidate</title>
+  <link>https://www.dw.com/en/serbia-the-conflicted-eu-candidate/a-79203774?maca=en-rss-en-all-1573-rdf</link>
+  <description>On paper, Belgrade has pursued EU membership for years. But accession has long been stalled. The hero&apos;s farewell given to war criminal Mladic exposed just how far Serbia has alienated itself from Europe.</description>
+  <dc:date>2026-09-10T05:53:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79203774</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/august-hottest-month-ever-recorded-says-eu-monitor/a-79208462?maca=en-rss-en-all-1573-rdf">
+  <title>August hottest month ever recorded, says EU monitor</title>
+  <link>https://www.dw.com/en/august-hottest-month-ever-recorded-says-eu-monitor/a-79208462?maca=en-rss-en-all-1573-rdf</link>
+  <description>The average global temperature in August broke the previous record set in 2023. Climate scientists say record summer heat in the northern hemisphere and warmer oceans are all part of a new normal.</description>
+  <dc:date>2026-09-10T05:47:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79208462</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/trump-promises-americans-5-000-if-republicans-win-midterms/a-79208399?maca=en-rss-en-all-1573-rdf">
+  <title>Trump promises Americans $5,000 if Republicans win midterms</title>
+  <link>https://www.dw.com/en/trump-promises-americans-5-000-if-republicans-win-midterms/a-79208399?maca=en-rss-en-all-1573-rdf</link>
+  <description>The US president gave a wide-ranging speech at the Republican midterm convention. He defended the war in Iran, trade wars and tariffs, and the White House ballroom. He also called Democrats evil and immigrants animals.</description>
+  <dc:date>2026-09-10T03:44:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79208399</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/philippines-several-killed-dozens-missing-after-fire-on-ferry/a-79208236?maca=en-rss-en-all-1573-rdf">
+  <title>Philippines: Several killed, dozens missing after fire on ferry</title>
+  <link>https://www.dw.com/en/philippines-several-killed-dozens-missing-after-fire-on-ferry/a-79208236?maca=en-rss-en-all-1573-rdf</link>
+  <description>Footage released by the Coast Guard showed the vessel engulfed in flames as rescuers brought bodies ashore in body bags. The ship&apos;s manifest listed 134 passengers and crew.</description>
+  <dc:date>2026-09-10T01:48:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79208236</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/finland-google-announces-€13-billion-ai-energy-investment/a-79208034?maca=en-rss-en-all-1573-rdf">
+  <title>Finland: Google announces €13 billion AI, energy investment</title>
+  <link>https://www.dw.com/en/finland-google-announces-€13-billion-ai-energy-investment/a-79208034?maca=en-rss-en-all-1573-rdf</link>
+  <description>Google has announced a plan to expand AI data centers and buy massive amounts of nuclear energy. Finland&apos;s security services have warned of there are risks, but the right-wing government says the deal will bring jobs.</description>
+  <dc:date>2026-09-09T22:27:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79208034</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/norway-s-pm-zelenskyy-s-plane-almost-hit-by-drone/a-79207528?maca=en-rss-en-all-1573-rdf">
+  <title>Norway&apos;s PM: Zelenskyy&apos;s plane almost hit by drone</title>
+  <link>https://www.dw.com/en/norway-s-pm-zelenskyy-s-plane-almost-hit-by-drone/a-79207528?maca=en-rss-en-all-1573-rdf</link>
+  <description>A drone nearly struck a plane carrying Ukrainian President Volodymyr Zelenskyy from Moldova to Oslo, according to Norway&apos;s prime minister. However, a Ukrainian source said the threat may have been overstated.</description>
+  <dc:date>2026-09-09T20:01:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79207528</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/china-english-to-be-removed-as-a-graded-core-subject/a-79199629?maca=en-rss-en-all-1573-rdf">
+  <title>China: English to be removed as a graded core subject?</title>
+  <link>https://www.dw.com/en/china-english-to-be-removed-as-a-graded-core-subject/a-79199629?maca=en-rss-en-all-1573-rdf</link>
+  <description>A university professor is calling for English to no longer be taught as a graded core subject in Chinese schools. Opponents argue that, in a globalized world, knowing English benefits the country and one&apos;s career.</description>
+  <dc:date>2026-09-09T19:34:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79199629</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/ceuta-documents-show-spanish-intelligence-warned-of-crisis/a-79206505?maca=en-rss-en-all-1573-rdf">
+  <title>Ceuta: Documents show Spanish intelligence warned of crisis</title>
+  <link>https://www.dw.com/en/ceuta-documents-show-spanish-intelligence-warned-of-crisis/a-79206505?maca=en-rss-en-all-1573-rdf</link>
+  <description>Spain declassified documents that showed warnings issued a day before more than 70,000 migrants rushed the Ceuta border fence. Meanwhile, the EU announced funds to strengthen the border and return migrants to Morocco.</description>
+  <dc:date>2026-09-09T17:53:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79206505</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-s-connection-to-the-september-11-2001-attacks/a-79202918?maca=en-rss-en-all-1573-rdf">
+  <title>Germany&apos;s connection to the September 11, 2001 attacks</title>
+  <link>https://www.dw.com/en/germany-s-connection-to-the-september-11-2001-attacks/a-79202918?maca=en-rss-en-all-1573-rdf</link>
+  <description>The 9/11 attacks were partly planned in Hamburg, via the so-called Hamburg cell, whose members played key roles in the plot. A look back at a day that shook up Germany’s approach to national security.</description>
+  <dc:date>2026-09-09T17:52:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79202918</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/switzerland-two-killed-in-power-plant-explosion/a-79205516?maca=en-rss-en-all-1573-rdf">
+  <title>Switzerland: Two killed in power plant explosion</title>
+  <link>https://www.dw.com/en/switzerland-two-killed-in-power-plant-explosion/a-79205516?maca=en-rss-en-all-1573-rdf</link>
+  <description>A fire and subsequent explosion have killed two workers at a Swiss hydroelectric power plant. Authorities say the facility suffered major damage in the incident.</description>
+  <dc:date>2026-09-09T16:02:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79205516</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/iran-tightens-social-control-with-crackdown-on-cafes/a-79204988?maca=en-rss-en-all-1573-rdf">
+  <title>Iran tightens social control with crackdown on cafes</title>
+  <link>https://www.dw.com/en/iran-tightens-social-control-with-crackdown-on-cafes/a-79204988?maca=en-rss-en-all-1573-rdf</link>
+  <description>Authorities are keeping a close eye on cafes, fearing they could play a role in fostering anti-government sentiment.</description>
+  <dc:date>2026-09-09T15:43:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79204988</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/how-ethiopia-s-constitutional-reform-gives-pm-more-power/a-79172262?maca=en-rss-en-all-1573-rdf">
+  <title>How Ethiopia&apos;s constitutional reform gives PM more power</title>
+  <link>https://www.dw.com/en/how-ethiopia-s-constitutional-reform-gives-pm-more-power/a-79172262?maca=en-rss-en-all-1573-rdf</link>
+  <description>Does Ethiopian Prime Minister Abiy Ahmed stand to benefit from a planned constitutional reform in the country? A new presidential system would reshape political power — and could give him even more power in office.</description>
+  <dc:date>2026-09-09T15:18:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79172262</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/oil-prices-rise-as-middle-east-conflict-escalates/a-79203547?maca=en-rss-en-all-1573-rdf">
+  <title>Oil prices rise as Middle East conflict escalates</title>
+  <link>https://www.dw.com/en/oil-prices-rise-as-middle-east-conflict-escalates/a-79203547?maca=en-rss-en-all-1573-rdf</link>
+  <description>The price of oil returned to triple digits in US dollars, as conflict in the Middle East threatens supply chains and puts a strain on global reserves.</description>
+  <dc:date>2026-09-09T14:16:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79203547</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/syria-arms-depot-explosion-kills-at-least-14/a-79203314?maca=en-rss-en-all-1573-rdf">
+  <title>Syria arms depot explosion kills at least 14</title>
+  <link>https://www.dw.com/en/syria-arms-depot-explosion-kills-at-least-14/a-79203314?maca=en-rss-en-all-1573-rdf</link>
+  <description>The explosion struck near the Syrian city of Sarmada in Idlib province in the northwest. The Defense Ministry said the weapons and remnants from the war were being stored temporarily at the site before being relocated.</description>
+  <dc:date>2026-09-09T13:53:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79203314</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/how-belarusians-still-find-hope-in-a-silenced-country/a-79127285?maca=en-rss-en-all-1573-rdf">
+  <title>How Belarusians still find hope in a silenced country</title>
+  <link>https://www.dw.com/en/how-belarusians-still-find-hope-in-a-silenced-country/a-79127285?maca=en-rss-en-all-1573-rdf</link>
+  <description>The documentary &quot;Letters From the Silenced Country&quot; depicts the ongoing repression under the authoritarian regime. Director Andrei Kutsila talked to DW ahead of the film&apos;s Venice premiere.</description>
+  <dc:date>2026-09-09T13:43:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79127285</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/why-we-re-still-looking-for-dark-matter/a-79189395?maca=en-rss-en-all-1573-rdf">
+  <title>Why we&apos;re still looking for dark matter</title>
+  <link>https://www.dw.com/en/why-we-re-still-looking-for-dark-matter/a-79189395?maca=en-rss-en-all-1573-rdf</link>
+  <description>When physicists said they may have spotted evidence of dark matter almost 100 years after it was proposed as a theory, the internet lit up. Here&apos;s why we&apos;re searching for the thing that holds everything else together.</description>
+  <dc:date>2026-09-09T13:23:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79189395</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/cambodia-s-floating-schools-hit-by-rising-fuel-costs/a-79202008?maca=en-rss-en-all-1573-rdf">
+  <title>Cambodia&apos;s floating schools hit by rising fuel costs</title>
+  <link>https://www.dw.com/en/cambodia-s-floating-schools-hit-by-rising-fuel-costs/a-79202008?maca=en-rss-en-all-1573-rdf</link>
+  <description>The Iran war has sent fuel prices higher in Cambodia, squeezing families who rely on fishing and boats for their livelihoods. For children living on Tonle Sap, rising fuel costs pose yet another barrier to education.</description>
+  <dc:date>2026-09-09T12:57:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79202008</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/eu-proposes-more-restrictions-for-airbnb-holiday-rentals/a-79202023?maca=en-rss-en-all-1573-rdf">
+  <title>EU proposes more restrictions for Airbnb, holiday rentals</title>
+  <link>https://www.dw.com/en/eu-proposes-more-restrictions-for-airbnb-holiday-rentals/a-79202023?maca=en-rss-en-all-1573-rdf</link>
+  <description>The European Union wants tighter rules on short-term rentals to tackle housing shortages in tourist hotspots.</description>
+  <dc:date>2026-09-09T12:27:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79202023</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/liv-golf-in-financial-turmoil-what-s-next-for-the-sport/a-79199569?maca=en-rss-en-all-1573-rdf">
+  <title>LIV Golf in financial turmoil: What&apos;s next for the sport?</title>
+  <link>https://www.dw.com/en/liv-golf-in-financial-turmoil-what-s-next-for-the-sport/a-79199569?maca=en-rss-en-all-1573-rdf</link>
+  <description>Six months after Saudi Arabia pulled funding from the breakaway organization, LIV Golf have filed for bankruptcy protection. Several of the world&apos;s best players signed on to LIV, so where does that leave golf?</description>
+  <dc:date>2026-09-09T11:16:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79199569</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/conspiracy-theories-can-provide-answers-but-not-peace/a-79022756?maca=en-rss-en-all-1573-rdf">
+  <title>Conspiracy theories can provide answers but not peace</title>
+  <link>https://www.dw.com/en/conspiracy-theories-can-provide-answers-but-not-peace/a-79022756?maca=en-rss-en-all-1573-rdf</link>
+  <description>Twenty-five years after 9/11, conspiracy theories about the terrorist attacks persist. But even as an attempt to make sense of a tragedy, psychologists say the benefit in conspiracy ideation or belief is short-lived.</description>
+  <dc:date>2026-09-09T09:45:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79022756</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/the-billion-euro-trade-driving-europe-s-eels-to-extinction/a-78523145?maca=en-rss-en-all-1573-rdf">
+  <title>The billion-euro trade driving Europe&apos;s eels to extinction</title>
+  <link>https://www.dw.com/en/the-billion-euro-trade-driving-europe-s-eels-to-extinction/a-78523145?maca=en-rss-en-all-1573-rdf</link>
+  <description>Traffickers are making big bucks smuggling millions of critically endangered eels across continents, using suitcases on planes and legal loopholes to deliver them to dinnerplates. Where are the smuggling hotspots?</description>
+  <dc:date>2026-09-09T08:36:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78523145</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/the-bayeux-tapestry-in-london-what-s-behind-the-hype/a-78488629?maca=en-rss-en-all-1573-rdf">
+  <title>The Bayeux Tapestry in London: What&apos;s behind the hype?</title>
+  <link>https://www.dw.com/en/the-bayeux-tapestry-in-london-what-s-behind-the-hype/a-78488629?maca=en-rss-en-all-1573-rdf</link>
+  <description>The exhibition of the Bayeux Tapestry at the British Museum is eagerly anticipated across the UK, as the medieval masterpiece is considered by many to be a symbol of the country&apos;s identity.</description>
+  <dc:date>2026-09-09T07:21:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78488629</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/eu-sports-commissioner-says-fifa-is-damaging-to-football/a-79193424?maca=en-rss-en-all-1573-rdf">
+  <title>EU sports commissioner says FIFA is &apos;damaging to football&apos;</title>
+  <link>https://www.dw.com/en/eu-sports-commissioner-says-fifa-is-damaging-to-football/a-79193424?maca=en-rss-en-all-1573-rdf</link>
+  <description>Speaking to DW, EU Commissioner Glenn Micallef hit out at world football&apos;s governing body over its &quot;poor governance.&quot;</description>
+  <dc:date>2026-09-09T07:16:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79193424</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/brics-leaders-gather-in-india-but-does-the-group-have-a-clear-purpose/a-79195234?maca=en-rss-en-all-1573-rdf">
+  <title>BRICS leaders gather in India, but does the group have a clear purpose?</title>
+  <link>https://www.dw.com/en/brics-leaders-gather-in-india-but-does-the-group-have-a-clear-purpose/a-79195234?maca=en-rss-en-all-1573-rdf</link>
+  <description>The 18th BRICS summit takes place in India this weekend. Unlike last year, the leaders of China and Russia are coming. But does the expanded group have a clear common mission and purpose?</description>
+  <dc:date>2026-09-09T06:47:00Z</dc:date>
+  <dc:subject>NRS-Import</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79195234</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/putin-rejects-mobilization-rumors-many-russians-unconvinced/a-79193386?maca=en-rss-en-all-1573-rdf">
+  <title>Putin rejects mobilization rumors, many Russians unconvinced</title>
+  <link>https://www.dw.com/en/putin-rejects-mobilization-rumors-many-russians-unconvinced/a-79193386?maca=en-rss-en-all-1573-rdf</link>
+  <description>Russia’s President Vladimir Putin has dismissed rumors about military mobilization. But many Russians, including many DW users, say they are preparing for the possibility.</description>
+  <dc:date>2026-09-09T05:57:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79193386</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/german-economy-frets-about-saxony-anhalt-election-results/a-79162871?maca=en-rss-en-all-1573-rdf">
+  <title>German economy frets about Saxony-Anhalt election results</title>
+  <link>https://www.dw.com/en/german-economy-frets-about-saxony-anhalt-election-results/a-79162871?maca=en-rss-en-all-1573-rdf</link>
+  <description>The AfD won the election in the eastern German state by a wide margin. While politicians and election analysts are still debating the reasons for the far-right party&apos;s popularity, economists are sounding the alarm.</description>
+  <dc:date>2026-09-08T18:35:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79162871</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/ratko-mladic-s-funeral-casts-shadow-over-bosnia-and-herzegovina-vote/a-79189319?maca=en-rss-en-all-1573-rdf">
+  <title>Ratko Mladic’s funeral casts shadow over Bosnia and Herzegovina vote</title>
+  <link>https://www.dw.com/en/ratko-mladic-s-funeral-casts-shadow-over-bosnia-and-herzegovina-vote/a-79189319?maca=en-rss-en-all-1573-rdf</link>
+  <description>Ratko Mladic’s funeral in Belgrade, attended by Serbian and Bosnian Serb leaders, has deepened regional tensions and could affect the upcoming election in Bosnia and Herzegovina.</description>
+  <dc:date>2026-09-08T14:09:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79189319</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/bsw-and-afd-a-political-love-hate-relationship-in-germany/a-79185782?maca=en-rss-en-all-1573-rdf">
+  <title>BSW and AfD – a political love-hate relationship in Germany</title>
+  <link>https://www.dw.com/en/bsw-and-afd-a-political-love-hate-relationship-in-germany/a-79185782?maca=en-rss-en-all-1573-rdf</link>
+  <description>The Sahra Wagenknecht Alliance (BSW) could help the Alternative for Germany (AfD) into power in Saxony-Anhalt. But the BSW is riddled with infighting</description>
+  <dc:date>2026-09-08T13:07:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79185782</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/afghanistan-s-women-a-national-soccer-team-without-a-home/a-79139500?maca=en-rss-en-all-1573-rdf">
+  <title>Afghanistan&apos;s women: A national soccer team without a home</title>
+  <link>https://www.dw.com/en/afghanistan-s-women-a-national-soccer-team-without-a-home/a-79139500?maca=en-rss-en-all-1573-rdf</link>
+  <description>The Afghan women&apos;s national football team has finally been officially recognized by FIFA. Now the players want to make history both on and off the field.</description>
+  <dc:date>2026-09-08T11:03:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79139500</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/pisa-2025-results-reading-and-math-scores-plummet-worldwide/a-79147293?maca=en-rss-en-all-1573-rdf">
+  <title>PISA 2025 results: Reading and math scores plummet worldwide</title>
+  <link>https://www.dw.com/en/pisa-2025-results-reading-and-math-scores-plummet-worldwide/a-79147293?maca=en-rss-en-all-1573-rdf</link>
+  <description>The PISA 2025 results reveal record-low student performance, with digital distractions and AI use raising concerns. Germany is faring worse than ever.</description>
+  <dc:date>2026-09-08T07:30:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79147293</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/elversberg-bundesliga-newcomers-from-tiny-town-make-waves/a-77194483?maca=en-rss-en-all-1573-rdf">
+  <title>Elversberg: Bundesliga newcomers from tiny town make waves</title>
+  <link>https://www.dw.com/en/elversberg-bundesliga-newcomers-from-tiny-town-make-waves/a-77194483?maca=en-rss-en-all-1573-rdf</link>
+  <description>A team from a small southwestern German town of just 7,000 inhabitants made history by sealing promotion to become the 59th club to play in the Bundesliga. Elversberg has got off to a memorable start.</description>
+  <dc:date>2026-09-08T06:47:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>77194483</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/egg-freezing-in-women-s-football-choice-or-pressure/a-79145259?maca=en-rss-en-all-1573-rdf">
+  <title>Egg freezing in women&apos;s football: Choice or pressure?</title>
+  <link>https://www.dw.com/en/egg-freezing-in-women-s-football-choice-or-pressure/a-79145259?maca=en-rss-en-all-1573-rdf</link>
+  <description>Spain&apos;s football federation is set to join a handful of clubs in paying for female players to freeze their eggs. Experts have welfare concerns.</description>
+  <dc:date>2026-09-08T06:45:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79145259</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/werner-herzog-germany-s-wild-man-of-cinema-is-back/a-78949324?maca=en-rss-en-all-1573-rdf">
+  <title>Werner Herzog: Germany&apos;s wild man of cinema is back</title>
+  <link>https://www.dw.com/en/werner-herzog-germany-s-wild-man-of-cinema-is-back/a-78949324?maca=en-rss-en-all-1573-rdf</link>
+  <description>As his latest movie, &quot;Bucking Fastard,&quot; premiered at the Venice Film Festival, DW talked to the boundary-breaking director.</description>
+  <dc:date>2026-09-07T16:41:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78949324</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/nicaragua-challenges-german-arms-exports-to-israel-at-icj/a-79148044?maca=en-rss-en-all-1573-rdf">
+  <title>Nicaragua challenges German arms exports to Israel at ICJ</title>
+  <link>https://www.dw.com/en/nicaragua-challenges-german-arms-exports-to-israel-at-icj/a-79148044?maca=en-rss-en-all-1573-rdf</link>
+  <description>Germany has asked the International Court of Justice to dismiss the case on jurisdiction grounds. It also said its arms exports to Israel were documented, published, and subject to more stringent checks than most.</description>
+  <dc:date>2026-09-07T16:26:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79148044</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/saxony-anhalt-germany-wakes-up-to-unsettling-afd-victory/live-78754934?maca=en-rss-en-all-1573-rdf">
+  <title>Saxony-Anhalt: Germany wakes up to &apos;unsettling&apos; AfD victory</title>
+  <link>https://www.dw.com/en/saxony-anhalt-germany-wakes-up-to-unsettling-afd-victory/live-78754934?maca=en-rss-en-all-1573-rdf</link>
+  <description>The far-right Alternative for Germany (AfD) party won the Saxony-Anhalt state election but without an absolute majority in parliament. Other European nations were wrestling with the impact of the results. Follow DW.</description>
+  <dc:date>2026-09-07T16:14:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78754934</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/afd-wants-to-form-a-government-in-saxony-anhalt-but-how/a-79107331?maca=en-rss-en-all-1573-rdf">
+  <title>AfD wants to form a government in Saxony-Anhalt — but how?</title>
+  <link>https://www.dw.com/en/afd-wants-to-form-a-government-in-saxony-anhalt-but-how/a-79107331?maca=en-rss-en-all-1573-rdf</link>
+  <description>Following its record election success, the far-right Alternative for Germany aims to form a government. What options does it have without the absolute majority?</description>
+  <dc:date>2026-09-07T16:09:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79107331</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/war-criminal-ratko-mladic-buried-with-military-honors-in-belgrade-serbia/a-79148678?maca=en-rss-en-all-1573-rdf">
+  <title>War criminal Ratko Mladic buried with military honors in Belgrade, Serbia</title>
+  <link>https://www.dw.com/en/war-criminal-ratko-mladic-buried-with-military-honors-in-belgrade-serbia/a-79148678?maca=en-rss-en-all-1573-rdf</link>
+  <description>Ratko Mladic, the former Bosnian Serb commander convicted of genocide in Srebrenica, has been buried in Belgrade. The funeral, broadcast live on TV, comes just days before President Vucic is expected to call an election.</description>
+  <dc:date>2026-09-07T15:03:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79148678</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/chancellor-merz-says-afd-result-changes-all-of-germany/a-79150560?maca=en-rss-en-all-1573-rdf">
+  <title>Chancellor Merz says AfD result &apos;changes all of Germany&apos;</title>
+  <link>https://www.dw.com/en/chancellor-merz-says-afd-result-changes-all-of-germany/a-79150560?maca=en-rss-en-all-1573-rdf</link>
+  <description>A visibly shaken but also determined Friedrich Merz spoke in Berlin about the AfD&apos;s election victory in Saxony-Anhalt and the CDU&apos;s bitter defeat. He insisted on sticking to his reforms.</description>
+  <dc:date>2026-09-07T15:01:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79150560</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/us-envoys-witkoff-and-kushner-hold-ukraine-talks-after-meeting-putin/a-79054779?maca=en-rss-en-all-1573-rdf">
+  <title>US envoys Witkoff and Kushner hold Ukraine talks after meeting Putin</title>
+  <link>https://www.dw.com/en/us-envoys-witkoff-and-kushner-hold-ukraine-talks-after-meeting-putin/a-79054779?maca=en-rss-en-all-1573-rdf</link>
+  <description>US envoys Steve Witkoff and Jared Kushner held talks with Ukrainian President Volodymyr Zelenskyy in Kyiv, seeking to revive efforts to end the war. But the latest diplomatic push seems to have produced no breakthrough.</description>
+  <dc:date>2026-09-06T22:22:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79054779</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/saxony-anhalt-digesting-the-afd-s-landmark-election-win/a-79103981?maca=en-rss-en-all-1573-rdf">
+  <title>Saxony-Anhalt: Digesting the AfD&apos;s landmark election win</title>
+  <link>https://www.dw.com/en/saxony-anhalt-digesting-the-afd-s-landmark-election-win/a-79103981?maca=en-rss-en-all-1573-rdf</link>
+  <description>With well over 40% for the far-right Alternative for Germany (AfD), Saxony-Anhalt has witnessed a landmark election night. DW&apos;s reporters were on the ground.</description>
+  <dc:date>2026-09-06T21:04:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79103981</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/fact-check-election-fraud-claims-spread-in-saxony-anhalt/a-79093254?maca=en-rss-en-all-1573-rdf">
+  <title>Fact check: Election fraud claims spread in Saxony-Anhalt</title>
+  <link>https://www.dw.com/en/fact-check-election-fraud-claims-spread-in-saxony-anhalt/a-79093254?maca=en-rss-en-all-1573-rdf</link>
+  <description>False and misleading claims are raising questions about the integrity of the election in Saxony-Anhalt. DW Fact Check takes a closer look.</description>
+  <dc:date>2026-09-06T19:59:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79093254</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-set-to-feel-the-impact-of-saxony-anhalt-s-afd-win/a-78874569?maca=en-rss-en-all-1573-rdf">
+  <title>Germany set to feel the impact of Saxony-Anhalt&apos;s AfD win</title>
+  <link>https://www.dw.com/en/germany-set-to-feel-the-impact-of-saxony-anhalt-s-afd-win/a-78874569?maca=en-rss-en-all-1573-rdf</link>
+  <description>The state election could have major consequences for Germany&apos;s government. Pollsters cite dissatisfaction with Merz as one reason for the CDU&apos;s poor showing.</description>
+  <dc:date>2026-09-06T18:50:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78874569</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/saxony-anhalt-election-why-the-afd-is-so-strong/a-78482588?maca=en-rss-en-all-1573-rdf">
+  <title>Saxony-Anhalt election: Why the AfD is so strong</title>
+  <link>https://www.dw.com/en/saxony-anhalt-election-why-the-afd-is-so-strong/a-78482588?maca=en-rss-en-all-1573-rdf</link>
+  <description>The AfD has emerged as the strongest party in Germany&apos;s eastern state of Saxony-Anhalt by a wide margin. What is driving support for the far right in this predominantly rural eastern German state?</description>
+  <dc:date>2026-09-06T18:33:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78482588</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-kosovo-unite-against-ticks-carrying-deadly-virus/a-78655223?maca=en-rss-en-all-1573-rdf">
+  <title>Germany, Kosovo unite against ticks carrying deadly virus</title>
+  <link>https://www.dw.com/en/germany-kosovo-unite-against-ticks-carrying-deadly-virus/a-78655223?maca=en-rss-en-all-1573-rdf</link>
+  <description>Germany has high-security labs while Kosovo has Hyalomma ticks and experience with the deadly Crimean-Congo hemorrhagic fever. Working together, German and Kosovar scientists are fighting the disease and its vectors.</description>
+  <dc:date>2026-09-06T10:25:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78655223</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-plans-anti-drone-shield-over-leipzig-attack-report/a-79052604?maca=en-rss-en-all-1573-rdf">
+  <title>Germany plans anti-drone shield over Leipzig attack — report</title>
+  <link>https://www.dw.com/en/germany-plans-anti-drone-shield-over-leipzig-attack-report/a-79052604?maca=en-rss-en-all-1573-rdf</link>
+  <description>Several German cities will receive rapidly deployable units capable of defending against drone strikes on critical infrastructure, according to Bild am Sonntag newspaper.</description>
+  <dc:date>2026-09-06T10:11:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79052604</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/hungary-begins-hunt-for-corrupt-regime-s-billions/a-79047176?maca=en-rss-en-all-1573-rdf">
+  <title>Hungary begins hunt for corrupt regime&apos;s billions</title>
+  <link>https://www.dw.com/en/hungary-begins-hunt-for-corrupt-regime-s-billions/a-79047176?maca=en-rss-en-all-1573-rdf</link>
+  <description>Hungary&apos;s new prime minister promised he would recover billions stolen or diverted by the previous administration. A new &quot;super authority&quot; is about to begin that work. Its success or failure will have a big impact.</description>
+  <dc:date>2026-09-06T05:54:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79047176</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/croatia-toxic-waste-protest-draws-tens-of-thousands/a-79049228?maca=en-rss-en-all-1573-rdf">
+  <title>Croatia: Toxic waste protest draws tens of thousands</title>
+  <link>https://www.dw.com/en/croatia-toxic-waste-protest-draws-tens-of-thousands/a-79049228?maca=en-rss-en-all-1573-rdf</link>
+  <description>The Zagreb demonstrators demanded that the government come up with a plan to clear illegal toxic waste in 20 days. Prime Minister Plenkovic has promised to tackle the issue.</description>
+  <dc:date>2026-09-05T17:32:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79049228</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-from-emigration-to-immigration-destination/a-78805541?maca=en-rss-en-all-1573-rdf">
+  <title>Germany: From emigration to immigration destination</title>
+  <link>https://www.dw.com/en/germany-from-emigration-to-immigration-destination/a-78805541?maca=en-rss-en-all-1573-rdf</link>
+  <description>Migration is a sensitive topic in Germany, with public debate dominated by the fear of uncontrolled immigration. But over two centuries, millions of Germans emigrated in search of a better life.</description>
+  <dc:date>2026-09-05T08:07:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78805541</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-news-thousands-march-at-saxony-anhalt-rallies/live-79041302?maca=en-rss-en-all-1573-rdf">
+  <title>Germany news: Thousands march at Saxony-Anhalt rallies</title>
+  <link>https://www.dw.com/en/germany-news-thousands-march-at-saxony-anhalt-rallies/live-79041302?maca=en-rss-en-all-1573-rdf</link>
+  <description>Ahead of Saxony-Anhalt&apos;s state election on Sunday, a democracy festival by civil society groups has been held in Magdeburg. The far-right AfD organized its final campaign rally in the state capital.</description>
+  <dc:date>2026-09-05T06:53:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79041302</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/what-would-an-afd-government-in-saxony-anhalt-really-mean/a-78869947?maca=en-rss-en-all-1573-rdf">
+  <title>What would an AfD government in Saxony-Anhalt really mean?</title>
+  <link>https://www.dw.com/en/what-would-an-afd-government-in-saxony-anhalt-really-mean/a-78869947?maca=en-rss-en-all-1573-rdf</link>
+  <description>Detention centers for deportation, mandatory work for asylum-seekers, vigilante groups — the AfD wants to drastically overhaul Saxony-Anhalt. What does the party have planned?</description>
+  <dc:date>2026-09-05T06:25:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78869947</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/outrage-as-maltese-tycoon-acquitted-in-journalist-s-murder/a-79027008?maca=en-rss-en-all-1573-rdf">
+  <title>Outrage as Maltese tycoon acquitted in journalist&apos;s murder</title>
+  <link>https://www.dw.com/en/outrage-as-maltese-tycoon-acquitted-in-journalist-s-murder/a-79027008?maca=en-rss-en-all-1573-rdf</link>
+  <description>Maltese businessman Yorgen Fenech has been found not guilty of complicity to murder journalist Daphne Caruana Galizia. Almost nine years after the attack, the question of who ordered her death remains unanswered.</description>
+  <dc:date>2026-09-04T19:31:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79027008</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/in-saxony-anhalt-election-small-parties-will-be-kingmakers/a-78482460?maca=en-rss-en-all-1573-rdf">
+  <title>In Saxony-Anhalt election, small parties will be kingmakers</title>
+  <link>https://www.dw.com/en/in-saxony-anhalt-election-small-parties-will-be-kingmakers/a-78482460?maca=en-rss-en-all-1573-rdf</link>
+  <description>The far-right AfD has good odds of winning an absolute majority in Saxony-Anhalt&apos;s parliament this state election, enabling them to govern alone. It all depends on whether other parties make the cut.</description>
+  <dc:date>2026-09-04T19:06:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78482460</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-s-civil-society-alliance-takes-on-the-far-right/a-79009105?maca=en-rss-en-all-1573-rdf">
+  <title>Germany&apos;s civil society alliance takes on the far right</title>
+  <link>https://www.dw.com/en/germany-s-civil-society-alliance-takes-on-the-far-right/a-79009105?maca=en-rss-en-all-1573-rdf</link>
+  <description>Trade unions, churches and human rights activists are worried about the rise of the far-right AfD. How can civil society protect people who are threatened by far-right extremism?</description>
+  <dc:date>2026-09-04T18:36:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>79009105</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/how-vulnerable-is-germany-s-infrastructure/a-78990131?maca=en-rss-en-all-1573-rdf">
+  <title>How vulnerable is Germany&apos;s infrastructure?</title>
+  <link>https://www.dw.com/en/how-vulnerable-is-germany-s-infrastructure/a-78990131?maca=en-rss-en-all-1573-rdf</link>
+  <description>The growing number of attacks on substations and railway lines in Germany is raising concern. Experts say that people will have to get used to the likelihood that such incidents will continue.</description>
+  <dc:date>2026-09-04T13:14:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78990131</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/majority-of-germans-see-russia-as-a-threat/a-78970396?maca=en-rss-en-all-1573-rdf">
+  <title>Majority of Germans see Russia as a threat</title>
+  <link>https://www.dw.com/en/majority-of-germans-see-russia-as-a-threat/a-78970396?maca=en-rss-en-all-1573-rdf</link>
+  <description>More than half of German citizens believe that Germany&apos;s security is threatened by Russia, according to the latest survey by public broadcaster ARD.</description>
+  <dc:date>2026-09-04T12:00:00Z</dc:date>
+  <dc:subject>Germany</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78970396</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/the-hidden-environmental-cost-of-ai-data-centers/a-78789889?maca=en-rss-en-all-1573-rdf">
+  <title>The hidden environmental cost of AI data centers</title>
+  <link>https://www.dw.com/en/the-hidden-environmental-cost-of-ai-data-centers/a-78789889?maca=en-rss-en-all-1573-rdf</link>
+  <description>As data centers multiply to meet AI demand, they&apos;re straining power grids, draining water supplies and reshaping the land and air around them.</description>
+  <dc:date>2026-09-04T11:08:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78789889</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/serbia-how-the-funeral-of-ratko-mladic-is-dividing-a-nation/a-78948890?maca=en-rss-en-all-1573-rdf">
+  <title>Serbia: How the funeral of Ratko Mladic is dividing a nation</title>
+  <link>https://www.dw.com/en/serbia-how-the-funeral-of-ratko-mladic-is-dividing-a-nation/a-78948890?maca=en-rss-en-all-1573-rdf</link>
+  <description>As the Serbian government leaves the decision about Ratko Mladic&apos;s funeral arrangements to his family, international pressure on the country is mounting. How do Serbs feel about the matter?</description>
+  <dc:date>2026-09-04T11:03:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78948890</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-is-saxony-anhalt-s-economy-really-struggling/a-78867143?maca=en-rss-en-all-1573-rdf">
+  <title>Germany: Is Saxony-Anhalt&apos;s economy really struggling?</title>
+  <link>https://www.dw.com/en/germany-is-saxony-anhalt-s-economy-really-struggling/a-78867143?maca=en-rss-en-all-1573-rdf</link>
+  <description>Germany&apos;s far-right AfD party has long claimed that the eastern state of Saxony-Anhalt has been left behind. Is that really the case? A closer look at the data offers some interesting insights.</description>
+  <dc:date>2026-09-04T10:59:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78867143</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/why-north-korea-s-women-s-football-team-is-so-good/a-70313505?maca=en-rss-en-all-1573-rdf">
+  <title>Why North Korea&apos;s women&apos;s football team is so good</title>
+  <link>https://www.dw.com/en/why-north-korea-s-women-s-football-team-is-so-good/a-70313505?maca=en-rss-en-all-1573-rdf</link>
+  <description>North Korea&apos;s young footballers enter the U-20 World Cup in Poland as defending champions — the 2024 title was their third. Why is the isolated state so good at the game?</description>
+  <dc:date>2026-09-04T10:01:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>70313505</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/2026-beethoven-festival-evokes-a-sense-of-home/a-78892997?maca=en-rss-en-all-1573-rdf">
+  <title>2026 Beethoven Festival evokes a sense of home</title>
+  <link>https://www.dw.com/en/2026-beethoven-festival-evokes-a-sense-of-home/a-78892997?maca=en-rss-en-all-1573-rdf</link>
+  <description>The motto of this year&apos;s classical music festival in Bonn is &quot;Home/At Home,&quot; featuring musicians from diverse cultures presenting pieces from their homelands.</description>
+  <dc:date>2026-09-04T08:05:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78892997</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/how-volkswagen-s-huge-workforce-became-a-costly-burden/a-77766154?maca=en-rss-en-all-1573-rdf">
+  <title>How Volkswagen&apos;s huge workforce became a costly burden</title>
+  <link>https://www.dw.com/en/how-volkswagen-s-huge-workforce-became-a-costly-burden/a-77766154?maca=en-rss-en-all-1573-rdf</link>
+  <description>The struggling German carmaker plans to cut up to 100,000 jobs from its 630,000-strong workforce. How did VW&apos;s headcount get so bloated, and will the cuts be enough to survive the Chinese EV onslaught?</description>
+  <dc:date>2026-09-04T07:21:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>77766154</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/berlin-ber-airport-terminal-1-reopened-after-security-scare/a-78895207?maca=en-rss-en-all-1573-rdf">
+  <title>Berlin: BER Airport Terminal 1 reopened after security scare</title>
+  <link>https://www.dw.com/en/berlin-ber-airport-terminal-1-reopened-after-security-scare/a-78895207?maca=en-rss-en-all-1573-rdf</link>
+  <description>Police have given the all-clear at Terminal 1 at Berlin&apos;s BER Airport following an earlier security scare and evacuation. The airport said some flights had been delayed but they were trying to avoid any cancelations.</description>
+  <dc:date>2026-09-03T21:25:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78895207</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/norway-seizes-russian-ship-in-svalbard-to-compensate-ukraine/a-78889005?maca=en-rss-en-all-1573-rdf">
+  <title>Norway seizes Russian ship in Svalbard to compensate Ukraine</title>
+  <link>https://www.dw.com/en/norway-seizes-russian-ship-in-svalbard-to-compensate-ukraine/a-78889005?maca=en-rss-en-all-1573-rdf</link>
+  <description>Authorities in Norway have seized a Russian ship, the Professor Molchanov, on a court order sought and obtained by Naftogaz in Ukraine. Russia has protested the move, which stems from its refusal to pay Naftogaz damages.</description>
+  <dc:date>2026-09-03T15:23:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78889005</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/is-germany-s-economic-slump-finally-over/a-78815447?maca=en-rss-en-all-1573-rdf">
+  <title>Is Germany&apos;s economic slump finally over?</title>
+  <link>https://www.dw.com/en/is-germany-s-economic-slump-finally-over/a-78815447?maca=en-rss-en-all-1573-rdf</link>
+  <description>Despite a slew of negative headlines, the German economy has posted its best figures in years. There are reasons for optimism, but structural issues remain.</description>
+  <dc:date>2026-09-03T12:30:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78815447</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/macron-visits-bayeux-tapestry-with-king-charles-pm-andy-burnham/a-78772317?maca=en-rss-en-all-1573-rdf">
+  <title>Macron visits Bayeux Tapestry with King Charles, PM Andy Burnham</title>
+  <link>https://www.dw.com/en/macron-visits-bayeux-tapestry-with-king-charles-pm-andy-burnham/a-78772317?maca=en-rss-en-all-1573-rdf</link>
+  <description>French President Emmanuel Macron is on a shorter-term visit to the UK than the renowned on-loan 11th century tapestry. He viewed the ancient artwork with the UK monarch and relatively new Prime Minister Andy Burnham.</description>
+  <dc:date>2026-09-02T16:00:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78772317</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/austria-women-ice-hockey-team-fight-for-future-generations/a-78771578?maca=en-rss-en-all-1573-rdf">
+  <title>Austria women ice hockey team fight for future generations</title>
+  <link>https://www.dw.com/en/austria-women-ice-hockey-team-fight-for-future-generations/a-78771578?maca=en-rss-en-all-1573-rdf</link>
+  <description>Austria are getting ready for their first Women&apos;s Ice Hockey World Championship. But preparations have been overshadowed by a dispute about conditions, pay and getting men&apos;s cast-off kit. A solution now looks in sight.</description>
+  <dc:date>2026-09-02T15:21:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78771578</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/eu-summons-russian-envoy-over-failed-leipzig-drone-attack/a-78687280?maca=en-rss-en-all-1573-rdf">
+  <title>EU summons Russian envoy over failed Leipzig drone attack</title>
+  <link>https://www.dw.com/en/eu-summons-russian-envoy-over-failed-leipzig-drone-attack/a-78687280?maca=en-rss-en-all-1573-rdf</link>
+  <description>The EU&apos;s foreign policy chief Kaja Kallas said the attempted attack had &quot;all the hallmarks of state-sponsored terrorism.&quot; She said the EU was summoning a Russian envoy, with France announcing a similar step.</description>
+  <dc:date>2026-09-02T08:00:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78687280</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/women-s-football-anyomi-london-city-and-the-german-exodus/a-78446131?maca=en-rss-en-all-1573-rdf">
+  <title>Women&apos;s football: Anyomi, London City and the German exodus</title>
+  <link>https://www.dw.com/en/women-s-football-anyomi-london-city-and-the-german-exodus/a-78446131?maca=en-rss-en-all-1573-rdf</link>
+  <description>Nicole Anyomi has joined Alexia Putellas and other star names in signing for the ambitious English club London City Lionesses. The Germany winger told DW England is a better place to develop her game than back home.</description>
+  <dc:date>2026-09-02T07:26:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78446131</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/ukraine-russia-threatens-devastating-baltic-response/live-78582421?maca=en-rss-en-all-1573-rdf">
+  <title>Ukraine: Russia threatens &apos;devastating&apos; Baltic response</title>
+  <link>https://www.dw.com/en/ukraine-russia-threatens-devastating-baltic-response/live-78582421?maca=en-rss-en-all-1573-rdf</link>
+  <description>Any escalation in the Baltic region will lead to a significant response, Moscow said.</description>
+  <dc:date>2026-09-02T00:08:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78582421</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-says-russia-behind-attempted-drone-attack-at-leipzig-airport/a-78584589?maca=en-rss-en-all-1573-rdf">
+  <title>Germany says Russia behind attempted drone attack at Leipzig airport</title>
+  <link>https://www.dw.com/en/germany-says-russia-behind-attempted-drone-attack-at-leipzig-airport/a-78584589?maca=en-rss-en-all-1573-rdf</link>
+  <description>Investigators believe an explosives-laden drone was deliberately targeting a Ukrainian cargo aircraft at Leipzig/Halle airport in early August. The German government said on Tuesday that it held Russia &quot;responsible.&quot;</description>
+  <dc:date>2026-09-01T22:56:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78584589</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/can-communities-be-protected-from-melting-glaciers/a-78615775?maca=en-rss-en-all-1573-rdf">
+  <title>Can communities be protected from melting glaciers?</title>
+  <link>https://www.dw.com/en/can-communities-be-protected-from-melting-glaciers/a-78615775?maca=en-rss-en-all-1573-rdf</link>
+  <description>Rising temperatures are increasing the risk of floods and avalanches in mountain regions. The disaster in Nepal and Tibet shows the urgent need for solutions, and the tools that could help save lives.</description>
+  <dc:date>2026-09-01T13:18:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78615775</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/mladic-s-death-bosnia-and-serbia-s-unfinished-reckoning/a-78602733?maca=en-rss-en-all-1573-rdf">
+  <title>Mladic&apos;s death, Bosnia and Serbia&apos;s unfinished reckoning</title>
+  <link>https://www.dw.com/en/mladic-s-death-bosnia-and-serbia-s-unfinished-reckoning/a-78602733?maca=en-rss-en-all-1573-rdf</link>
+  <description>The death of Ratko Mladic did not close a dark chapter of European history; it reopened old wounds. The ideology that created him lives on. The Dayton peace agreement ended the war, not the divisions that produced it.</description>
+  <dc:date>2026-09-01T13:09:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78602733</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/norway-s-new-king-haakon-viii-takes-oath-in-parliament/a-78606923?maca=en-rss-en-all-1573-rdf">
+  <title>Norway&apos;s new King Haakon VIII takes oath in parliament</title>
+  <link>https://www.dw.com/en/norway-s-new-king-haakon-viii-takes-oath-in-parliament/a-78606923?maca=en-rss-en-all-1573-rdf</link>
+  <description>The new king swore to uphold the constitution in parliament in Oslo, the first major institutional step of his reign. Haakon VIII&apos;s wife Queen Mette-Marit had to skip the event in the aftermath of her lung transplant.</description>
+  <dc:date>2026-09-01T12:23:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78606923</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/us-irks-germany-europe-with-russian-g20-invite-press-bans/a-78583919?maca=en-rss-en-all-1573-rdf">
+  <title>US irks Germany, Europe with Russian G20 invite, press bans</title>
+  <link>https://www.dw.com/en/us-irks-germany-europe-with-russian-g20-invite-press-bans/a-78583919?maca=en-rss-en-all-1573-rdf</link>
+  <description>Russia&apos;s finance minister is at the G20 meeting in Asheville but some key US press corps members are not. The mood was already tense amid the lengthy Iran war and Trump&apos;s renewed beef with neighbor Canada.</description>
+  <dc:date>2026-09-01T10:23:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78583919</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/can-new-apple-ceo-john-ternus-fix-the-tech-giant-s-ai-woes/a-78575898?maca=en-rss-en-all-1573-rdf">
+  <title>Can new Apple CEO John Ternus fix the tech giant&apos;s AI woes?</title>
+  <link>https://www.dw.com/en/can-new-apple-ceo-john-ternus-fix-the-tech-giant-s-ai-woes/a-78575898?maca=en-rss-en-all-1573-rdf</link>
+  <description>John Ternus is just the third Apple CEO in 30 years. His primary challenge is to correct the company&apos;s faltering AI strategy to preserve its position as a big tech leader.</description>
+  <dc:date>2026-09-01T09:49:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78575898</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/at-venice-film-festival-politics-take-center-stage/a-78493761?maca=en-rss-en-all-1573-rdf">
+  <title>At Venice Film Festival, politics take center stage</title>
+  <link>https://www.dw.com/en/at-venice-film-festival-politics-take-center-stage/a-78493761?maca=en-rss-en-all-1573-rdf</link>
+  <description>With works about Gaza, Ukraine and Elon Musk, political cinema is in the spotlight at the 2026 Venice Film Festival.</description>
+  <dc:date>2026-08-31T14:05:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78493761</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/canada-s-carney-holds-firm-against-trump-tariffs/a-78542754?maca=en-rss-en-all-1573-rdf">
+  <title>Canada&apos;s Carney holds firm against Trump tariffs</title>
+  <link>https://www.dw.com/en/canada-s-carney-holds-firm-against-trump-tariffs/a-78542754?maca=en-rss-en-all-1573-rdf</link>
+  <description>Canada is facing new US import penalties after Prime Minister Mark Carney refused to match US tariffs on China. Other countries are watching as the Trump trade clash turns into a fight over economic sovereignty.</description>
+  <dc:date>2026-08-31T13:38:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78542754</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/inside-the-sea-cucumber-smuggling-boom/a-78005662?maca=en-rss-en-all-1573-rdf">
+  <title>Inside the sea cucumber smuggling boom</title>
+  <link>https://www.dw.com/en/inside-the-sea-cucumber-smuggling-boom/a-78005662?maca=en-rss-en-all-1573-rdf</link>
+  <description>A quiet multimillion‑dollar black market is exploding across the Indian Ocean, driven by one unlikely animal: the sea cucumber.</description>
+  <dc:date>2026-08-31T10:50:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78005662</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/ailing-djokovic-despised-every-moment-of-us-open-defeat/a-78572187?maca=en-rss-en-all-1573-rdf">
+  <title>Ailing Djokovic &apos;despised&apos; every moment of US Open defeat</title>
+  <link>https://www.dw.com/en/ailing-djokovic-despised-every-moment-of-us-open-defeat/a-78572187?maca=en-rss-en-all-1573-rdf</link>
+  <description>Novak Djokovic has exited in the first round of a Grand Slam for the first time in over two decades. Could time — or an unknown health condition — be catching up with the Serbian tennis legend?</description>
+  <dc:date>2026-08-31T09:45:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78572187</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/eu-wants-drones-to-spray-pesticides-but-it-could-backfire/a-78557154?maca=en-rss-en-all-1573-rdf">
+  <title>EU wants drones to spray pesticides, but it could backfire</title>
+  <link>https://www.dw.com/en/eu-wants-drones-to-spray-pesticides-but-it-could-backfire/a-78557154?maca=en-rss-en-all-1573-rdf</link>
+  <description>The EU wants to lift a decades-old ban on spraying pesticides from the air, allowing drones to be used for greater precision. But experts warn the plan could lead to even more pesticides being used in agriculture.</description>
+  <dc:date>2026-08-30T15:11:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78557154</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/greece-turkey-clash-over-protected-aegean-marine-areas/a-78550021?maca=en-rss-en-all-1573-rdf">
+  <title>Greece, Turkey clash over protected Aegean marine areas</title>
+  <link>https://www.dw.com/en/greece-turkey-clash-over-protected-aegean-marine-areas/a-78550021?maca=en-rss-en-all-1573-rdf</link>
+  <description>Turkey has announced the creation of two protected zones in a disputed area of the Aegean Sea, sparking an angry reaction from Greece. Does this mark a new chapter in a long-running dispute between the two countries?</description>
+  <dc:date>2026-08-30T09:07:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78550021</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/russian-american-heads-trump-s-planned-caucasus-trade-route/a-78547064?maca=en-rss-en-all-1573-rdf">
+  <title>Russian-American heads Trump&apos;s planned Caucasus trade route</title>
+  <link>https://www.dw.com/en/russian-american-heads-trump-s-planned-caucasus-trade-route/a-78547064?maca=en-rss-en-all-1573-rdf</link>
+  <description>A Russian-born businessman heads the investment fund financing the so-called &quot;Trump Route,&quot; a planned corridor through Armenia linking Azerbaijan with Nakhchivan. Who is Konstantin Sokolov, and what role does he play?</description>
+  <dc:date>2026-08-29T16:20:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78547064</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/this-extremely-successful-author-polarizes-german-readers/a-78500452?maca=en-rss-en-all-1573-rdf">
+  <title>This extremely successful author polarizes German readers</title>
+  <link>https://www.dw.com/en/this-extremely-successful-author-polarizes-german-readers/a-78500452?maca=en-rss-en-all-1573-rdf</link>
+  <description>She&apos;s young and she says what she thinks: Caroline Wahl is topping Germany&apos;s bestseller lists with her novels. But she has also faced a public backlash.</description>
+  <dc:date>2026-08-29T07:20:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78500452</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/serbia-keeps-eu-russia-in-play-ahead-of-key-election/a-78543495?maca=en-rss-en-all-1573-rdf">
+  <title>Serbia keeps EU, Russia in play ahead of key election</title>
+  <link>https://www.dw.com/en/serbia-keeps-eu-russia-in-play-ahead-of-key-election/a-78543495?maca=en-rss-en-all-1573-rdf</link>
+  <description>As Serbia heads toward an uncertain election, President Aleksandar Vucic is balancing ties with Russia and EU ambitions. But growing geopolitical tensions and pressure at home are narrowing his room to maneuver.</description>
+  <dc:date>2026-08-29T07:19:00Z</dc:date>
+  <dc:subject>World</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78543495</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/what-the-odyssey-can-teach-us-about-climate-chaos/a-78545407?maca=en-rss-en-all-1573-rdf">
+  <title>What &apos;The Odyssey&apos; can teach us about climate chaos</title>
+  <link>https://www.dw.com/en/what-the-odyssey-can-teach-us-about-climate-chaos/a-78545407?maca=en-rss-en-all-1573-rdf</link>
+  <description>The Bronze Age collapse may have started with a water crisis. The droughts of today raise the unsettling question of whether it could happen again.</description>
+  <dc:date>2026-08-28T12:52:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78545407</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/influential-humanists-these-are-the-winners-of-the-goethe-medal-2026/a-78497975?maca=en-rss-en-all-1573-rdf">
+  <title>Influential humanists: These are the winners of the Goethe Medal 2026</title>
+  <link>https://www.dw.com/en/influential-humanists-these-are-the-winners-of-the-goethe-medal-2026/a-78497975?maca=en-rss-en-all-1573-rdf</link>
+  <description>The prestigious German cultural award recognizes the artistic work and commitment to cultural dialogue of Arvo Pärt, Anita Raja and Prodromos Tsinikoris.</description>
+  <dc:date>2026-08-28T12:10:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78497975</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/germany-s-military-wants-to-recruit-tech-savvy-gamers/a-78536462?maca=en-rss-en-all-1573-rdf">
+  <title>Germany&apos;s military wants to recruit tech-savvy gamers</title>
+  <link>https://www.dw.com/en/germany-s-military-wants-to-recruit-tech-savvy-gamers/a-78536462?maca=en-rss-en-all-1573-rdf</link>
+  <description>The Bundeswehr has been a fixture at Gamescom, Cologne&apos;s video game trade fair, for years. But critics say military recruitment does not belong at an entertainment convention.</description>
+  <dc:date>2026-08-28T10:03:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78536462</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/norway-s-king-harald-dies-at-89/a-78524572?maca=en-rss-en-all-1573-rdf">
+  <title>Norway&apos;s King Harald dies at 89</title>
+  <link>https://www.dw.com/en/norway-s-king-harald-dies-at-89/a-78524572?maca=en-rss-en-all-1573-rdf</link>
+  <description>King Harald is succeeded by his son, who has taken the name King Haakon VIII, with Crown Princess Mette-Marit now queen.</description>
+  <dc:date>2026-08-28T08:28:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78524572</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/spain-thieves-steal-bronze-age-gold-in-lightning-raid-on-villena-museum/a-78538027?maca=en-rss-en-all-1573-rdf">
+  <title>Spain: Thieves steal Bronze Age gold in lightning raid on Villena Museum</title>
+  <link>https://www.dw.com/en/spain-thieves-steal-bronze-age-gold-in-lightning-raid-on-villena-museum/a-78538027?maca=en-rss-en-all-1573-rdf</link>
+  <description>One of the world&apos;s greatest Bronze Age gold collections has been swiped, almost in its entirety, from Villena Museum. A highly professional group of thieves were in and out in four minutes flat before the museum opened.</description>
+  <dc:date>2026-08-27T19:38:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78538027</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/tragedy-in-nepal-how-do-flash-floods-happen/a-78526421?maca=en-rss-en-all-1573-rdf">
+  <title>Tragedy in Nepal: How do flash floods happen?</title>
+  <link>https://www.dw.com/en/tragedy-in-nepal-how-do-flash-floods-happen/a-78526421?maca=en-rss-en-all-1573-rdf</link>
+  <description>When flash floods sweep through the Himalayas, there is often little time to react. Scientists are working to understand the risks and improve early warning systems.</description>
+  <dc:date>2026-08-27T14:31:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78526421</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/andre-rankel-named-germany-s-new-men-s-ice-hockey-coach/a-78532470?maca=en-rss-en-all-1573-rdf">
+  <title>Andre Rankel named Germany&apos;s new men&apos;s ice hockey coach</title>
+  <link>https://www.dw.com/en/andre-rankel-named-germany-s-new-men-s-ice-hockey-coach/a-78532470?maca=en-rss-en-all-1573-rdf</link>
+  <description>Germany&apos;s men&apos;s ice hockey team has appointed a new head coach following a string of dissappointing tournaments. He&apos;s two decades younger than the man he&apos;s replacing but he has no previous experience as a head coach.</description>
+  <dc:date>2026-08-27T14:01:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78532470</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/new-study-shows-german-football-remains-male-dominated/a-78532569?maca=en-rss-en-all-1573-rdf">
+  <title>New study shows German football remains male-dominated</title>
+  <link>https://www.dw.com/en/new-study-shows-german-football-remains-male-dominated/a-78532569?maca=en-rss-en-all-1573-rdf</link>
+  <description>The top leagues of German football remain a largely male environment. A new study reveals that only seven clubs have women in upper management levels.</description>
+  <dc:date>2026-08-27T13:53:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78532569</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/venus-us-open-invitation-raises-questions-about-wild-cards/a-78524056?maca=en-rss-en-all-1573-rdf">
+  <title>Venus&apos; US Open invitation raises questions about wild cards</title>
+  <link>https://www.dw.com/en/venus-us-open-invitation-raises-questions-about-wild-cards/a-78524056?maca=en-rss-en-all-1573-rdf</link>
+  <description>Although her current world ranking wouldn&apos;t allow it, Venus Williams is set to play singles in the US Open – thanks to a wild card. Who gets these coveted spots—and how?</description>
+  <dc:date>2026-08-27T12:04:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78524056</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/the-great-lake-divide-collapse-vs-comeback/a-78460263?maca=en-rss-en-all-1573-rdf">
+  <title>The great lake divide: Collapse vs. comeback</title>
+  <link>https://www.dw.com/en/the-great-lake-divide-collapse-vs-comeback/a-78460263?maca=en-rss-en-all-1573-rdf</link>
+  <description>As some of the world&apos;s biggest lakes vanish in real time, others are proving that recovery is still within reach.</description>
+  <dc:date>2026-08-27T09:38:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78460263</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/why-social-media-addiction-is-so-hard-to-regulate/a-78482023?maca=en-rss-en-all-1573-rdf">
+  <title>Why social media addiction is so hard to regulate</title>
+  <link>https://www.dw.com/en/why-social-media-addiction-is-so-hard-to-regulate/a-78482023?maca=en-rss-en-all-1573-rdf</link>
+  <description>Facebook, Instagram and other social media platforms are accused of deliberately fostering addictive behavior among young users. Yet regulators continue to struggle to rein in their engagement-driven business models.</description>
+  <dc:date>2026-08-27T09:25:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78482023</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/bundesliga-season-2026-27-all-you-need-to-know/a-78061925?maca=en-rss-en-all-1573-rdf">
+  <title>Bundesliga season 2026-27: All you need to know</title>
+  <link>https://www.dw.com/en/bundesliga-season-2026-27-all-you-need-to-know/a-78061925?maca=en-rss-en-all-1573-rdf</link>
+  <description>From key dates to rising football stars and changes, DW has the latest on the new Bundesliga season.</description>
+  <dc:date>2026-08-27T06:39:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78061925</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/japanese-artist-yayoi-kusama-dies-at-97/a-78518473?maca=en-rss-en-all-1573-rdf">
+  <title>Japanese artist Yayoi Kusama dies at 97</title>
+  <link>https://www.dw.com/en/japanese-artist-yayoi-kusama-dies-at-97/a-78518473?maca=en-rss-en-all-1573-rdf</link>
+  <description>From works of &quot;self-obliteration&quot; to polka dotted nudes, the pioneering artist developed a unique body of work likely to be relevant for years to come.</description>
+  <dc:date>2026-08-27T02:58:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78518473</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/was-the-heat-of-this-summer-really-normal/a-78513682?maca=en-rss-en-all-1573-rdf">
+  <title>Was the heat of this summer really &apos;normal?&apos;</title>
+  <link>https://www.dw.com/en/was-the-heat-of-this-summer-really-normal/a-78513682?maca=en-rss-en-all-1573-rdf</link>
+  <description>Some political messaging denies the role of human-caused climate change in this summer&apos;s extreme heat. The science tells a different story.</description>
+  <dc:date>2026-08-26T16:44:00Z</dc:date>
+  <dc:subject>Climate</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78513682</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/tim-curry-of-the-rocky-horror-picture-show-dies-at-80/a-78514945?maca=en-rss-en-all-1573-rdf">
+  <title>Tim Curry, of &apos;The Rocky Horror Picture Show,&apos; dies at 80</title>
+  <link>https://www.dw.com/en/tim-curry-of-the-rocky-horror-picture-show-dies-at-80/a-78514945?maca=en-rss-en-all-1573-rdf</link>
+  <description>The gender-bending role as Dr. Frank-N-Furter put Curry on the map in 1975. He then went on to play a number of villainous roles like Gomez Addams, Pennywise and Bill Sikes, but also Mozart and William Shakespeare.</description>
+  <dc:date>2026-08-26T16:40:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78514945</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/reports-uefa-backs-off-fifa-boycott-threat/a-78511519?maca=en-rss-en-all-1573-rdf">
+  <title>Reports: UEFA backs off FIFA boycott threat</title>
+  <link>https://www.dw.com/en/reports-uefa-backs-off-fifa-boycott-threat/a-78511519?maca=en-rss-en-all-1573-rdf</link>
+  <description>UEFA is reportedly set to withdraw a threat to boycott FIFA tournaments over a plan to partially privatize football tournaments. The Under-20 Women&apos;s World Cup is to be hosted by Poland next month.</description>
+  <dc:date>2026-08-26T13:25:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78511519</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/gamescom-2026-what-s-next-for-the-gaming-industry/a-78502849?maca=en-rss-en-all-1573-rdf">
+  <title>Gamescom 2026: What&apos;s next for the gaming industry?</title>
+  <link>https://www.dw.com/en/gamescom-2026-what-s-next-for-the-gaming-industry/a-78502849?maca=en-rss-en-all-1573-rdf</link>
+  <description>As Gamescom 2026 opens in Cologne, AI, hardware costs and slowing user growth are putting pressure on the global games industry despite its current strength.</description>
+  <dc:date>2026-08-26T11:15:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78502849</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/remembering-dolly-parton-8-facts-about-the-icon/a-75503168?maca=en-rss-en-all-1573-rdf">
+  <title>Remembering Dolly Parton: 8 facts about the icon</title>
+  <link>https://www.dw.com/en/remembering-dolly-parton-8-facts-about-the-icon/a-75503168?maca=en-rss-en-all-1573-rdf</link>
+  <description>Dolly Parton, one of the world&apos;s most successful artists, has died at the age of 80. Here are some important and extraordinary facts about the country music superstar.</description>
+  <dc:date>2026-08-25T18:42:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>75503168</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/us-country-music-legend-dolly-parton-dies-aged-80/a-78501931?maca=en-rss-en-all-1573-rdf">
+  <title>US country music legend Dolly Parton dies aged 80</title>
+  <link>https://www.dw.com/en/us-country-music-legend-dolly-parton-dies-aged-80/a-78501931?maca=en-rss-en-all-1573-rdf</link>
+  <description>Representatives of the country music legend told US media that Dolly Parton died after a &quot;brief battle with cancer.&quot; Parton&apos;s career spans more than half a century and includes a wide array of smash hits.</description>
+  <dc:date>2026-08-25T18:11:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78501931</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/schalke-coach-looks-to-bosnia-bond-in-bundesliga-return/a-78486008?maca=en-rss-en-all-1573-rdf">
+  <title>Schalke coach looks to Bosnia bond in Bundesliga return</title>
+  <link>https://www.dw.com/en/schalke-coach-looks-to-bosnia-bond-in-bundesliga-return/a-78486008?maca=en-rss-en-all-1573-rdf</link>
+  <description>After three seasons in the second division, Schalke are back in the Bundesliga. Just a year ago, few would have guessed that their revival would largely be &apos;Made in Bosnia.&apos;</description>
+  <dc:date>2026-08-25T14:57:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78486008</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/why-germany-s-volkswagen-could-cut-100-000-jobs/a-78483715?maca=en-rss-en-all-1573-rdf">
+  <title>Why Germany&apos;s Volkswagen could cut 100,000 jobs</title>
+  <link>https://www.dw.com/en/why-germany-s-volkswagen-could-cut-100-000-jobs/a-78483715?maca=en-rss-en-all-1573-rdf</link>
+  <description>Europe&apos;s biggest automaker, Volkswagen, faces Chinese competition, high costs and US tariffs. What could its restructuring mean for the German car industry?</description>
+  <dc:date>2026-08-25T13:57:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78483715</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/can-new-us-sanctions-cripple-iran-s-shadow-economy/a-78494630?maca=en-rss-en-all-1573-rdf">
+  <title>Can new US sanctions cripple Iran&apos;s shadow economy?</title>
+  <link>https://www.dw.com/en/can-new-us-sanctions-cripple-iran-s-shadow-economy/a-78494630?maca=en-rss-en-all-1573-rdf</link>
+  <description>The US is expanding sanctions on Iran&apos;s financial networks, targeting crypto, gold, aviation and shipping. DW spoke with analysts about what could change.</description>
+  <dc:date>2026-08-25T10:34:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78494630</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/trees-are-vital-for-cooler-cities-but-they-need-help-too/a-78488665?maca=en-rss-en-all-1573-rdf">
+  <title>Trees are vital for cooler cities, but they need help too</title>
+  <link>https://www.dw.com/en/trees-are-vital-for-cooler-cities-but-they-need-help-too/a-78488665?maca=en-rss-en-all-1573-rdf</link>
+  <description>Record-breaking heat and drought are putting urban trees at risk. Experts explain how to protect these essential assets and build city forests that can withstand the climate challenges ahead.</description>
+  <dc:date>2026-08-25T09:39:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78488665</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/the-new-bundesliga-season-is-here-but-has-the-glow-gone/a-78062032?maca=en-rss-en-all-1573-rdf">
+  <title>The new Bundesliga season is here, but has the glow gone?</title>
+  <link>https://www.dw.com/en/the-new-bundesliga-season-is-here-but-has-the-glow-gone/a-78062032?maca=en-rss-en-all-1573-rdf</link>
+  <description>Another Bundesliga season arrives, but are the golden years of Germany&apos;s top football league already over, and what can it do to change its course?</description>
+  <dc:date>2026-08-24T14:54:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78062032</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/star-violinist-anne-sophie-mutter-50-years-on-stage/a-78484739?maca=en-rss-en-all-1573-rdf">
+  <title>Star violinist Anne-Sophie Mutter: 50 years on stage</title>
+  <link>https://www.dw.com/en/star-violinist-anne-sophie-mutter-50-years-on-stage/a-78484739?maca=en-rss-en-all-1573-rdf</link>
+  <description>Anne-Sophie Mutter constantly reinvents herself. For her 50th onstage anniversary, the star violinist is surprising audiences with sounds from around the world and never-before-recorded commissions.</description>
+  <dc:date>2026-08-24T11:35:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78484739</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/scientists-discover-new-immune-hubs-in-skull-bone-marrow/a-78460417?maca=en-rss-en-all-1573-rdf">
+  <title>Scientists discover new &apos;immune hubs&apos; in skull bone marrow</title>
+  <link>https://www.dw.com/en/scientists-discover-new-immune-hubs-in-skull-bone-marrow/a-78460417?maca=en-rss-en-all-1573-rdf</link>
+  <description>&quot;Immune hubs&quot; that actively defend the brain have been discovered in mouse skull marrow. Similar cells exist in human skulls, but their role remains unclear.</description>
+  <dc:date>2026-08-24T08:17:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78460417</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/spiraling-health-costs-force-iranians-to-delay-care/a-78455430?maca=en-rss-en-all-1573-rdf">
+  <title>Spiraling health costs force Iranians to delay care</title>
+  <link>https://www.dw.com/en/spiraling-health-costs-force-iranians-to-delay-care/a-78455430?maca=en-rss-en-all-1573-rdf</link>
+  <description>A single chemotherapy session in Iran can cost six times the monthly minimum wage. As drug prices soar and medicine is in short supply, doctors say more patients are delaying or abandoning treatment.</description>
+  <dc:date>2026-08-24T08:13:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78455430</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/sydney-marathon-medal-wrongly-shows-german-landmark/a-78473705?maca=en-rss-en-all-1573-rdf">
+  <title>Sydney Marathon medal wrongly shows German landmark</title>
+  <link>https://www.dw.com/en/sydney-marathon-medal-wrongly-shows-german-landmark/a-78473705?maca=en-rss-en-all-1573-rdf</link>
+  <description>A medal minted for finishers in the Sydney Marathon features a skyline of the city — with one landmark from rather far away. Organizers say the muddle only makes the medal &quot;a little more unique.&quot;</description>
+  <dc:date>2026-08-23T06:35:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78473705</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/masha-and-the-bear-ukraine-sanctions-russian-cartoon/a-78464406?maca=en-rss-en-all-1573-rdf">
+  <title>&apos;Masha and the Bear&apos;: Ukraine sanctions Russian cartoon</title>
+  <link>https://www.dw.com/en/masha-and-the-bear-ukraine-sanctions-russian-cartoon/a-78464406?maca=en-rss-en-all-1573-rdf</link>
+  <description>Ukraine has imposed sanctions on the hit Russian children&apos;s cartoon &quot;Masha and the Bear,&quot; a step towards banning it. The culture minister called the show propaganda. Russia said the move showed Kyiv&apos;s &quot;ugly nature.&quot;</description>
+  <dc:date>2026-08-21T18:59:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78464406</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/bauhaus-manifesto-broad-alliance-promoting-artistic-freedom/a-78456460?maca=en-rss-en-all-1573-rdf">
+  <title>Bauhaus Manifesto: Broad alliance promoting artistic freedom</title>
+  <link>https://www.dw.com/en/bauhaus-manifesto-broad-alliance-promoting-artistic-freedom/a-78456460?maca=en-rss-en-all-1573-rdf</link>
+  <description>Weeks before Saxony-Anhalt&apos;s state election, representatives from German cultural, crafts, architecture, design and church sectors unite to promote freedom, openness and creativity.</description>
+  <dc:date>2026-08-21T10:39:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78456460</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/ronaldinho-to-make-football-comeback-aged-46/a-78453950?maca=en-rss-en-all-1573-rdf">
+  <title>Ronaldinho to make football comeback aged 46</title>
+  <link>https://www.dw.com/en/ronaldinho-to-make-football-comeback-aged-46/a-78453950?maca=en-rss-en-all-1573-rdf</link>
+  <description>More than a decade after his last professional appearance, Brazilian superstar Ronaldinho is set for a comeback. The former world player of the year is to play in Italy’s third tier.</description>
+  <dc:date>2026-08-21T08:50:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78453950</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/why-germany-s-gas-storage-levels-are-so-low/a-78440677?maca=en-rss-en-all-1573-rdf">
+  <title>Why Germany&apos;s gas storage levels are so low</title>
+  <link>https://www.dw.com/en/why-germany-s-gas-storage-levels-are-so-low/a-78440677?maca=en-rss-en-all-1573-rdf</link>
+  <description>Germany&apos;s gas storage facilities are only 50% full as traders bet that wholesale prices will fall if the Iran war ends. With around three months until winter, DW asks whether the country can refill its reserves in time.</description>
+  <dc:date>2026-08-20T14:36:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78440677</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/how-europe-can-better-protect-against-extreme-wildfires/a-78435243?maca=en-rss-en-all-1573-rdf">
+  <title>How Europe can better protect against extreme wildfires</title>
+  <link>https://www.dw.com/en/how-europe-can-better-protect-against-extreme-wildfires/a-78435243?maca=en-rss-en-all-1573-rdf</link>
+  <description>In another summer of European wildfires that have even seen wetlands burning, scientists say the situation is set to worsen in the future. What&apos;s needed is fire prevention and climate protection.</description>
+  <dc:date>2026-08-20T09:00:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78435243</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/bernadette-amani-living-her-dream-at-bayern-munich/a-78141213?maca=en-rss-en-all-1573-rdf">
+  <title>Bernadette Amani &apos;living her dream&apos; at Bayern Munich</title>
+  <link>https://www.dw.com/en/bernadette-amani-living-her-dream-at-bayern-munich/a-78141213?maca=en-rss-en-all-1573-rdf</link>
+  <description>Bernadette Amani is heading into her first full season with Bayern Munich, having joined the club in January. Making a living at football is something she never imagined possible while growing up in rural Ivory Coast.</description>
+  <dc:date>2026-08-20T08:54:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78141213</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/evergrande-founder-hui-ka-yan-sentenced-to-life-in-prison/a-78439153?maca=en-rss-en-all-1573-rdf">
+  <title>Evergrande founder Hui Ka Yan sentenced to life in prison</title>
+  <link>https://www.dw.com/en/evergrande-founder-hui-ka-yan-sentenced-to-life-in-prison/a-78439153?maca=en-rss-en-all-1573-rdf</link>
+  <description>A Chinese court ordered the former billionaire&apos;s assets to be confiscated and fined Evergrande-related companies billions of dollars.</description>
+  <dc:date>2026-08-20T07:04:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78439153</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/bayern-munich-s-jamal-musiala-collapses-on-pitch-again/a-78426021?maca=en-rss-en-all-1573-rdf">
+  <title>Bayern Munich&apos;s Jamal Musiala collapses on pitch again</title>
+  <link>https://www.dw.com/en/bayern-munich-s-jamal-musiala-collapses-on-pitch-again/a-78426021?maca=en-rss-en-all-1573-rdf</link>
+  <description>One of Germany&apos;s top footballers has collapsed on the pitch for a second time in four days ahead of the new season. Bayern Munich&apos;s Jamal Musiala has said he has a &quot;neurological dysfunction&quot; that causes blackouts.</description>
+  <dc:date>2026-08-19T10:22:00Z</dc:date>
+  <dc:subject>Sports</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78426021</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/who-really-owns-the-caspian-sea/a-78396946?maca=en-rss-en-all-1573-rdf">
+  <title>Who really owns the Caspian Sea?</title>
+  <link>https://www.dw.com/en/who-really-owns-the-caspian-sea/a-78396946?maca=en-rss-en-all-1573-rdf</link>
+  <description>Five countries border the Caspian Sea, but none owns a fixed share. A 2018 convention established rules for navigation, security and fishing while leaving some seabed borders unresolved.</description>
+  <dc:date>2026-08-19T09:02:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78396946</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/in-drought-stricken-france-tankers-supply-drinking-water/a-78420016?maca=en-rss-en-all-1573-rdf">
+  <title>In drought-stricken France, tankers supply drinking water</title>
+  <link>https://www.dw.com/en/in-drought-stricken-france-tankers-supply-drinking-water/a-78420016?maca=en-rss-en-all-1573-rdf</link>
+  <description>France is seeing water shortages in regions that usually have plenty of supply. This summer&apos;s extreme heat is exposing how unprepared much of the country, and Europe, is for increasing water scarcity.</description>
+  <dc:date>2026-08-19T04:33:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78420016</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/will-germany-s-drought-push-up-food-prices/a-78408203?maca=en-rss-en-all-1573-rdf">
+  <title>Will Germany&apos;s drought push up food prices?</title>
+  <link>https://www.dw.com/en/will-germany-s-drought-push-up-food-prices/a-78408203?maca=en-rss-en-all-1573-rdf</link>
+  <description>Germany&apos;s main farmers&apos; association has warned of a below-average harvest after drought and crops damaged by extreme heat. DW looks into what lower yields could mean for food prices and grocery bills.</description>
+  <dc:date>2026-08-18T14:46:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78408203</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/dressed-for-power-giorgia-meloni-and-the-language-of-fashion/a-78413559?maca=en-rss-en-all-1573-rdf">
+  <title>Dressed for power: Giorgia Meloni and the language of fashion</title>
+  <link>https://www.dw.com/en/dressed-for-power-giorgia-meloni-and-the-language-of-fashion/a-78413559?maca=en-rss-en-all-1573-rdf</link>
+  <description>From Giorgia Meloni&apos;s shift from dark suits to pastels to Angela Merkel&apos;s signature jackets, politicians have long used clothing to shape how voters see them. In this day and age, power dressing has evolved.</description>
+  <dc:date>2026-08-18T14:30:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78413559</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/how-to-grow-food-for-more-people-in-a-hotter-world/a-78413324?maca=en-rss-en-all-1573-rdf">
+  <title>How to grow food for more people in a hotter world</title>
+  <link>https://www.dw.com/en/how-to-grow-food-for-more-people-in-a-hotter-world/a-78413324?maca=en-rss-en-all-1573-rdf</link>
+  <description>Inside futuristic labs, plants are scanned, stressed and analyzed. The aim is to use the results to produce plant strains that can better serve a growing population in a warming world.</description>
+  <dc:date>2026-08-18T13:22:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78413324</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/do-not-inhale-how-wildfire-smoke-affects-the-whole-body/a-76039654?maca=en-rss-en-all-1573-rdf">
+  <title>Do not inhale! How wildfire smoke &apos;affects the whole body&apos;</title>
+  <link>https://www.dw.com/en/do-not-inhale-how-wildfire-smoke-affects-the-whole-body/a-76039654?maca=en-rss-en-all-1573-rdf</link>
+  <description>Wildfires destroy lives and livelihoods. But survivors and firefighters also suffer long-term harm to their health. A growing body of research suggests particulate matter (PM2.5) in wildfire smoke is a major culprit.</description>
+  <dc:date>2026-08-18T08:22:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>76039654</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/norway-wealth-fund-sounds-alarm-on-ai-stock-market-bubble/a-78351371?maca=en-rss-en-all-1573-rdf">
+  <title>Norway wealth fund sounds alarm on AI stock market bubble</title>
+  <link>https://www.dw.com/en/norway-wealth-fund-sounds-alarm-on-ai-stock-market-bubble/a-78351371?maca=en-rss-en-all-1573-rdf</link>
+  <description>The head of Norway&apos;s sovereign wealth fund has warned that soaring AI-driven stock valuations could trigger a sharp correction. How exposed is the world&apos;s largest sovereign wealth fund to a market downturn?</description>
+  <dc:date>2026-08-17T14:00:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78351371</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/can-the-cool-north-handle-a-surge-in-climate-tourism/a-78362462?maca=en-rss-en-all-1573-rdf">
+  <title>Can the cool north handle a surge in climate tourism?</title>
+  <link>https://www.dw.com/en/can-the-cool-north-handle-a-surge-in-climate-tourism/a-78362462?maca=en-rss-en-all-1573-rdf</link>
+  <description>With heat records continually being broken and southern summers getting hotter, travelers are heading north. Fragile ecosystems are paying the price.</description>
+  <dc:date>2026-08-17T11:03:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78362462</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/fatty-food-raises-risk-of-colorectal-cancer/a-78284704?maca=en-rss-en-all-1573-rdf">
+  <title>Fatty food raises risk of colorectal cancer</title>
+  <link>https://www.dw.com/en/fatty-food-raises-risk-of-colorectal-cancer/a-78284704?maca=en-rss-en-all-1573-rdf</link>
+  <description>Did you know fatty foods can increase production of an acid in your gut that promotes tumor growth? That&apos;s on top of all the other health risks linked to fatty foods, like fries and burgers.</description>
+  <dc:date>2026-08-17T06:49:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78284704</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/hunger-stones-the-history-behind-if-you-see-me-weep/a-78345729?maca=en-rss-en-all-1573-rdf">
+  <title>Hunger stones: The history behind &apos;if you see me, weep&apos;</title>
+  <link>https://www.dw.com/en/hunger-stones-the-history-behind-if-you-see-me-weep/a-78345729?maca=en-rss-en-all-1573-rdf</link>
+  <description>Centuries-old hunger stones are emerging as Europe&apos;s rivers recede. Among the most famous is the Decin hunger stone in the Elbe River with its cryptic message.</description>
+  <dc:date>2026-08-14T07:34:00Z</dc:date>
+  <dc:subject>Culture</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78345729</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/can-a-drug-help-prevent-trauma-study-with-mice-suggests-so/a-78301961?maca=en-rss-en-all-1573-rdf">
+  <title>Can a drug help prevent trauma? Study with mice suggests so</title>
+  <link>https://www.dw.com/en/can-a-drug-help-prevent-trauma-study-with-mice-suggests-so/a-78301961?maca=en-rss-en-all-1573-rdf</link>
+  <description>Researchers in Munich and Stockholm blocked the lifelong social cost of early adversity in mice with a single compound. The catch: it only worked when given during the trauma, not after.</description>
+  <dc:date>2026-08-14T06:22:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78301961</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/can-we-go-green-without-forever-chemicals/a-77888704?maca=en-rss-en-all-1573-rdf">
+  <title>Can we go green without forever chemicals?</title>
+  <link>https://www.dw.com/en/can-we-go-green-without-forever-chemicals/a-77888704?maca=en-rss-en-all-1573-rdf</link>
+  <description>As nations globally move to ban forever chemicals, should renewable energy technologies be exempt for the sake of saving the climate?</description>
+  <dc:date>2026-08-13T07:13:00Z</dc:date>
+  <dc:subject>Environment</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>77888704</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/eurovision-bars-countries-at-war-from-hosting/a-78341915?maca=en-rss-en-all-1573-rdf">
+  <title>Eurovision bars countries at war from hosting</title>
+  <link>https://www.dw.com/en/eurovision-bars-countries-at-war-from-hosting/a-78341915?maca=en-rss-en-all-1573-rdf</link>
+  <description>A Eurovision victory will no longer guarantee hosting rights if war or a wider security crisis affects the winning country. The change could have particular significance for recent high-flyers Ukraine and Israel.</description>
+  <dc:date>2026-08-12T18:53:00Z</dc:date>
+  <dc:subject>News</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78341915</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/eu-waste-packaging-rules-why-small-businesses-are-worried/a-78326555?maca=en-rss-en-all-1573-rdf">
+  <title>EU waste packaging rules: Why small businesses are worried</title>
+  <link>https://www.dw.com/en/eu-waste-packaging-rules-why-small-businesses-are-worried/a-78326555?maca=en-rss-en-all-1573-rdf</link>
+  <description>The EU has introduced new rules targeting packaging waste and &quot;forever chemicals.&quot; Although the changes will be phased in slowly, some small sellers have already paused shipments due to the additional red tape.</description>
+  <dc:date>2026-08-12T09:21:00Z</dc:date>
+  <dc:subject>Business</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78326555</dwsyn:contentID>
+ </item>
+ <item rdf:about="https://www.dw.com/en/solar-eclipse-what-to-look-forward-to/a-78330594?maca=en-rss-en-all-1573-rdf">
+  <title>Solar eclipse: What to look forward to</title>
+  <link>https://www.dw.com/en/solar-eclipse-what-to-look-forward-to/a-78330594?maca=en-rss-en-all-1573-rdf</link>
+  <description>The last solar eclipse visible from the European mainland was in 1999. Here&apos;s what to expect, and how to prepare for this rare occasion.</description>
+  <dc:date>2026-08-12T07:50:00Z</dc:date>
+  <dc:subject>Science</dc:subject>
+  <dc:language>en</dc:language>
+  <dwsyn:contentID>78330594</dwsyn:contentID>
+ </item>
+</rdf:RDF>

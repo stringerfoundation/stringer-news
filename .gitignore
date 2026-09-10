@@ -1,0 +1,5 @@
+node_modules/
+_site/
+data/news.json
+.test-output/
+.stringer-inspect.html

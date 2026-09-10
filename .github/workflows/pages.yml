@@ -1,9 +1,16 @@
-name: Deploy GitHub Pages
+name: Collect news and deploy GitHub Pages
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '13,43 * * * *'
   workflow_dispatch:
+    inputs:
+      reset_stringer_baseline:
+        description: 'Reviewed Stringer reduction: allow replacing the previous count baseline'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -17,6 +24,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -25,13 +33,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check JavaScript syntax
-        run: node --check app.js && node --check reporters.js
+          cache: npm
+      - run: npm ci
+      - run: npm run check && npm test
       - uses: actions/configure-pages@v5
-      - name: Stage public site files
+        id: pages
+      - name: Recover previous collection and collect current news
+        run: npm run collect
+        env:
+          PAGES_URL: ${{ steps.pages.outputs.base_url }}
+          RESET_STRINGER_BASELINE: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_stringer_baseline && 'true' || 'false' }}
+      - name: Stage public site files only
         run: |
-          mkdir -p _site
-          cp index.html style.css app.js reporters.js _site/
+          mkdir -p _site/assets _site/data
+          cp index.html style.css app.js news-model.js _site/
+          cp assets/stringer-logo.png _site/assets/
+          cp data/news.json _site/data/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

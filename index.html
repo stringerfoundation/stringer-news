@@ -1,66 +1,56 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A news reader pairing global reporting with courageous independent journalism." />
-    <title>Stringer World Desk</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Stringer World Desk home"><span class="brand-mark">S</span> STRINGER <i>world desk</i></a>
-      <div class="live-status"><span></span> PUBLIC NEWS FEEDS</div>
-      <button id="refresh" class="refresh" aria-label="Refresh stories">↻ Refresh</button>
-    </header>
-
-    <main id="top">
-      <section class="intro">
-        <p class="eyebrow">ONE WORLD · MANY WITNESSES</p>
-        <h1>The news you get everywhere.<br /><em>The stories you need to hear.</em></h1>
-        <p class="dek">Follow the global headlines alongside reporting from independent journalists on the ground, published directly to the open Nostr network.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Global headlines alongside courageous reporting selected by The Stringer Foundation." />
+  <title>World News | The Stringer Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to news</a>
+  <header class="site-header">
+    <div class="masthead">
+      <a class="brand" href="https://stringerjournalism.org/"><img src="./assets/stringer-logo.png" width="300" height="121" alt="The Stringer Foundation" /></a>
+      <a class="donate" href="https://www.zeffy.com/embed/donation-form/scaling-up-courageous-journalism?modal=true">Donate now <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="https://stringerjournalism.org/">Home</a>
+      <a href="https://stringerjournalism.org/mission">Mission</a>
+      <a href="https://stringerjournalism.org/who-we-are">Who we are</a>
+      <a href="https://stringerjournalism.org/awards">Awards</a>
+      <a href="https://stringerjournalism.org/courageous-stories">Courageous stories</a>
+      <a href="./" aria-current="page">World news</a>
+      <a href="https://stringerjournalism.org/contact-us">Contact us</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="page-intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">The Stringer Foundation</p><h1 id="page-title">A world beyond the headlines.</h1></div>
+      <div class="refresh-control"><button id="refresh" type="button">↻ Refresh</button><p>Headlines checked about every 30 minutes.</p></div>
+    </section>
+    <p id="refresh-status" class="refresh-status" role="status">Loading the latest published collection…</p>
+    <nav class="jump-links" aria-label="Jump to news section"><a href="#global-newswire">Global Newswire ↓</a><a href="#courageous-stories">Courageous Stories ↓</a></nav>
+    <div class="desk">
+      <section class="column" id="global-newswire" aria-labelledby="world-title">
+        <div class="column-heading"><p class="eyebrow">Around the world</p><h2 id="world-title">Global Newswire</h2><p>Headlines from global publishers.</p></div>
+        <div id="world-status" class="feed-status" role="status">Loading headlines…</div>
+        <div id="world-news" class="story-list" aria-busy="true"></div>
       </section>
-
-      <nav class="topics" aria-label="News sources">
-        <button class="active" aria-pressed="true">All sources</button><button aria-pressed="false">BBC News</button><button aria-pressed="false">CNN</button>
-      </nav>
-
-      <section class="desk" aria-label="Today’s news">
-        <section class="column mainstream">
-          <div class="column-heading">
-            <div><p class="eyebrow">GLOBAL NEWSWIRE</p><h2>News you get everywhere</h2></div>
-            <a href="#sources">Sources ↗</a>
-          </div>
-          <p id="feed-status" class="feed-message" role="status">Loading headlines…</p>
-          <div id="world-news" class="story-list" aria-live="polite"></div>
-        </section>
-
-        <section class="column stringer">
-          <div class="column-heading">
-            <div><p class="eyebrow">INDEPENDENT VOICES · NOSTR + MASTODON</p><h2>Reporting from the ground</h2></div>
-            <a href="#about">About Nostr ↗</a>
-          </div>
-          <p class="feed-message">Anjan founded Stringer. The other four are discovery picks, not confirmed Stringer contributors. These are public posts, including commentary and personal updates.</p>
-          <div id="reporter-directory" class="reporter-directory"></div>
-          <label class="feed-message" for="reporter-filter">Show posts from </label>
-          <select id="reporter-filter"><option value="">All five voices</option></select>
-          <p id="reporter-status" class="feed-message" role="status">Loading independent voices…</p>
-          <div id="stringer-news" class="story-list" aria-live="polite"></div>
-        </section>
+      <section class="column stringer" id="courageous-stories" aria-labelledby="stringer-title">
+        <div class="column-heading"><p class="eyebrow">Beyond the headlines</p><h2 id="stringer-title">Stringer's Courageous Stories</h2><p>Reporting selected by The Stringer Foundation.</p></div>
+        <div id="stringer-status" class="feed-status" role="status">Loading courageous stories…</div>
+        <div id="stringer-news" class="story-list" aria-busy="true"></div>
+        <a class="collection-link" href="https://stringerjournalism.org/courageous-stories">Explore the Stringer collection <span aria-hidden="true">↗</span></a>
       </section>
-
-      <section id="about" class="about">
-        <p class="eyebrow">OPEN BY DESIGN</p>
-        <p>BBC News and CNN headlines sit alongside public posts from five independent voices. Your browser reads Mastodon feeds and Nostr relays directly. No login or backend required.</p>
-        <p class="feed-message">Mastodon supplies the posts it has received, so this is not necessarily a complete publisher feed.</p>
-      </section>
-    </main>
-
-    <footer id="sources"><span>STRINGER JOURNALISM</span><a href="https://flipboard.com/@BBCNews">BBC News on Flipboard</a><a href="https://flipboard.com/@CNN">CNN on Flipboard</a><span>Client-side prototype</span></footer>
-    <script src="./app.js"></script>
-    <script src="./reporters.js"></script>
-  </body>
+    </div>
+    <noscript><p>Enable JavaScript to load the news collection, or <a href="https://stringerjournalism.org/courageous-stories">read Courageous Stories on Stringer’s website</a>.</p></noscript>
+    <aside class="mission"><p class="eyebrow">Support courageous journalism</p><p>Help the next generation of brave reporters tell the stories that matter.</p><a href="https://stringerjournalism.org/donate">Support The Stringer Foundation ↗</a></aside>
+  </main>
+  <footer><a href="https://stringerjournalism.org/">The Stringer Foundation</a><p>Stories belong to their original publishers. Follow each headline to read or watch the original reporting.</p><a href="https://stringerjournalism.org/contact-us">Contact us ↗</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
 </html>

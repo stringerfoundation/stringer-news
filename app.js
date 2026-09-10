@@ -1,97 +1,78 @@
-const server = 'https://mastodon.social';
-const publishers = [{ name: 'BBC News', handle: 'BBCNews@flipboard.com' }, { name: 'CNN', handle: 'CNN@flipboard.com' }];
-let stories = [];
-let selected = 'All sources';
-const list = document.querySelector('#world-news');
-const status = document.querySelector('#feed-status');
+import { SOURCES, STALE_MS, safeUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
 const refresh = document.querySelector('#refresh');
+const feedback = document.querySelector('#refresh-status');
+const interval = 5 * 60 * 1000;
+let snapshot = null;
+let loading = false;
+let lastAttempt = 0;
 function element(tag, text, className) {
   const node = document.createElement(tag);
   if (text) node.textContent = text;
   if (className) node.className = className;
   return node;
 }
-function safeUrl(value) {
-  try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; } catch { return null; }
-}
-function normalize(post, publisher) {
-  // Remote HTML stays in an inert document; only text is rendered.
-  const doc = new DOMParser().parseFromString(post.content || '', 'text/html');
-  const text = (doc.querySelector('p')?.textContent || doc.body.textContent || '').trim();
-  const url = safeUrl(post.card?.url) || safeUrl(doc.querySelector('a')?.href) || safeUrl(post.url);
-  const title = post.card?.title?.trim() || text.replace(/https?:\/\/\S+/g, '').trim();
-  if (!url || !title || !Number.isFinite(Date.parse(post.created_at))) return null;
-  return { source: publisher.name, title, url, summary: post.card?.description || '', date: post.created_at };
-}
-async function json(path, host = server) {
-  const response = await fetch(host + path, { credentials: 'omit', signal: AbortSignal.timeout(15000) });
-  if (!response.ok) throw new Error(`Server returned ${response.status}`);
-  return response.json();
-}
-async function fetchPublisher(publisher) {
-  const account = await json(`/api/v1/accounts/lookup?acct=${encodeURIComponent(publisher.handle)}`, publisher.server);
-  const posts = await json(`/api/v1/accounts/${encodeURIComponent(account.id)}/statuses?limit=20&exclude_replies=true&exclude_reblogs=true`, publisher.server);
-  return posts.filter(post => post.visibility === 'public').map(post => normalize(post, publisher)).filter(Boolean);
-}
-function renderStories(target, visible) {
+function renderStories(target, stories, emptyMessage) {
   target.replaceChildren();
-  for (const story of visible) {
+  for (const story of stories) {
+    const url = safeUrl(story.url); if (!url) continue;
     const article = element('article', '', 'story');
-    const meta = element('div');
-    const time = element('time', new Date(story.date).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }));
-    time.dateTime = story.date;
-    meta.append(time, element('span', story.source, 'source'));
-    const body = element('div');
-    const link = element('a');
-    link.href = story.url;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.append(element('h3', story.title));
-    body.append(link);
-    if (story.summary) body.append(element('p', story.summary));
-    article.append(meta, body);
-    target.append(article);
+    const link = element('a'); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    link.append(element('h3', story.title)); article.append(link);
+    if (story.credits) article.append(element('p', story.credits, 'credits'));
+    if (story.summary) article.append(element('p', story.summary, 'summary'));
+    const meta = element('div', '', 'meta');
+    meta.append(element('span', story.source || new URL(url).hostname.replace(/^www\./, ''), 'source'));
+    if (story.publishedAt) {
+      const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}));
+      time.dateTime = story.publishedAt; meta.append(time);
+    }
+    article.append(meta); target.append(article);
   }
-  if (!visible.length) target.append(element('p', 'No posts available for this source. Try refreshing.', 'feed-message'));
+  if (!target.children.length) target.append(element('p', emptyMessage, 'empty'));
+}
+function renderStatuses() {
+  if (!snapshot) return;
+  for (const group of ['world', 'stringer']) {
+    const target = document.querySelector(`#${group}-status`); target.replaceChildren();
+    const sources = SOURCES.filter(s => group === 'stringer' ? s.id === 'stringer' : s.id !== 'stringer');
+    for (const source of sources) {
+      const entry = snapshot.sources[source.id];
+      const warning = entry.status === 'failure' || Date.now() - Date.parse(entry.lastSuccessAt) >= STALE_MS;
+      target.append(element('p', sourceMessage(source, entry), warning ? 'warning' : ''));
+    }
+  }
 }
 function render() {
-  renderStories(list, stories.filter(story => selected === 'All sources' || story.source === selected).slice(0, 16));
+  renderStories(document.querySelector('#world-news'), worldStories(snapshot), 'No headlines available in this collection.');
+  renderStories(document.querySelector('#stringer-news'), snapshot.sources.stringer.stories, 'Courageous stories are currently unavailable. Visit the Stringer collection below.');
+  renderStatuses();
 }
 async function load() {
-  refresh.disabled = true;
-  refresh.textContent = 'Loading…';
-  status.textContent = 'Fetching publisher headlines…';
-  list.setAttribute('aria-busy', 'true');
-  const results = await Promise.allSettled(publishers.map(fetchPublisher));
-  const failures = [];
-  results.forEach((result, index) => {
-    const publisher = publishers[index];
-    if (result.status === 'fulfilled') stories = stories.filter(story => story.source !== publisher.name).concat(result.value);
-    else failures.push(publisher.name);
-  });
-  const seen = new Set();
-  stories = stories.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).filter(story => {
-    const key = new URL(story.url);
-    key.search = ''; key.hash = '';
-    const identity = story.source + key.href;
-    if (seen.has(identity)) return false;
-    seen.add(identity); return true;
-  });
-  render();
-  status.textContent = failures.length
-    ? `Could not refresh ${failures.join(' and ')}.${stories.length ? ' Showing available headlines; some may be from the previous refresh.' : ' Please try again.'}`
-    : `${stories.length} headlines · Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · via mastodon.social`;
-  list.setAttribute('aria-busy', 'false');
-  refresh.disabled = false;
-  refresh.textContent = '↻ Refresh';
+  if (loading) return;
+  loading = true; lastAttempt = Date.now(); refresh.disabled = true; refresh.textContent = 'Loading…';
+  document.querySelectorAll('.story-list').forEach(list => list.setAttribute('aria-busy', 'true'));
+  feedback.textContent = 'Checking the latest published collection…';
+  try {
+    const response = await fetch('./data/news.json', { cache: 'no-cache', credentials: 'omit', signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const next = validateSnapshot(await response.json());
+    const unchanged = snapshot && next.generatedAt === snapshot.generatedAt;
+    if (snapshot && Date.parse(next.generatedAt) < Date.parse(snapshot.generatedAt)) throw new Error('Older snapshot returned');
+    snapshot = next; render();
+    feedback.textContent = unchanged ? 'No newer published collection. Collection times are shown below.' : 'Showing the latest published collection. Collection times are shown below.';
+  } catch {
+    feedback.textContent = snapshot ? 'Could not check for updates. Keeping the previously loaded collection.' : 'The news collection is unavailable. Please try Refresh shortly.';
+    if (!snapshot) {
+      document.querySelector('#world-status').textContent = 'Headlines unavailable.';
+      document.querySelector('#stringer-status').textContent = 'Courageous stories unavailable. You can still visit the Stringer collection below.';
+    }
+  } finally {
+    loading = false; refresh.disabled = false; refresh.textContent = '↻ Refresh';
+    document.querySelectorAll('.story-list').forEach(list => list.setAttribute('aria-busy', 'false'));
+    renderStatuses();
+  }
 }
-document.querySelectorAll('.topics button').forEach(button => button.addEventListener('click', () => {
-  selected = button.textContent;
-  document.querySelectorAll('.topics button').forEach(item => {
-    item.classList.toggle('active', item === button);
-    item.setAttribute('aria-pressed', String(item === button));
-  });
-  render();
-}));
-refresh.addEventListener('click', () => { load(); loadReporters(); });
+refresh.addEventListener('click', load);
+setInterval(() => { renderStatuses(); if (!document.hidden && Date.now() - lastAttempt >= interval) load(); }, 30_000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - lastAttempt >= interval) load(); });
 load();
