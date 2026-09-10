@@ -8,7 +8,7 @@ Repository: https://github.com/The-Stringer-Foundation/ingestr
 
 GitHub Actions runs the collector at approximately 13 and 43 minutes past each hour, on pushes to `main`, and on manual workflow runs. It reads the four configured publisher RSS feeds and Stringer's editorial page, then publishes `data/news.json` with the site. This is a short scheduled collection job, not an always-running backend. GitHub schedules can be delayed; inactive public repositories may have scheduled workflows disabled by GitHub.
 
-Browsers fetch that relative JSON file on arrival, every five minutes while visible, on returning to a tab after five minutes, and on Refresh. Refresh checks the published collection; it does not trigger upstream collection. Browsers never need to fetch publisher feeds or scrape Stringer's website, so publisher cross-origin restrictions do not affect visitors.
+Browsers fetch that relative JSON file on arrival, every five minutes while visible, and on returning to a tab after five minutes. Updates happen automatically without a manual Refresh control. Successful collection timestamps stay in the JSON; the page shows status messages only for loading, empty results, failures, or stale collections. Browsers never need to fetch publisher feeds or scrape Stringer's website, so publisher cross-origin restrictions do not affect visitors.
 
 The newswire uses BBC World, NYT World, Al Jazeera, and DW. The exact endpoints are in `news-model.js`; source changes require review. RSS descriptions are reduced to plain-text snippets. Each publisher contributes at most five unique items; the combined list is sorted by publication date, with undated stories last. URL fragments are ignored for deduplication, while query parameters are preserved.
 
@@ -54,7 +54,7 @@ Stringer extraction rejects incomplete groups, changed text-group structure, emp
 
 ## Deployment and domain preparation
 
-`.github/workflows/pages.yml` publishes an explicit allowlist: `index.html`, `style.css`, `app.js`, `news-model.js`, the Stringer logo, and generated JSON. Instructions, this README, `PLAN.md`, dependencies, tests, and collection scripts remain in the repository and are not included in the Pages artifact. A push to `main` deploys publicly. After publishing, check the workflow, live page, and live `data/news.json`; failures are recorded in workflow logs and source metadata.
+`.github/workflows/pages.yml` publishes an explicit allowlist: `index.html`, `style.css`, `app.js`, `news-model.js`, the Stringer logo and favicons, and generated JSON. Instructions, this README, `PLAN.md`, dependencies, tests, and collection scripts remain in the repository and are not included in the Pages artifact. A push to `main` deploys publicly. After publishing, check the workflow, live page, and live `data/news.json`; failures are recorded in workflow logs and source metadata.
 
 The current GitHub Pages hostname is not changed by this implementation. When domain access is available:
 

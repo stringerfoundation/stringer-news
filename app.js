@@ -1,5 +1,4 @@
 import { SOURCES, STALE_MS, safeUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
-const refresh = document.querySelector('#refresh');
 const feedback = document.querySelector('#refresh-status');
 const interval = 5 * 60 * 1000;
 let snapshot = null;
@@ -38,7 +37,8 @@ function renderStatuses() {
     for (const source of sources) {
       const entry = snapshot.sources[source.id];
       const warning = entry.status === 'failure' || Date.now() - Date.parse(entry.lastSuccessAt) >= STALE_MS;
-      target.append(element('p', sourceMessage(source, entry), warning ? 'warning' : ''));
+      if (warning) target.append(element('p', sourceMessage(source, entry), 'warning'));
+      else if (!entry.stories.length) target.append(element('p', `${source.name}: No stories returned.`));
     }
   }
 }
@@ -49,30 +49,28 @@ function render() {
 }
 async function load() {
   if (loading) return;
-  loading = true; lastAttempt = Date.now(); refresh.disabled = true; refresh.textContent = 'Loading…';
+  loading = true; lastAttempt = Date.now();
   document.querySelectorAll('.story-list').forEach(list => list.setAttribute('aria-busy', 'true'));
-  feedback.textContent = 'Checking the latest published collection…';
+  if (!snapshot) feedback.textContent = 'Loading news…';
   try {
     const response = await fetch('./data/news.json', { cache: 'no-cache', credentials: 'omit', signal: AbortSignal.timeout(15000) });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const next = validateSnapshot(await response.json());
-    const unchanged = snapshot && next.generatedAt === snapshot.generatedAt;
     if (snapshot && Date.parse(next.generatedAt) < Date.parse(snapshot.generatedAt)) throw new Error('Older snapshot returned');
     snapshot = next; render();
-    feedback.textContent = unchanged ? 'No newer published collection. Collection times are shown below.' : 'Showing the latest published collection. Collection times are shown below.';
+    feedback.textContent = '';
   } catch {
-    feedback.textContent = snapshot ? 'Could not check for updates. Keeping the previously loaded collection.' : 'The news collection is unavailable. Please try Refresh shortly.';
+    feedback.textContent = snapshot ? 'Could not check for updates. Keeping the previously loaded collection.' : 'The news collection is unavailable. We’ll retry automatically.';
     if (!snapshot) {
       document.querySelector('#world-status').textContent = 'Headlines unavailable.';
       document.querySelector('#stringer-status').textContent = 'Courageous stories unavailable. You can still visit the Stringer collection below.';
     }
   } finally {
-    loading = false; refresh.disabled = false; refresh.textContent = '↻ Refresh';
+    loading = false;
     document.querySelectorAll('.story-list').forEach(list => list.setAttribute('aria-busy', 'false'));
     renderStatuses();
   }
 }
-refresh.addEventListener('click', load);
 setInterval(() => { renderStatuses(); if (!document.hidden && Date.now() - lastAttempt >= interval) load(); }, 30_000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - lastAttempt >= interval) load(); });
 load();

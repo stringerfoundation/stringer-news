@@ -47,7 +47,7 @@ jobs:
         run: |
           mkdir -p _site/assets _site/data
           cp index.html style.css app.js news-model.js _site/
-          cp assets/stringer-logo.png _site/assets/
+          cp assets/stringer-logo.png assets/favicon-16.png assets/favicon-32.png assets/favicon-192.png assets/favicon-180.png _site/assets/
           cp data/news.json _site/data/
       - uses: actions/upload-pages-artifact@v3
         with:
