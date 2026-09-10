@@ -1,11 +1,11 @@
 # Project instructions
 
 ## Repository and hosting
-- Canonical repository: https://github.com/The-Stringer-Foundation/ingestr (origin).
+- Canonical repository: https://github.com/stringerfoundation/stringer-news (origin).
 - Main branch: `main`.
-- GitHub Pages URL: https://the-stringer-foundation.github.io/ingestr/.
+- GitHub Pages URL: https://stringerfoundation.github.io/stringer-news/.
 - Deploy through `.github/workflows/pages.yml` on pushes to `main` or manual workflow dispatch. Use GitHub Pages for this project; do not introduce another hosting service unless requested.
-- This is a static HTML/CSS/JavaScript site with no build step or backend. Keep asset paths relative so they work under `/ingestr/`.
+- This is a static HTML/CSS/JavaScript site with no build step or backend. Keep asset paths relative so they work under `/stringer-news/`.
 - Publish only the site assets, not repository instructions or development files.
 
 ## Content and implementation

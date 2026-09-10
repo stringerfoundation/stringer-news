@@ -5,10 +5,15 @@ export const SOURCES = Object.freeze([
   { id: 'dw', name: 'DW', url: 'https://rss.dw.com/rdf/rss-en-all' },
   { id: 'stringer', name: 'Stringer', url: 'https://stringerjournalism.org/courageous-stories' },
 ]);
+export const NEWSWIRE_LIMIT = 30;
 export const STALE_MS = 2 * 60 * 60 * 1000;
 export function safeUrl(value) {
   if (typeof value !== 'string') return null;
   try { const url = new URL(value); return /^https?:$/.test(url.protocol) && !url.username && !url.password ? url.href : null; } catch { return null; }
+}
+export function safeImageUrl(value) {
+  const url = safeUrl(value);
+  return url && new URL(url).protocol === 'https:' ? url : null;
 }
 export function urlIdentity(value) {
   const url = new URL(value); url.hash = ''; return url.href;
@@ -26,7 +31,7 @@ export function worldStories(snapshot) {
 const nonempty = value => typeof value === 'string' && !!value.trim();
 const timestamp = value => typeof value === 'string' && /^\d{4}-\d\d-\d\dT/.test(value) && Number.isFinite(Date.parse(value));
 export function validateSnapshot(value) {
-  if (!value || value.schemaVersion !== 1 || !timestamp(value.generatedAt) || !value.sources || Object.keys(value.sources).length !== SOURCES.length) throw new Error('Invalid news snapshot');
+  if (!value || ![1, 2].includes(value.schemaVersion) || !timestamp(value.generatedAt) || !value.sources || Object.keys(value.sources).length !== SOURCES.length) throw new Error('Invalid news snapshot');
   for (const source of SOURCES) {
     const entry = value.sources[source.id];
     if (!entry || !Array.isArray(entry.stories) || !timestamp(entry.attemptedAt) || !['success', 'failure'].includes(entry.status) || !(entry.lastSuccessAt === null || timestamp(entry.lastSuccessAt))) throw new Error(`Invalid ${source.id} metadata`);
@@ -35,9 +40,10 @@ export function validateSnapshot(value) {
     if (entry.status === 'failure' && !nonempty(entry.error)) throw new Error('Missing failure details');
     if (entry.stories.length && !entry.lastSuccessAt) throw new Error('Missing collection time');
     if (source.id === 'stringer' && entry.lastSuccessAt && !entry.stories.length) throw new Error('Empty Stringer baseline');
-    if (source.id !== 'stringer' && entry.stories.length > 5) throw new Error('Too many publisher stories');
+    if (source.id !== 'stringer' && entry.stories.length > (value.schemaVersion === 1 ? 5 : NEWSWIRE_LIMIT)) throw new Error('Too many publisher stories');
     for (const story of entry.stories) {
       if (!story || !nonempty(story.title) || !safeUrl(story.url) || typeof story.summary !== 'string' || !(story.publishedAt === null || timestamp(story.publishedAt))) throw new Error('Invalid story');
+      if (story.image != null && (!safeImageUrl(story.image.url) || typeof story.image.alt !== 'string' || typeof story.image.credit !== 'string')) throw new Error('Invalid story image');
       if (source.id === 'stringer' && (!nonempty(story.credits) || !nonempty(story.summary) || story.publishedAt !== null)) throw new Error('Invalid Stringer story');
     }
   }

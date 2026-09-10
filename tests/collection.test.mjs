@@ -3,18 +3,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { load } from 'cheerio';
 import { parseFeed, parseStringer, checkBaseline, fetchText, snapshotUrl, collect } from '../scripts/collect.mjs';
-import { SOURCES, validateSnapshot, worldStories, sourceMessage, safeUrl, STALE_MS } from '../news-model.js';
+import { SOURCES, NEWSWIRE_LIMIT, validateSnapshot, worldStories, sourceMessage, safeUrl, safeImageUrl, STALE_MS } from '../news-model.js';
 const fixtures = Object.fromEntries(SOURCES.map(s => [s.id, readFileSync(new URL(`./fixtures/${s.id === 'stringer' ? 'stringer.html' : `${s.id}.xml`}`, import.meta.url), 'utf8')]));
 const now = '2026-09-10T11:00:00.000Z';
 const later = '2026-09-10T11:30:00.000Z';
-const pagesUrl = 'https://example.org/ingestr/';
+const pagesUrl = 'https://example.org/stringer-news/';
 const makeSnapshot = async (previous, failures = [], overrides = {}) => collect({pagesUrl, now:()=>previous ? later : now, log:()=>{}, request:async url => {
   if(url === snapshotUrl(pagesUrl)) { if(!previous) throw new Error('404');return typeof previous === 'string' ? previous : JSON.stringify(previous); }
   const s=SOURCES.find(s=>s.url===url);if(failures.includes(s.id)) throw new Error('Feed unavailable');return fixtures[s.id];
 }, ...overrides});
 const baseline = await makeSnapshot();
-for(const source of SOURCES.filter(s=>s.id!=='stringer')) test(`${source.name}: real RSS fixture returns five valid headlines`,()=>{
-  const stories=parseFeed(fixtures[source.id]); assert.equal(stories.length,5);for(const story of stories){assert.ok(story.title);assert.ok(safeUrl(story.url));assert.ok(story.summary.length<=240);}
+for(const source of SOURCES.filter(s=>s.id!=='stringer')) test(`${source.name}: real RSS fixture returns a bounded expanded headline pool`,()=>{
+  const stories=parseFeed(fixtures[source.id]); assert.equal(stories.length,source.id === 'aljazeera' ? 25 : NEWSWIRE_LIMIT);for(const story of stories){assert.ok(story.title);assert.ok(safeUrl(story.url));assert.ok(story.summary.length<=240);}
 });
 test('Stringer preserves 24 editorial entries, order, teams, Unicode, and selected media links',()=>{
   const stories=parseStringer(fixtures.stringer);assert.equal(stories.length,24);assert.equal(stories[0].credits,'Kang-Chun Cheng');
@@ -39,7 +39,7 @@ test('Stringer rejects changed and partially changed markup or missing story fie
 const item = (url,title,pubDate='')=>`<item><title>${title}</title><link>${url}</link><description><![CDATA[<b>Summary</b><script>unsafe()</script>]]></description>${pubDate?`<pubDate>${pubDate}</pubDate>`:''}</item>`;
 test('RSS deduplicates before limiting, preserves queries, removes fragments, and puts undated items last',()=>{
   const xml=`<rss><channel>${item('https://example.org/a#one','Newest','2026-09-10')}${item('https://example.org/a#two','Duplicate','2026-09-09')}${item('https://example.org/a?q=1','Query one','2026-09-08')}${item('https://example.org/a?q=2','Query two','2026-09-07')}${item('https://example.org/b','Undated first')}${item('https://example.org/c','Undated second')}${item('https://example.org/d','Undated third')}</channel></rss>`;
-  const stories=parseFeed(xml);assert.deepEqual(stories.map(s=>s.title),['Newest','Query one','Query two','Undated first','Undated second']);
+  const stories=parseFeed(xml);assert.deepEqual(stories.map(s=>s.title),['Newest','Query one','Query two','Undated first','Undated second','Undated third']);
   assert.equal(stories[3].publishedAt,null);assert.equal(stories[0].summary,'Summary');
 });
 test('RSS rejects malformed XML, HTML error pages and incomplete items; accepts valid empty feeds',()=>{
@@ -79,7 +79,7 @@ test('Stringer count reductions over 25% require explicit reviewed reset',async(
   const reset=await makeSnapshot(baseline,[],{request,resetStringerBaseline:true});assert.equal(reset.sources.stringer.status,'success');assert.equal(reset.sources.stringer.stories.length,17);
 });
 test('recovery paths follow project paths, domain roots, and missing trailing slashes',()=>{
-  assert.equal(snapshotUrl('https://example.org/ingestr'),'https://example.org/ingestr/data/news.json');
+  assert.equal(snapshotUrl('https://example.org/stringer-news'),'https://example.org/stringer-news/data/news.json');
   assert.equal(snapshotUrl('https://news.stringerjournalism.org'),'https://news.stringerjournalism.org/data/news.json');
   assert.throws(()=>snapshotUrl('file:///tmp/site'));
 });
@@ -91,4 +91,50 @@ test('bounded requests retry failures and stop after the configured attempts',as
 test('staleness follows last successful collection even if snapshots stop updating',()=>{
   assert.match(sourceMessage(SOURCES[0],baseline.sources.bbc,Date.parse(now)+STALE_MS),/over two hours old/);
   assert.doesNotMatch(sourceMessage(SOURCES[0],baseline.sources.bbc,Date.parse(now)+1000),/over two hours old/);
+});
+
+test('RSS thumbnail and media-content metadata stay tied to their item, including credits', () => {
+  const bbc = parseFeed(fixtures.bbc); const nyt = parseFeed(fixtures.nyt);
+  assert.ok(bbc.every(story => story.image === null || safeImageUrl(story.image.url)));
+  assert.match(bbc.find(story=>story.image).image.url, /ichef\.bbci\.co\.uk/);
+  const photo = nyt.find(story => story.image?.credit);
+  assert.ok(photo.image.alt); assert.ok(photo.image.credit);
+  assert.equal(parseFeed(fixtures.dw)[0].image, null);
+});
+test('Stringer images match destinations, not their position; missing images remain absent', () => {
+  const stories = parseStringer(fixtures.stringer);
+  assert.equal(stories.filter(story => story.image).length, 23);
+  assert.match(stories[0].image.url, /readinglist1-/);
+  assert.match(stories[1].image.url, /readinglist2-/);
+  assert.equal(stories[14].image, null);
+  const $ = load(fixtures.stringer);
+  const pictures = $('section > a').remove().get().reverse();
+  $('section').prepend(pictures);
+  assert.deepEqual(parseStringer($.html()).map(s=>s.image), stories.map(s=>s.image));
+});
+test('image matching preserves meaningful query parameters and ignores unsafe image URLs', () => {
+  const html = '<section><div class="text-box"><h1>COURAGEOUS STORIES</h1></div><div class="text-box"><p>Reporter</p><p><a href="https://example.org/watch?v=one">Headline</a> Description</p></div><a href="https://example.org/watch?v=two"><img src="https://images.example.org/wrong.jpg"></a><a href="https://example.org/watch?v=one"><img src="javascript:bad"></a></section>';
+  assert.equal(parseStringer(html)[0].image, null);
+  const safe = html.replace('javascript:bad', 'https://images.example.org/correct.jpg');
+  assert.equal(parseStringer(safe)[0].image.url, 'https://images.example.org/correct.jpg');
+  for (const url of ['javascript:bad', 'data:image/png;base64,a', 'http://example.org/photo.jpg', 'https://user:password@example.org/photo.jpg']) assert.equal(safeImageUrl(url), null);
+});
+test('expanded RSS limit applies after deduplication', () => {
+  const repeated = Array.from({length:50},()=>item('https://example.org/repeated','Repeated')).join('');
+  const unique = Array.from({length:40},(_,i)=>item(`https://example.org/${i}`,`Item ${i}`)).join('');
+  const stories = parseFeed(`<rss><channel>${repeated}${unique}</channel></rss>`);
+  assert.equal(stories.length, NEWSWIRE_LIMIT); assert.equal(new Set(stories.map(s=>s.url)).size, NEWSWIRE_LIMIT);
+});
+test('version 2 validates images and recovers version 1 snapshots without images', async () => {
+  assert.equal(baseline.schemaVersion, 2);
+  const legacy = structuredClone(baseline); legacy.schemaVersion = 1;
+  for (const [id, source] of Object.entries(legacy.sources)) {
+    if (id !== 'stringer') source.stories = source.stories.slice(0, 5);
+    for (const story of source.stories) delete story.image;
+  }
+  validateSnapshot(legacy);
+  const recovered = await makeSnapshot(legacy, ['bbc']);
+  assert.equal(recovered.schemaVersion, 2); assert.equal(recovered.sources.bbc.stories.length, 5);
+  const bad = structuredClone(baseline); bad.sources.stringer.stories[0].image.url = 'javascript:alert(1)';
+  assert.throws(()=>validateSnapshot(bad), /Invalid story image/);
 });

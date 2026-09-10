@@ -2,7 +2,7 @@ import { load } from 'cheerio';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
-import { SOURCES, safeUrl, uniqueStories, newestFirst, validateSnapshot } from '../news-model.js';
+import { SOURCES, NEWSWIRE_LIMIT, safeUrl, safeImageUrl, urlIdentity, uniqueStories, newestFirst, validateSnapshot } from '../news-model.js';
 
 function text(html) {
   const $ = load(String(html ?? '')); $('script,style').remove(); $('br').replaceWith(' ');
@@ -10,6 +10,28 @@ function text(html) {
 }
 const array = value => value == null ? [] : Array.isArray(value) ? value : [value];
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Date(value).toISOString() : null;
+function feedImage(item) {
+  const groups = [item, ...array(item['media:group'])];
+  for (const group of groups) {
+    const candidates = [
+      ...array(group['media:content']).filter(media => media['@_medium'] === 'image' || /^image\//.test(media['@_type'] || '')),
+      ...array(group['media:thumbnail']),
+      ...array(group.enclosure).filter(media => /^image\//.test(media['@_type'] || '')),
+    ];
+    for (const media of candidates) {
+      const url = safeImageUrl(media['@_url']);
+      if (url) return { url, alt: text(media['media:description'] || group['media:description'] || ''), credit: text(media['media:credit'] || group['media:credit'] || '') };
+    }
+  }
+  return null;
+}
+function imageStoryKey(value) {
+  const url = safeUrl(value);
+  if (!url) return null;
+  const parsed = new URL(urlIdentity(url));
+  parsed.pathname = parsed.pathname.replace(/\/$/, '') || '/';
+  return parsed.href;
+}
 export function parseFeed(xml) {
   if (XMLValidator.validate(xml) !== true) throw new Error('Malformed XML feed');
   const parsed = new XMLParser({ ignoreAttributes: false, processEntities: true, trimValues: false, parseTagValue: false }).parse(xml);
@@ -21,9 +43,9 @@ export function parseFeed(xml) {
     const title = text(item.title); const url = safeUrl(typeof item.link === 'string' ? item.link.trim() : '');
     if (!title || !url) throw new Error('Incomplete RSS item');
     const summary = text(item.description).slice(0, 240);
-    return { title, url, summary, publishedAt: date(item.pubDate || item['dc:date']) };
+    return { title, url, summary, publishedAt: date(item.pubDate || item['dc:date']), image: feedImage(item) };
   });
-  return uniqueStories(stories.sort(newestFirst)).slice(0, 5);
+  return uniqueStories(stories.sort(newestFirst)).slice(0, NEWSWIRE_LIMIT);
 }
 export function parseStringer(html) {
   const $ = load(html);
@@ -33,6 +55,12 @@ export function parseStringer(html) {
   if (section.length !== 1) throw new Error('Stringer editorial section missing');
   // Fail closed if even one text group no longer uses the inspected source structure.
   if (section.find('p').toArray().some(el => !$(el).closest('.text-box').length)) throw new Error('Stringer text group structure changed');
+  const images = new Map();
+  section.find('a img').each((index, el) => {
+    const key = imageStoryKey($(el).closest('a').attr('href'));
+    const url = safeImageUrl($(el).attr('src'));
+    if (key && url && !images.has(key)) images.set(key, { url, alt: $(el).attr('alt') || '', credit: '' });
+  });
   const boxes = section.find('.text-box').filter((i, el) => !$(el).find('h1').length && !!$(el).text().trim());
   const stories = boxes.toArray().map(el => {
     const box = $(el); const paragraphs = box.children('p');
@@ -43,7 +71,7 @@ export function parseStringer(html) {
     const description = paragraphs.slice(1).clone(); description.find('a').remove(); description.find('br').replaceWith(' ');
     const summary = description.toArray().map(p => $(p).text().trim()).filter(Boolean).join(' ').trim();
     if (!credits || !title || !url || !summary) throw new Error('Incomplete Stringer story fields');
-    return { title, credits, summary, url, publishedAt: null };
+    return { title, credits, summary, url, publishedAt: null, image: images.get(imageStoryKey(url)) || null };
   });
   if (!stories.length) throw new Error('Stringer extraction returned no stories');
   return stories;
@@ -87,7 +115,7 @@ export async function collect({ pagesUrl, request = fetchText, now = () => new D
     }
   }));
   if (!previous && entries.some(([, entry]) => entry.status === 'failure')) throw new Error('Publication blocked: recovery unavailable and at least one source failed');
-  return validateSnapshot({ schemaVersion: 1, generatedAt: now(), sources: Object.fromEntries(entries) });
+  return validateSnapshot({ schemaVersion: 2, generatedAt: now(), sources: Object.fromEntries(entries) });
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {

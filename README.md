@@ -2,7 +2,7 @@
 
 A frontend-only news reader pairing **Global Newswire** with **Stringer's Courageous Stories**. The site uses plain HTML, CSS, and JavaScript on GitHub Pages. There is no visitor-facing server, database, CMS, or login.
 
-Repository: https://github.com/The-Stringer-Foundation/ingestr
+Repository: https://github.com/stringerfoundation/stringer-news
 
 ## How automatic updates work
 
@@ -10,9 +10,9 @@ GitHub Actions runs the collector at approximately 13 and 43 minutes past each h
 
 Browsers fetch that relative JSON file on arrival, every five minutes while visible, and on returning to a tab after five minutes. Updates happen automatically without a manual Refresh control. Successful collection timestamps stay in the JSON; the page shows status messages only for loading, empty results, failures, or stale collections. Browsers never need to fetch publisher feeds or scrape Stringer's website, so publisher cross-origin restrictions do not affect visitors.
 
-The newswire uses BBC World, NYT World, Al Jazeera, and DW. The exact endpoints are in `news-model.js`; source changes require review. RSS descriptions are reduced to plain-text snippets. Each publisher contributes at most five unique items; the combined list is sorted by publication date, with undated stories last. URL fragments are ignored for deduplication, while query parameters are preserved.
+The newswire uses BBC World, NYT World, Al Jazeera, and DW. The exact endpoints are in `news-model.js`; source changes require review. RSS descriptions are reduced to plain-text snippets. Images come only from publisher-provided RSS media metadata; captions retain supplied photo credits. Stories without an image remain text-only. Each publisher contributes at most 30 unique items; the combined list is sorted by publication date, with undated stories last. URL fragments are ignored for deduplication, while query parameters are preserved.
 
-The right column mirrors only https://stringerjournalism.org/courageous-stories, in editorial order. Its inspected page contains 24 story entries, including team credits and selected video, social-platform, and book links. The 25 finalists are an award cohort, not a required story count. No publication dates are inferred for this collection. No RSS was advertised in the page HTML; the checked `/rss.xml`, `/feed`, `/feed.xml`, and `/courageous-stories/rss.xml` endpoints returned 404 during implementation.
+The right column mirrors only https://stringerjournalism.org/courageous-stories, in editorial order. Its inspected page contains 24 story entries, including team credits and selected video, social-platform, and book links. The 25 finalists are an award cohort, not a required story count. No publication dates are inferred for this collection. Images are matched by their original story destinations, never by their position in the page; unmatched images remain absent. No RSS was advertised in the page HTML; the checked `/rss.xml`, `/feed`, `/feed.xml`, and `/courageous-stories/rss.xml` endpoints returned 404 during implementation.
 
 ## Local development
 
@@ -20,7 +20,7 @@ Use Node.js 22 or newer:
 
 ```sh
 npm ci
-PAGES_URL=https://the-stringer-foundation.github.io/ingestr/ npm run collect
+PAGES_URL=https://stringerfoundation.github.io/stringer-news/ npm run collect
 python3 -m http.server 4173
 ```
 
@@ -39,9 +39,9 @@ The browser suite serves isolated saved fixtures and covers 375px, 768px, deskto
 
 ## Snapshot contract and recovery
 
-`data/news.json` has `schemaVersion: 1`, an ISO `generatedAt` timestamp, and `sources` keyed by `bbc`, `nyt`, `aljazeera`, `dw`, and `stringer`. Each source contains:
+`data/news.json` has `schemaVersion: 2` (the collector and browser also accept version 1 for recovery), an ISO `generatedAt` timestamp, and `sources` keyed by `bbc`, `nyt`, `aljazeera`, `dw`, and `stringer`. Each source contains:
 
-- `stories`: title, HTTP(S) URL, plain-text summary, nullable ISO `publishedAt`; Stringer stories additionally contain the verbatim journalist `credits`.
+- `stories`: title, HTTP(S) URL, plain-text summary, nullable ISO `publishedAt`, and optional `image` with an HTTPS `url`, source-provided `alt`, and `credit`; Stringer stories additionally contain the verbatim journalist `credits`.
 - `attemptedAt`: time the latest collection attempt started.
 - `lastSuccessAt`: time of the last successful collection, or null if none exists.
 - `status`: `success` or `failure`; `error` is null on success and a diagnostic string on failure.
@@ -59,8 +59,8 @@ Stringer extraction rejects incomplete groups, changed text-group structure, emp
 The current GitHub Pages hostname is not changed by this implementation. When domain access is available:
 
 1. Verify ownership of `stringerjournalism.org` in the GitHub organization's Pages settings using the TXT record GitHub supplies. Wait for verification.
-2. In `The-Stringer-Foundation/ingestr` → Settings → Pages, save `news.stringerjournalism.org` as the custom domain.
-3. In the domain's authoritative DNS settings (Hostinger if it manages DNS), set the **`news` CNAME** to **`the-stringer-foundation.github.io`**. Replace only conflicting records for `news`; leave the main website and email records alone. Do not include `/ingestr/` in the CNAME target.
+2. In `stringerfoundation/stringer-news` → Settings → Pages, save `news.stringerjournalism.org` as the custom domain.
+3. In the domain's authoritative DNS settings (Hostinger if it manages DNS), set the **`news` CNAME** to **`stringerfoundation.github.io`**. Replace only conflicting records for `news`; leave the main website and email records alone. Do not include `/stringer-news/` in the CNAME target.
 4. Check DNS propagation and GitHub Pages' domain check, then enable **Enforce HTTPS** once the certificate is available.
 5. Check `https://news.stringerjournalism.org/`, its `data/news.json`, and a collection run to verify recovery uses the new address. All site asset paths remain relative.
 
@@ -71,3 +71,9 @@ The logo and typography follow the Stringer website. All story links retain thei
 ## Branding regression checks
 
 `tests/fixtures/branding.json` records logo dimensions, navigation/button sizes, colours, and image hashes measured from the main Stringer website. Tests require a loaded linked logo at desktop/mobile sizes, working favicons at both URL paths, the matching brown-to-orange button and icon hover states, and black navigation hover. The footer keeps donation and nonprofit information at readable body sizes. Asset checks run on every collection; browser checks also run before push/manual deployments. Update the baseline only after reviewing an intentional main-site branding change.
+
+## Image cards and column balance
+
+The reader displays lazy-loaded source images with reserved square space, preserves supplied photo credits, and removes failed images without hiding the reporting. Decorative concentric lines and orange accents echo Stringer’s visual identity. No generated or unrelated stock photos are used.
+
+On desktop, the newswire uses enough distinct, chronologically ordered headlines to reach the end of the Courageous Stories list, within one story card, when the collected pool is sufficient. It rebalances after resizing, font loading, or failed images; it does not stretch cards or invent filler. On mobile it shows up to the larger of 24 headlines or the Stringer story count before the stacked Stringer section. Both columns remain usable if a feed has fewer stories.

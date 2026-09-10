@@ -3,15 +3,20 @@ import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFile, mkdir } from 'node:fs/promises';
 import { chromium } from '@playwright/test';
-import { SOURCES } from '../news-model.js';
+import { SOURCES, worldStories } from '../news-model.js';
 import { collect, snapshotUrl } from '../scripts/collect.mjs';
 let server, browser, base, snapshot;
+const thumbnail = await readFile(new URL('../assets/favicon-192.png', import.meta.url));
+async function mockStoryImages(page) {
+  await page.route('**/*', route => route.request().resourceType() === 'image' && !route.request().url().startsWith(base)
+    ? route.fulfill({body:thumbnail,contentType:'image/png'}) : route.continue());
+}
 const errors = [];
 before(async()=>{
   const fixtures=Object.fromEntries(await Promise.all(SOURCES.map(async s=>[s.id,await readFile(new URL(`./fixtures/${s.id==='stringer'?'stringer.html':s.id+'.xml'}`,import.meta.url),'utf8')])));
   snapshot=await collect({pagesUrl:'https://example.org/',log:()=>{},request:async url=>{if(url===snapshotUrl('https://example.org/'))throw new Error('First run');return fixtures[SOURCES.find(s=>s.url===url).id]}});
   server=createServer(async(req,res)=>{
-    const pathname=new URL(req.url,'http://localhost').pathname.replace(/^\/ingestr(?=\/)/,'');
+    const pathname=new URL(req.url,'http://localhost').pathname.replace(/^\/stringer-news(?=\/)/,'');
     const file=pathname==='/'?'index.html':pathname.slice(1);
     if(!['index.html','app.js','news-model.js','style.css','assets/stringer-logo.png','assets/favicon-16.png','assets/favicon-32.png','assets/favicon-192.png','assets/favicon-180.png','data/news.json'].includes(file)){res.writeHead(404);res.end();return;}
     try{const body=file==='data/news.json'?JSON.stringify(snapshot):await readFile(new URL('../'+file,import.meta.url));res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.json')?'application/json':file.endsWith('.png')?'image/png':'text/html');res.end(body)}catch{res.writeHead(404);res.end()}
@@ -21,7 +26,7 @@ before(async()=>{
   await mkdir('.test-output',{recursive:true});
 });
 after(async()=>{await browser?.close();if(server)await new Promise(resolve=>server.close(resolve));});
-async function pageAt(path='/',width=1280){const page=await browser.newPage({viewport:{width,height:1000}});page.on('pageerror',error=>errors.push(error.message));await page.clock.install();await page.goto(base+path);await page.waitForSelector('#stringer-news article');return page;}
+async function pageAt(path='/',width=1280){const page=await browser.newPage({viewport:{width,height:1000}});page.on('pageerror',error=>errors.push(error.message));await mockStoryImages(page);await page.clock.install();await page.goto(base+path);await page.waitForSelector('#stringer-news article');return page;}
 async function poll(page) {
   const response = page.waitForResponse('**/data/news.json');
   await page.clock.fastForward(300_000);
@@ -30,7 +35,7 @@ async function poll(page) {
 }
 test('desktop, 768px, and mobile layouts render two populated columns without overflow',async()=>{
   for(const width of [1280,768,375]){
-    const page=await pageAt('/',width);assert.equal(await page.locator('#stringer-news article').count(),24);assert.equal(await page.locator('#world-news article').count(),20);
+    const page=await pageAt('/',width);assert.equal(await page.locator('#stringer-news article').count(),24);assert.equal(await page.locator('#world-news article').count(),worldStories(snapshot).length);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     const left=await page.locator('#global-newswire').boundingBox();const right=await page.locator('#courageous-stories').boundingBox();
     if(width>=768){assert.equal(left.y,right.y);assert.ok(right.x>left.x)}else{assert.ok(right.y>left.y+left.height-1);assert.equal(await page.locator('.jump-links').isVisible(),true)}
@@ -39,8 +44,8 @@ test('desktop, 768px, and mobile layouts render two populated columns without ov
   }
   assert.deepEqual(errors,[]);
 });
-test('relative assets and JSON work at /ingestr/ and a domain root',async()=>{
-  for(const path of ['/','/ingestr/']){const page=await pageAt(path);assert.equal(await page.locator('#world-news article').count(),20);assert.equal(await page.locator('.main-nav [aria-current]').getAttribute('href'),'./');await page.close();}
+test('relative assets and JSON work at /stringer-news/ and a domain root',async()=>{
+  for(const path of ['/','/stringer-news/']){const page=await pageAt(path);assert.equal(await page.locator('#world-news article').count(),worldStories(snapshot).length);assert.equal(await page.locator('.main-nav [aria-current]').getAttribute('href'),'./');await page.close();}
 });
 test('automatic refresh of the same snapshot stays quiet and preserves publication timestamps',async()=>{
   const page=await pageAt();const status=await page.locator('#world-news time').allTextContents();await poll(page);assert.equal(await page.locator('#refresh-status').textContent(),'');
@@ -52,7 +57,7 @@ test('failed browser refresh retains displayed stories; first-load failure is vi
   await page.reload();await page.waitForFunction(()=>document.querySelector('#world-status').textContent==='Headlines unavailable.');assert.equal(await page.locator('#world-news article').count(),0);await page.close();
 });
 test('retained-source failures, valid empty newswire, and stopped-schedule staleness are displayed',async()=>{
-  const page=await browser.newPage();await page.clock.install({time:new Date(Date.parse(snapshot.generatedAt)+3*60*60*1000)});let changed=structuredClone(snapshot);
+  const page=await browser.newPage();await mockStoryImages(page);await page.clock.install({time:new Date(Date.parse(snapshot.generatedAt)+3*60*60*1000)});let changed=structuredClone(snapshot);
   for(const s of SOURCES){changed.sources[s.id].status='failure';changed.sources[s.id].error='Unavailable';}
   await page.route('**/data/news.json',route=>route.fulfill({json:changed}));await page.goto(base);await page.waitForSelector('#stringer-news article');assert.match(await page.locator('#world-status').innerText(),/Showing retained collection/);
   changed=structuredClone(snapshot);for(const s of SOURCES.filter(s=>s.id!=='stringer'))changed.sources[s.id].stories=[];
@@ -62,10 +67,10 @@ test('retained-source failures, valid empty newswire, and stopped-schedule stale
 test('malicious snapshot is rejected and remote markup is rendered as text',async()=>{
   const page=await pageAt();const bad=structuredClone(snapshot);bad.sources.stringer.stories[0].url='javascript:alert(1)';await page.route('**/data/news.json',route=>route.fulfill({json:bad}));await poll(page);await page.waitForFunction(()=>document.querySelector('#refresh-status').textContent.includes('Could not check'));assert.equal(await page.locator('#stringer-news article').count(),24);
   bad.sources.stringer.stories[0].url='https://example.org/story';bad.sources.stringer.stories[0].title='<img src=x onerror=alert(1)>';await poll(page);await page.waitForFunction(()=>document.querySelector('#stringer-news h3').textContent.startsWith('<img'));
-  assert.equal(await page.locator('#stringer-news img').count(),0);await page.close();
+  assert.equal(await page.locator('#stringer-news img[src="x"]').count(),0);await page.close();
 });
 test('visible polling, hidden-page pause, visibility catch-up, and overlap prevention',async()=>{
-  const page=await browser.newPage();await page.clock.install();let requests=0;let release;
+  const page=await browser.newPage();await mockStoryImages(page);await page.clock.install();let requests=0;let release;
   await page.route('**/data/news.json',async route=>{requests++;if(release!==undefined)await new Promise(resolve=>release=resolve);await route.fulfill({json:snapshot});});
   await page.goto(base);await page.waitForSelector('#world-news article');assert.equal(requests,1);
   await page.clock.fastForward(300_000);await page.waitForFunction(()=>document.querySelector('#world-news').getAttribute('aria-busy')==='false');assert.equal(requests,2);
@@ -95,7 +100,7 @@ test('Stringer logo is visible, loaded, correctly sized, and linked on desktop a
   }
 });
 test('favicons load as correctly sized images at the domain root and project path', async () => {
-  for (const path of ['/', '/ingestr/']) {
+  for (const path of ['/', '/stringer-news/']) {
     const page = await pageAt(path);
     for (const size of [16, 32, 192, 180]) {
       const selector = size === 180 ? 'link[rel="apple-touch-icon"]' : `link[rel="icon"][sizes="${size}x${size}"]`;
@@ -134,5 +139,39 @@ test('header and footer use main-site type sizes, colours, and hover treatments'
   }
   assert.equal(await cssValue(page.locator('.footer-appeal'), 'fontSize'), '16px');
   assert.equal(await cssValue(page.locator('.nonprofit'), 'fontSize'), '15px');
+  await page.close();
+});
+
+test('desktop newswire reaches the Stringer stories with distinct real headlines, including after resize', async () => {
+  const page = await pageAt('/', 1280);
+  for (const width of [1280, 768, 375, 1440]) {
+    await page.setViewportSize({ width, height:1000 });
+    await page.waitForTimeout(50);
+    const cards = page.locator('#world-news article:not([hidden])');
+    const count = await cards.count();
+    if (width >= 768) {
+      const last = await cards.last().boundingBox();
+      const right = await page.locator('#stringer-news article').last().boundingBox();
+      assert.ok(last.y+last.height >= right.y+right.height-2);
+      assert.ok(last.y < right.y+right.height+2, 'Use only enough headlines to reach the right column');
+      assert.ok(count > 24, 'Longer collection should draw additional headlines');
+    } else assert.equal(count, 24);
+    const links = await cards.locator('.story-body > a').evaluateAll(els=>els.map(el=>el.href));
+    assert.equal(new Set(links).size, links.length);
+  }
+  await page.close();
+});
+test('story images load lazily, preserve attribution, and disappear cleanly on failure', async () => {
+  const page = await pageAt();
+  assert.equal(await page.locator('#stringer-news .story-media img').count(), 23);
+  assert.equal(await page.locator('#stringer-news .story-media img').nth(1).getAttribute('loading'), 'lazy');
+  const first = page.locator('#stringer-news article').first();
+  await first.locator('img').evaluate(el=>el.dispatchEvent(new Event('error')));
+  assert.equal(await first.locator('.story-media').count(), 0);
+  assert.equal(await first.locator('h3').textContent(), snapshot.sources.stringer.stories[0].title);
+  assert.equal(await first.locator('.credits').textContent(), snapshot.sources.stringer.stories[0].credits);
+  assert.equal(await first.evaluate(el=>el.classList.contains('with-image')), false);
+  const credited = snapshot.sources.nyt.stories.find(story=>story.image?.credit);
+  assert.ok((await page.locator('#world-news figcaption').allTextContents()).includes(credited.image.credit));
   await page.close();
 });

@@ -4,7 +4,7 @@
 
 Update the existing static site to match Stringer's main website, with two headline-led columns: **Global Newswire** on the left and **Stringer's Courageous Stories** on the right.
 
-Canonical repository: [The-Stringer-Foundation/ingestr](https://github.com/The-Stringer-Foundation/ingestr). Keep GitHub Pages, relative asset paths, and no visitor-facing backend. Keep this plan outside the published artifact.
+Canonical repository: [stringerfoundation/stringer-news](https://github.com/stringerfoundation/stringer-news). Keep GitHub Pages, relative asset paths, and no visitor-facing backend. Keep this plan outside the published artifact.
 
 ## Design and content
 
@@ -25,9 +25,9 @@ Canonical repository: [The-Stringer-Foundation/ingestr](https://github.com/The-S
   - DW: `https://rss.dw.com/rdf/rss-en-all`
 - Verify that each endpoint returns usable feed content during implementation. Report failures without silently substituting another source.
 - Use Node.js with locked HTML/XML parser dependencies. Set bounded request timeouts and retries.
-- Deduplicate each publisher's items before selecting its five newest. Merge newest-first and deduplicate shared URLs deterministically. Remove fragments for comparison, preserve query parameters, and place undated items last in source order.
-- Keep attribution and feed-provided short summaries; omit article images and full text.
-- Extract Stringer story groups from its editorial content, excluding navigation and footer. Validate title, credits, description, and HTTP(S) destination; preserve Unicode and credits verbatim.
+- Deduplicate each publisher's items before selecting up to 30 newest for desktop column balancing. Merge newest-first and deduplicate shared URLs deterministically. Remove fragments for comparison, preserve query parameters, and place undated items last in source order.
+- Keep attribution and feed-provided short summaries. Include HTTPS images and photo credits supplied by RSS media metadata; omit full text. Match Stringer images by linked story URL, with no positional guesses.
+- Extract Stringer story groups from its editorial content, excluding navigation and footer. Validate title, credits, description, and HTTP(S) destination; preserve Unicode and credits verbatim. Rebalance the desktop newswire with enough distinct real headlines to reach the Stringer collection; retain a bounded stacked mobile list.
 - Reject empty extraction, incomplete story groups, and reductions exceeding 25% of the previous successful Stringer count. Retain previous content and require an explicit reviewed baseline reset for legitimate larger reductions.
 - Publish `data/news.json` with a schema version, snapshot generation time, per-source stories, latest attempt time, last successful collection time, and latest attempt status/error. Publication dates remain nullable and separate.
 
@@ -50,7 +50,7 @@ Canonical repository: [The-Stringer-Foundation/ingestr](https://github.com/The-S
 - Test saved source fixtures covering teams, Unicode, missing dates, duplicate URLs, meaningful query parameters, malformed feeds, and changed or partially changed Stringer markup.
 - Verify individual and total failures, invalid previous snapshots, recovery outages, first deployment, count-reduction rejection, and unchanged snapshot refreshes.
 - Check JavaScript syntax, keyboard access, refresh behaviour, removed controls, and layouts at 375px, 768px, and desktop widths.
-- Verify relative assets and snapshot recovery at both `/ingestr/` and a domain root.
-- Document domain ownership verification, setting `news.stringerjournalism.org` in GitHub Pages, setting the DNS `news` CNAME to `the-stringer-foundation.github.io`, checking DNS, and enabling HTTPS. The CNAME target reflects the repository's new organization owner. A repository `CNAME` file is unnecessary for the custom Actions deployment. Follow [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+- Verify relative assets and snapshot recovery at both `/stringer-news/` and a domain root.
+- Document domain ownership verification, setting `news.stringerjournalism.org` in GitHub Pages, setting the DNS `news` CNAME to `stringerfoundation.github.io`, checking DNS, and enabling HTTPS. The CNAME target reflects the repository's new organization owner. A repository `CNAME` file is unnecessary for the custom Actions deployment. Follow [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 - Keep the existing configured hostname until domain access is available. After an authorized production push, verify the Pages workflow and live JSON, and report deployment status and URL.
 - First release requires no CMS, visitor login, or persistent backend.

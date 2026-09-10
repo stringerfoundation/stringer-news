@@ -98,3 +98,29 @@
 }
 .refresh-status:empty, .feed-status:empty { display: none; }
 .page-intro { padding-bottom: 28px; }
+
+/* Editorial image cards and the concentric-line motif used throughout Stringer's identity. */
+.page-intro { position: relative; gap: 32px; overflow: hidden; }
+.page-intro > div { position: relative; z-index: 1; }
+.page-intro h1 { max-width: 880px; }
+.page-intro h1 span { color: var(--accent); }
+.intro-motif { width: 190px; height: 95px; flex: 0 0 190px; color: var(--ink); align-self: flex-end; }
+.column-heading { padding-bottom: 20px; }
+.column-heading .eyebrow { display: flex; align-items: center; gap: 9px; }
+.column-heading .eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+.story.with-image { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 18px; align-items: start; }
+.story:first-child.with-image { grid-template-columns: 180px minmax(0, 1fr); gap: 22px; }
+.story[hidden] { display: none; }
+.story-body { min-width: 0; }
+.story-media { margin: 0; min-width: 0; }
+.story-media img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: var(--soft); }
+.story-media figcaption { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.35; overflow-wrap: anywhere; }
+@media (max-width: 1000px) {
+  .intro-motif { width: 130px; height: 65px; flex-basis: 130px; }
+  .story.with-image, .story:first-child.with-image { grid-template-columns: 96px minmax(0, 1fr); gap: 14px; }
+}
+@media (max-width: 767px) {
+  .intro-motif { position: absolute; width: 90px; height: 45px; right: -28px; bottom: 18px; opacity: .12; }
+  .story.with-image, .story:first-child.with-image { grid-template-columns: 96px minmax(0, 1fr); gap: 14px; }
+  .story:first-child.with-image h3 { font-size: 20px; }
+}

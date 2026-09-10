@@ -1,4 +1,4 @@
-import { SOURCES, STALE_MS, safeUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
+import { SOURCES, STALE_MS, safeUrl, safeImageUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
 const feedback = document.querySelector('#refresh-status');
 const interval = 5 * 60 * 1000;
 let snapshot = null;
@@ -12,22 +12,59 @@ function element(tag, text, className) {
 }
 function renderStories(target, stories, emptyMessage) {
   target.replaceChildren();
-  for (const story of stories) {
+  for (const [index, story] of stories.entries()) {
     const url = safeUrl(story.url); if (!url) continue;
     const article = element('article', '', 'story');
+    const body = element('div', '', 'story-body');
+    const imageUrl = safeImageUrl(story.image?.url);
+    if (imageUrl) {
+      const figure = element('figure', '', 'story-media');
+      const image = element('img');
+      image.alt = story.image.alt;
+      image.width = 240; image.height = 240;
+      image.loading = index === 0 ? 'eager' : 'lazy';
+      image.decoding = 'async'; image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', () => {
+        figure.remove(); article.classList.remove('with-image'); balanceNewswire();
+      }, { once: true });
+      image.src = imageUrl;
+      figure.append(image);
+      if (story.image.credit) figure.append(element('figcaption', story.image.credit));
+      article.classList.add('with-image'); article.append(figure);
+    }
     const link = element('a'); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-    link.append(element('h3', story.title)); article.append(link);
-    if (story.credits) article.append(element('p', story.credits, 'credits'));
-    if (story.summary) article.append(element('p', story.summary, 'summary'));
+    link.append(element('h3', story.title)); body.append(link);
+    if (story.credits) body.append(element('p', story.credits, 'credits'));
+    if (story.summary) body.append(element('p', story.summary, 'summary'));
     const meta = element('div', '', 'meta');
     meta.append(element('span', story.source || new URL(url).hostname.replace(/^www\./, ''), 'source'));
     if (story.publishedAt) {
       const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}));
       time.dateTime = story.publishedAt; meta.append(time);
     }
-    article.append(meta); target.append(article);
+    body.append(meta); article.append(body); target.append(article);
   }
   if (!target.children.length) target.append(element('p', emptyMessage, 'empty'));
+}
+let balancing = false;
+function balanceNewswire() {
+  if (balancing || !snapshot) return;
+  balancing = true;
+  try {
+    const world = document.querySelector('#world-news');
+    const stringer = document.querySelector('#stringer-news');
+    const cards = [...world.querySelectorAll('article')];
+    // Show real headlines until their content reaches the end of the Stringer collection.
+    // Images reserve their space, so loading them does not keep shifting the balance.
+    cards.forEach(card => { card.hidden = false; });
+    if (matchMedia('(min-width: 768px)').matches && stringer.querySelector('article')) {
+      const bottom = stringer.getBoundingClientRect().bottom;
+      const last = cards.findIndex(card => card.getBoundingClientRect().bottom >= bottom);
+      if (last !== -1) cards.slice(last + 1).forEach(card => { card.hidden = true; });
+    } else {
+      cards.slice(Math.max(24, snapshot.sources.stringer.stories.length)).forEach(card => { card.hidden = true; });
+    }
+  } finally { balancing = false; }
 }
 function renderStatuses() {
   if (!snapshot) return;
@@ -46,6 +83,7 @@ function render() {
   renderStories(document.querySelector('#world-news'), worldStories(snapshot), 'No headlines available in this collection.');
   renderStories(document.querySelector('#stringer-news'), snapshot.sources.stringer.stories, 'Courageous stories are currently unavailable. Visit the Stringer collection below.');
   renderStatuses();
+  balanceNewswire();
 }
 async function load() {
   if (loading) return;
@@ -71,6 +109,10 @@ async function load() {
     renderStatuses();
   }
 }
-setInterval(() => { renderStatuses(); if (!document.hidden && Date.now() - lastAttempt >= interval) load(); }, 30_000);
+const layoutObserver = new ResizeObserver(balanceNewswire);
+layoutObserver.observe(document.querySelector('#stringer-news'));
+window.addEventListener('resize', balanceNewswire);
+document.fonts?.ready.then(balanceNewswire);
+setInterval(() => { renderStatuses(); balanceNewswire(); if (!document.hidden && Date.now() - lastAttempt >= interval) load(); }, 30_000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - lastAttempt >= interval) load(); });
 load();
