@@ -40,6 +40,7 @@ test('news timestamps use the browser time zone and visibly label it', async () 
   for (const timezoneId of ['America/New_York', 'Asia/Tokyo']) {
     const page = await browser.newPage({ locale: 'en-US', timezoneId });
     await mockStoryImages(page);
+    await page.route('**/news-model.js', async route=>route.fulfill({contentType:'text/javascript',body:await readFile(new URL('../news-model.js',import.meta.url),'utf8')}));
     await page.goto(base);
     const time = page.locator('#world-news time').first();
     await time.waitFor();
@@ -214,7 +215,9 @@ test('production policy renders only publisher headlines and links while preserv
   await page.goto(base);
   await page.waitForSelector('#stringer-news article');
   assert.ok(await page.locator('#world-news article').count() > 0);
-  assert.equal(await page.locator('#world-news .summary, #world-news time').count(),0);
+  assert.equal(await page.locator('#world-news .summary').count(),0);
+  assert.ok(await page.locator('#world-news time').count() > 0);
+  assert.equal(await page.locator('#stringer-news time').count(),0);
   assert.ok(await page.locator('#world-news .source').count() > 0);
   assert.equal(await page.locator('#world-news article a').first().getAttribute('rel'),'noopener noreferrer');
   assert.equal(await page.locator('#world-news img').count(),0);

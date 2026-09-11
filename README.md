@@ -6,7 +6,7 @@ Repository: https://github.com/stringerfoundation/stringer-news
 
 ## Content permissions
 
-See [LEGAL.md](LEGAL.md) for the permission register, research limitations, and steps required before enabling third-party content. Global news displays headline, publisher, and original article link only, following the owner’s decision recorded in LEGAL.md. Stringer text and its curated story photos remain enabled under the owner’s explicit confirmation. Global summaries and photos are stripped, including from retained snapshots. The logo, favicons, and original decorative graphics remain.
+See [LEGAL.md](LEGAL.md) for the permission register, research limitations, and steps required before enabling third-party content. Global news displays headline, publisher, source-provided publication date/time, and original article link, following the owner’s decision recorded in LEGAL.md. Stringer text and its curated story photos remain enabled under the owner’s explicit confirmation. Global summaries and photos are stripped, including from retained snapshots. The logo, favicons, and original decorative graphics remain.
 
 ## How automatic updates work
 
@@ -81,3 +81,5 @@ The logo and typography follow the Stringer website. All story links retain thei
 When separately authorized in the permission register, the reader can display lazy-loaded source images with reserved square space, preserves supplied photo credits, and removes failed images without hiding the reporting. Decorative concentric lines and orange accents echo Stringer’s visual identity. No generated or unrelated stock photos are used.
 
 When publisher text is enabled, on desktop the newswire uses enough distinct, chronologically ordered headlines to reach the end of the Courageous Stories list, within one story card, when the collected pool is sufficient. It rebalances after resizing, font loading, or failed images; it does not stretch cards or invent filler. On mobile it shows up to the larger of 24 headlines or the Stringer story count before the stacked Stringer section. Both columns remain usable if a feed has fewer stories.
+
+Publication dates and times use the reader’s browser time zone, with a visible zone label and the original ISO timestamp in the HTML `datetime` attribute. Stories without a source-provided publication date (including the current Stringer collection) do not receive an invented timestamp.

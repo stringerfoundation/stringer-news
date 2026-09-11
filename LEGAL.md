@@ -16,7 +16,7 @@ On 11 September 2026, after discussing the unresolved feed terms and relative ri
 | DW | Headlines and links only | Disabled | Public RSS availability is not being treated as partner authorization. |
 | Stringer courageous-stories page | Enabled | Enabled | The site owner requested reuse of the editorial collection and explicitly confirmed “Stringer photos are fine” on 11 September 2026. This records the owner’s authorization for this portal, not an independent audit of underlying licenses. Scope is the photos matched to stories on Stringer’s courageous-stories page, not arbitrary images from the linked publishers. |
 
-The global column now displays imported headlines, publisher names, and original article links only. Copied summaries and publisher photos are stripped from both newly collected and retained data. Publication timestamps are retained for sorting but not displayed. The Stringer logo and favicons remain under the owner's branding instruction; that instruction is not a grant to reuse unrelated third-party marks. Original decorative graphics remain.
+The global column now displays imported headlines, publisher names, and original article links only. Copied summaries and publisher photos are stripped from both newly collected and retained data. Source-provided publication dates and times are displayed in each reader’s browser time zone, as subsequently requested by the user; the zone is labeled. Missing publication dates are not invented. The Stringer logo and favicons remain under the owner's branding instruction; that instruction is not a grant to reuse unrelated third-party marks. Original decorative graphics remain.
 
 ## Research notes and sources
 
