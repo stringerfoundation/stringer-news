@@ -56,9 +56,11 @@ test('Stringer lead image has the same thumbnail size as other stories', async (
     const page = await pageAt('/', width);
     const images = page.locator('#stringer-news .story-media img');
     const first = await images.first().boundingBox();
-    const second = await images.nth(1).boundingBox();
-    assert.equal(first.width, second.width);
-    assert.equal(first.height, second.height);
+    for (const image of await images.all()) {
+      const box = await image.boundingBox();
+      assert.equal(first.width, box.width);
+      assert.equal(first.height, box.height);
+    }
     assert.ok(first.width <= 112);
     await page.close();
   }
