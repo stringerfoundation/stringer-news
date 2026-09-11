@@ -4,13 +4,17 @@ A frontend-only news reader pairing **Global Newswire** with **Stringer's Courag
 
 Repository: https://github.com/stringerfoundation/stringer-news
 
+## Content permissions
+
+See [LEGAL.md](LEGAL.md) for the permission register, research limitations, and steps required before enabling third-party content. Global publisher imports are currently paused; the left column links directly to publishers. Stringer text and its curated story photos remain enabled under the owner’s explicit confirmation. Global publisher content and photos are disabled, including in retained snapshots. The logo, favicons, and original decorative graphics remain.
+
 ## How automatic updates work
 
-GitHub Actions runs the collector at approximately 13 and 43 minutes past each hour, on pushes to `main`, and on manual workflow runs. It reads the four configured publisher RSS feeds and Stringer's editorial page, then publishes `data/news.json` with the site. This is a short scheduled collection job, not an always-running backend. GitHub schedules can be delayed; inactive public repositories may have scheduled workflows disabled by GitHub.
+GitHub Actions runs the collector at approximately 13 and 43 minutes past each hour, on pushes to `main`, and on manual workflow runs. It reads only permission-enabled sources (currently Stringer's editorial page), then publishes `data/news.json` with the site. This is a short scheduled collection job, not an always-running backend. GitHub schedules can be delayed; inactive public repositories may have scheduled workflows disabled by GitHub.
 
 Browsers fetch that relative JSON file on arrival, every five minutes while visible, and on returning to a tab after five minutes. Updates happen automatically without a manual Refresh control. Successful collection timestamps stay in the JSON; the page shows status messages only for loading, empty results, failures, or stale collections. Browsers never need to fetch publisher feeds or scrape Stringer's website, so publisher cross-origin restrictions do not affect visitors.
 
-The newswire uses BBC World, NYT World, Al Jazeera, and DW. The exact endpoints are in `news-model.js`; source changes require review. RSS descriptions are reduced to plain-text snippets. Images come only from publisher-provided RSS media metadata; captions retain supplied photo credits. Stories without an image remain text-only. Each publisher contributes at most 30 unique items; the combined list is sorted by publication date, with undated stories last. URL fragments are ignored for deduplication, while query parameters are preserved.
+The newswire has parsers for BBC World, NYT World, Al Jazeera, and DW, currently paused pending permission. The exact endpoints are in `news-model.js`; source changes require review. RSS descriptions are reduced to plain-text snippets. If image permission is granted, images come only from publisher-provided RSS media metadata; captions retain supplied photo credits. Stories without an image remain text-only. Each publisher contributes at most 30 unique items; the combined list is sorted by publication date, with undated stories last. URL fragments are ignored for deduplication, while query parameters are preserved.
 
 The right column mirrors only https://stringerjournalism.org/courageous-stories, in editorial order. Its inspected page contains 24 story entries, including team credits and selected video, social-platform, and book links. The 25 finalists are an award cohort, not a required story count. No publication dates are inferred for this collection. Images are matched by their original story destinations, never by their position in the page; unmatched images remain absent. No RSS was advertised in the page HTML; the checked `/rss.xml`, `/feed`, `/feed.xml`, and `/courageous-stories/rss.xml` endpoints returned 404 during implementation.
 
@@ -24,7 +28,7 @@ PAGES_URL=https://stringerfoundation.github.io/stringer-news/ npm run collect
 python3 -m http.server 4173
 ```
 
-Open http://localhost:4173/. Set `PAGES_URL` to the currently configured Pages address if it differs. The generated `data/news.json` is ignored by Git; it is collected during deployment. The first local collection requires all five live sources to succeed if a valid published snapshot cannot be recovered.
+Open http://localhost:4173/. Set `PAGES_URL` to the currently configured Pages address if it differs. The generated `data/news.json` is ignored by Git; it is collected during deployment. The first local collection requires all enabled sources to succeed if a valid published snapshot cannot be recovered.
 
 Checks:
 
@@ -44,9 +48,9 @@ The browser suite serves isolated saved fixtures and covers 375px, 768px, deskto
 - `stories`: title, HTTP(S) URL, plain-text summary, nullable ISO `publishedAt`, and optional `image` with an HTTPS `url`, source-provided `alt`, and `credit`; Stringer stories additionally contain the verbatim journalist `credits`.
 - `attemptedAt`: time the latest collection attempt started.
 - `lastSuccessAt`: time of the last successful collection, or null if none exists.
-- `status`: `success` or `failure`; `error` is null on success and a diagnostic string on failure.
+- `status`: `success`, `failure`, or `paused`; `error` is null on success/paused and a diagnostic string on failure. Paused sources contain no stories or last success time. Their `attemptedAt` records the policy evaluation time; no upstream request was made.
 
-The collector resolves the previous snapshot from `actions/configure-pages`'s `base_url` output, so recovery follows the configured hostname and repository path. A recovered snapshot is validated before use. On a source failure, its stories and last success time are retained, while attempt/error metadata advances. If recovery is unavailable or invalid, **all five sources must succeed** before deployment. Otherwise the job fails and leaves the existing deployment intact. If all sources fail with valid recovery, retained stories are republished with failure metadata.
+The collector resolves the previous snapshot from `actions/configure-pages`'s `base_url` output, so recovery follows the configured hostname and repository path. A recovered snapshot is validated before use. On an enabled source failure, its permitted stories and last success time are retained, while attempt/error metadata advances. If recovery is unavailable or invalid, **all enabled sources must succeed** before deployment. Otherwise the job fails and leaves the existing deployment intact. If all enabled sources fail with valid recovery, permitted retained stories are republished with failure metadata. Disabled sources are never fetched or recovered for publication.
 
 The browser marks a collection stale two hours after that source's last success, even if scheduled collection has stopped. A browser fetch failure preserves the currently displayed snapshot. Snapshot download times are never presented as successful upstream collection times.
 
@@ -74,6 +78,6 @@ The logo and typography follow the Stringer website. All story links retain thei
 
 ## Image cards and column balance
 
-The reader displays lazy-loaded source images with reserved square space, preserves supplied photo credits, and removes failed images without hiding the reporting. Decorative concentric lines and orange accents echo Stringer’s visual identity. No generated or unrelated stock photos are used.
+When separately authorized in the permission register, the reader can display lazy-loaded source images with reserved square space, preserves supplied photo credits, and removes failed images without hiding the reporting. Decorative concentric lines and orange accents echo Stringer’s visual identity. No generated or unrelated stock photos are used.
 
-On desktop, the newswire uses enough distinct, chronologically ordered headlines to reach the end of the Courageous Stories list, within one story card, when the collected pool is sufficient. It rebalances after resizing, font loading, or failed images; it does not stretch cards or invent filler. On mobile it shows up to the larger of 24 headlines or the Stringer story count before the stacked Stringer section. Both columns remain usable if a feed has fewer stories.
+When publisher text is enabled, on desktop the newswire uses enough distinct, chronologically ordered headlines to reach the end of the Courageous Stories list, within one story card, when the collected pool is sufficient. It rebalances after resizing, font loading, or failed images; it does not stretch cards or invent filler. On mobile it shows up to the larger of 24 headlines or the Stringer story count before the stacked Stringer section. Both columns remain usable if a feed has fewer stories.

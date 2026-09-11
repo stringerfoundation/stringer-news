@@ -11,15 +11,18 @@ async function mockStoryImages(page) {
   await page.route('**/*', route => route.request().resourceType() === 'image' && !route.request().url().startsWith(base)
     ? route.fulfill({body:thumbnail,contentType:'image/png'}) : route.continue());
 }
+const testPermissions = Object.fromEntries(SOURCES.map(s=>[s.id,{text:true,images:true}]));
 const errors = [];
 before(async()=>{
   const fixtures=Object.fromEntries(await Promise.all(SOURCES.map(async s=>[s.id,await readFile(new URL(`./fixtures/${s.id==='stringer'?'stringer.html':s.id+'.xml'}`,import.meta.url),'utf8')])));
-  snapshot=await collect({pagesUrl:'https://example.org/',log:()=>{},request:async url=>{if(url===snapshotUrl('https://example.org/'))throw new Error('First run');return fixtures[SOURCES.find(s=>s.url===url).id]}});
+  snapshot=await collect({permissions:testPermissions,pagesUrl:'https://example.org/',log:()=>{},request:async url=>{if(url===snapshotUrl('https://example.org/'))throw new Error('First run');return fixtures[SOURCES.find(s=>s.url===url).id]}});
   server=createServer(async(req,res)=>{
     const pathname=new URL(req.url,'http://localhost').pathname.replace(/^\/stringer-news(?=\/)/,'');
     const file=pathname==='/'?'index.html':pathname.slice(1);
     if(!['index.html','app.js','news-model.js','style.css','assets/stringer-logo.png','assets/favicon-16.png','assets/favicon-32.png','assets/favicon-192.png','assets/favicon-180.png','data/news.json'].includes(file)){res.writeHead(404);res.end();return;}
-    try{const body=file==='data/news.json'?JSON.stringify(snapshot):await readFile(new URL('../'+file,import.meta.url));res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.json')?'application/json':file.endsWith('.png')?'image/png':'text/html');res.end(body)}catch{res.writeHead(404);res.end()}
+    try{let body=file==='data/news.json'?JSON.stringify(snapshot):await readFile(new URL('../'+file,import.meta.url));
+    // Explicit fictional grants keep enabled-feed regression coverage independent of production policy.
+    if(file==='news-model.js') body=body.toString().replace("text: source.id === 'stringer', images: source.id === 'stringer'", 'text: true, images: true');res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.json')?'application/json':file.endsWith('.png')?'image/png':'text/html');res.end(body)}catch{res.writeHead(404);res.end()}
   });
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));base=`http://127.0.0.1:${server.address().port}`;
   browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});
@@ -173,5 +176,28 @@ test('story images load lazily, preserve attribution, and disappear cleanly on f
   assert.equal(await first.evaluate(el=>el.classList.contains('with-image')), false);
   const credited = snapshot.sources.nyt.stories.find(story=>story.image?.credit);
   assert.ok((await page.locator('#world-news figcaption').allTextContents()).includes(credited.image.credit));
+  await page.close();
+});
+
+test('production permissions suppress old publisher content and allow only Stringer story images', async () => {
+  const page = await browser.newPage();
+  await mockStoryImages(page);
+  const imageRequests = [];
+  page.on('request', request=> { if(request.resourceType()==='image') imageRequests.push(request.url()); });
+  await page.route('**/news-model.js', async route=>route.fulfill({contentType:'text/javascript',body:await readFile(new URL('../news-model.js',import.meta.url),'utf8')}));
+  await page.goto(base);
+  await page.waitForSelector('#stringer-news article');
+  assert.equal(await page.locator('#world-news article').count(),0);
+  assert.match(await page.locator('#world-news').innerText(),/paused while reuse permissions/);
+  assert.equal(await page.locator('#world-news .publisher-links a').count(),4);
+  assert.equal(await page.locator('#world-news img').count(),0);
+  assert.equal(await page.locator('#stringer-news img').count(),23);
+  assert.equal(await page.locator('#stringer-news article').count(),24);
+  const approvedImages = new Set(snapshot.sources.stringer.stories.flatMap(story=>story.image ? [story.image.url] : []));
+  assert.ok(imageRequests.every(url=>url.startsWith(base) || approvedImages.has(url)), 'Only approved Stringer photos are requested');
+  for (const width of [1280,375]) {
+    await page.setViewportSize({width,height:1000});
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
   await page.close();
 });

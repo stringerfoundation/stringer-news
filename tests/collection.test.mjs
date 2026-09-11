@@ -3,12 +3,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { load } from 'cheerio';
 import { parseFeed, parseStringer, checkBaseline, fetchText, snapshotUrl, collect } from '../scripts/collect.mjs';
-import { SOURCES, NEWSWIRE_LIMIT, validateSnapshot, worldStories, sourceMessage, safeUrl, safeImageUrl, STALE_MS } from '../news-model.js';
+import { SOURCES, CONTENT_PERMISSIONS, applyContentPermissions, NEWSWIRE_LIMIT, validateSnapshot, worldStories, sourceMessage, safeUrl, safeImageUrl, STALE_MS } from '../news-model.js';
 const fixtures = Object.fromEntries(SOURCES.map(s => [s.id, readFileSync(new URL(`./fixtures/${s.id === 'stringer' ? 'stringer.html' : `${s.id}.xml`}`, import.meta.url), 'utf8')]));
+// Synthetic grants exercise parser/recovery behavior, not real publisher permission.
+const testPermissions = Object.fromEntries(SOURCES.map(s => [s.id, { text: true, images: true }]));
 const now = '2026-09-10T11:00:00.000Z';
 const later = '2026-09-10T11:30:00.000Z';
 const pagesUrl = 'https://example.org/stringer-news/';
-const makeSnapshot = async (previous, failures = [], overrides = {}) => collect({pagesUrl, now:()=>previous ? later : now, log:()=>{}, request:async url => {
+const makeSnapshot = async (previous, failures = [], overrides = {}) => collect({permissions:testPermissions, pagesUrl, now:()=>previous ? later : now, log:()=>{}, request:async url => {
   if(url === snapshotUrl(pagesUrl)) { if(!previous) throw new Error('404');return typeof previous === 'string' ? previous : JSON.stringify(previous); }
   const s=SOURCES.find(s=>s.url===url);if(failures.includes(s.id)) throw new Error('Feed unavailable');return fixtures[s.id];
 }, ...overrides});
@@ -138,3 +140,30 @@ test('version 2 validates images and recovers version 1 snapshots without images
   const bad = structuredClone(baseline); bad.sources.stringer.stories[0].image.url = 'javascript:alert(1)';
   assert.throws(()=>validateSnapshot(bad), /Invalid story image/);
 });
+
+ test('default permissions skip unapproved feeds and preserve owner-approved Stringer photos during recovery', async () => {
+  const requested = [];
+  const current = await collect({ pagesUrl, log:()=>{}, now:()=>later, request:async url=> {
+    requested.push(url);
+    if (url === snapshotUrl(pagesUrl)) return JSON.stringify(baseline);
+    assert.equal(url, SOURCES.at(-1).url);
+    return fixtures.stringer;
+  }});
+  assert.equal(requested.length, 2);
+  for (const source of SOURCES.slice(0,-1)) {
+    assert.equal(current.sources[source.id].status, 'paused');
+    assert.deepEqual(current.sources[source.id].stories, []);
+    assert.equal(current.sources[source.id].lastSuccessAt, null);
+  }
+  assert.equal(current.sources.stringer.stories.length, 24);
+  assert.equal(current.sources.stringer.stories.filter(story=>story.image).length, 23);
+  const retained = await makeSnapshot(baseline, ['stringer'], {permissions: CONTENT_PERMISSIONS});
+  assert.equal(retained.sources.stringer.status, 'failure');
+  assert.deepEqual(retained.sources.stringer.stories, baseline.sources.stringer.stories);
+  const textOnly = applyContentPermissions(baseline, {stringer:{text:true,images:false}});
+  assert.ok(textOnly.sources.stringer.stories.every(story=>story.image === null));
+  assert.deepEqual(applyContentPermissions(baseline).sources.bbc.stories, []);
+  assert.ok(baseline.sources.bbc.stories.length, 'Policy does not mutate the recovery input');
+  const closed = applyContentPermissions(baseline, {});
+  assert.ok(Object.values(closed.sources).every(source=>source.status === 'paused' && !source.stories.length));
+ });

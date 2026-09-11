@@ -5,6 +5,24 @@ export const SOURCES = Object.freeze([
   { id: 'dw', name: 'DW', url: 'https://rss.dw.com/rdf/rss-en-all' },
   { id: 'stringer', name: 'Stringer', url: 'https://stringerjournalism.org/courageous-stories' },
 ]);
+// Permission records are maintained by the foundation; see LEGAL.md.
+// Stringer text and photos follow the owner's explicit confirmation; see LEGAL.md.
+export const CONTENT_PERMISSIONS = Object.freeze(Object.fromEntries(SOURCES.map(source => [source.id,
+  Object.freeze({ text: source.id === 'stringer', images: source.id === 'stringer' })
+])));
+export function permittedStories(sourceId, stories, permissions = CONTENT_PERMISSIONS) {
+  const permission = permissions[sourceId];
+  if (permission?.text !== true) return [];
+  return stories.map(story => ({ ...story, image: permission.images === true ? story.image ?? null : null }));
+}
+export function applyContentPermissions(snapshot, permissions = CONTENT_PERMISSIONS) {
+  return { ...snapshot, sources: Object.fromEntries(SOURCES.map(source => {
+    const entry = snapshot.sources[source.id];
+    return [source.id, permissions[source.id]?.text === true
+      ? { ...entry, stories: permittedStories(source.id, entry.stories, permissions) }
+      : { ...entry, stories: [], status: 'paused', lastSuccessAt: null, error: null }];
+  })) };
+}
 export const NEWSWIRE_LIMIT = 30;
 export const STALE_MS = 2 * 60 * 60 * 1000;
 export function safeUrl(value) {
@@ -34,8 +52,9 @@ export function validateSnapshot(value) {
   if (!value || ![1, 2].includes(value.schemaVersion) || !timestamp(value.generatedAt) || !value.sources || Object.keys(value.sources).length !== SOURCES.length) throw new Error('Invalid news snapshot');
   for (const source of SOURCES) {
     const entry = value.sources[source.id];
-    if (!entry || !Array.isArray(entry.stories) || !timestamp(entry.attemptedAt) || !['success', 'failure'].includes(entry.status) || !(entry.lastSuccessAt === null || timestamp(entry.lastSuccessAt))) throw new Error(`Invalid ${source.id} metadata`);
+    if (!entry || !Array.isArray(entry.stories) || !timestamp(entry.attemptedAt) || !['success', 'failure', 'paused'].includes(entry.status) || !(entry.lastSuccessAt === null || timestamp(entry.lastSuccessAt))) throw new Error(`Invalid ${source.id} metadata`);
     if (Date.parse(entry.attemptedAt) > Date.parse(value.generatedAt) || (entry.lastSuccessAt && Date.parse(entry.lastSuccessAt) > Date.parse(entry.attemptedAt))) throw new Error('Invalid collection chronology');
+    if (entry.status === 'paused' && (entry.stories.length || entry.lastSuccessAt !== null || entry.error !== null)) throw new Error('Invalid paused source');
     if (entry.status === 'success' && (entry.lastSuccessAt !== entry.attemptedAt || entry.error !== null)) throw new Error('Invalid successful collection');
     if (entry.status === 'failure' && !nonempty(entry.error)) throw new Error('Missing failure details');
     if (entry.stories.length && !entry.lastSuccessAt) throw new Error('Missing collection time');

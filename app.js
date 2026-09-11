@@ -1,4 +1,4 @@
-import { SOURCES, STALE_MS, safeUrl, safeImageUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
+import { SOURCES, applyContentPermissions, STALE_MS, safeUrl, safeImageUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
 const feedback = document.querySelector('#refresh-status');
 const interval = 5 * 60 * 1000;
 let snapshot = null;
@@ -73,6 +73,7 @@ function renderStatuses() {
     const sources = SOURCES.filter(s => group === 'stringer' ? s.id === 'stringer' : s.id !== 'stringer');
     for (const source of sources) {
       const entry = snapshot.sources[source.id];
+      if (entry.status === 'paused') continue;
       const warning = entry.status === 'failure' || Date.now() - Date.parse(entry.lastSuccessAt) >= STALE_MS;
       if (warning) target.append(element('p', sourceMessage(source, entry), 'warning'));
       else if (!entry.stories.length) target.append(element('p', `${source.name}: No stories returned.`));
@@ -80,8 +81,18 @@ function renderStatuses() {
   }
 }
 function render() {
-  renderStories(document.querySelector('#world-news'), worldStories(snapshot), 'No headlines available in this collection.');
+  const worldPaused = SOURCES.filter(source => source.id !== 'stringer').every(source => snapshot.sources[source.id].status === 'paused');
+  renderStories(document.querySelector('#world-news'), worldStories(snapshot), worldPaused ? 'Global headlines are paused while reuse permissions are confirmed.' : 'No headlines available in this collection.');
   renderStories(document.querySelector('#stringer-news'), snapshot.sources.stringer.stories, 'Courageous stories are currently unavailable. Visit the Stringer collection below.');
+  if (worldPaused) {
+    const links = element('p', '', 'publisher-links');
+    for (const [name, url] of [['BBC News', 'https://www.bbc.com/news'], ['The New York Times', 'https://www.nytimes.com/section/world'], ['Al Jazeera', 'https://www.aljazeera.com/'], ['DW', 'https://www.dw.com/']]) {
+      const link = element('a', name); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      if (links.childNodes.length) links.append(document.createTextNode(' · '));
+      links.append(link);
+    }
+    document.querySelector('#world-news').append(links);
+  }
   renderStatuses();
   balanceNewswire();
 }
@@ -93,7 +104,7 @@ async function load() {
   try {
     const response = await fetch('./data/news.json', { cache: 'no-cache', credentials: 'omit', signal: AbortSignal.timeout(15000) });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const next = validateSnapshot(await response.json());
+    const next = applyContentPermissions(validateSnapshot(await response.json()));
     if (snapshot && Date.parse(next.generatedAt) < Date.parse(snapshot.generatedAt)) throw new Error('Older snapshot returned');
     snapshot = next; render();
     feedback.textContent = '';

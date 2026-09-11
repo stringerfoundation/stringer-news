@@ -2,7 +2,7 @@ import { load } from 'cheerio';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
-import { SOURCES, NEWSWIRE_LIMIT, safeUrl, safeImageUrl, urlIdentity, uniqueStories, newestFirst, validateSnapshot } from '../news-model.js';
+import { SOURCES, CONTENT_PERMISSIONS, applyContentPermissions, NEWSWIRE_LIMIT, safeUrl, safeImageUrl, urlIdentity, uniqueStories, newestFirst, validateSnapshot } from '../news-model.js';
 
 function text(html) {
   const $ = load(String(html ?? '')); $('script,style').remove(); $('br').replaceWith(' ');
@@ -99,12 +99,13 @@ export function snapshotUrl(pagesUrl) {
   const base = new URL(safe); base.hash = ''; base.search = ''; if (!base.pathname.endsWith('/')) base.pathname += '/';
   return new URL('data/news.json', base).href;
 }
-export async function collect({ pagesUrl, request = fetchText, now = () => new Date().toISOString(), resetStringerBaseline = false, log = console.warn } = {}) {
+export async function collect({ pagesUrl, request = fetchText, now = () => new Date().toISOString(), resetStringerBaseline = false, log = console.warn, permissions = CONTENT_PERMISSIONS } = {}) {
   let previous = null;
   try { previous = validateSnapshot(JSON.parse(await request(snapshotUrl(pagesUrl)))); }
-  catch (error) { log(`Previous snapshot unavailable: ${error.message}. Every source must succeed to publish.`); }
+  catch (error) { log(`Previous snapshot unavailable: ${error.message}. Every enabled source must succeed to publish.`); }
   const entries = await Promise.all(SOURCES.map(async source => {
     const attemptedAt = now(); const old = previous?.sources[source.id];
+    if (permissions[source.id]?.text !== true) return [source.id, { stories: [], attemptedAt, lastSuccessAt: null, status: 'paused', error: null }];
     try {
       const body = await request(source.url);
       const stories = source.id === 'stringer' ? checkBaseline(parseStringer(body), old?.stories, resetStringerBaseline) : parseFeed(body);
@@ -115,7 +116,7 @@ export async function collect({ pagesUrl, request = fetchText, now = () => new D
     }
   }));
   if (!previous && entries.some(([, entry]) => entry.status === 'failure')) throw new Error('Publication blocked: recovery unavailable and at least one source failed');
-  return validateSnapshot({ schemaVersion: 2, generatedAt: now(), sources: Object.fromEntries(entries) });
+  return validateSnapshot(applyContentPermissions({ schemaVersion: 2, generatedAt: now(), sources: Object.fromEntries(entries) }, permissions));
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {

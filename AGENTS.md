@@ -9,6 +9,7 @@
 - Publish only the site assets, not repository instructions or development files.
 
 ## Content and implementation
+- Follow `LEGAL.md` and the explicit `CONTENT_PERMISSIONS` gates. Do not enable publisher text or story images without recording reviewed reuse permission. RSS availability and attribution alone are not clearance.
 - Keep global publisher headlines and Stringer journalists' reporting in separate columns.
 - Preserve attribution and links to original sources. Distinguish publisher-owned accounts from third-party mirrors.
 - Render remote content as text; never inject untrusted feed HTML into the page. Restrict outbound story URLs to HTTP(S).
