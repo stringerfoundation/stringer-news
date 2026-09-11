@@ -4,17 +4,19 @@ Last reviewed: 11 September 2026. This is an operational record of unresolved pe
 
 ## Current publication policy
 
-`CONTENT_PERMISSIONS` in `news-model.js` is the publication gate. Missing permissions default to disabled. Collection skips sources without text permission, publishes no retained stories for them, and marks them `paused` with no successful collection date. The browser applies the same policy to old snapshots. Image permission is separate from text permission and requires an explicit grant, including during failure recovery. Only Stringer has that grant recorded.
+On 11 September 2026, after discussing the unresolved feed terms and relative risks, the user explicitly directed: “go for the Headline + publisher + link option now”. This supersedes the earlier pause for that narrow display scope. It is project-owner authorization to proceed, not publisher permission or a legal clearance claim. Publisher summaries and images remain disabled.
+
+`CONTENT_PERMISSIONS` in `news-model.js` is the publication gate. Missing permissions default to disabled. Collection skips sources without text permission, publishes no retained stories for them, and marks them `paused` with no successful collection date. The browser applies the same policy to old snapshots. Image permission is separate from text permission and requires an explicit grant, including during failure recovery. Only Stringer has image authorization recorded. Global headline publication follows the user decision below, not a newly obtained publisher license.
 
 | Source | Text publication | Story images | Basis / unresolved work |
 | --- | --- | --- | --- |
-| BBC | Paused | Disabled | No permission recorded for this foundation portal. |
-| The New York Times | Paused | Disabled | Current RSS reuse permission has not been verified. |
-| Al Jazeera | Paused | Disabled | No applicable syndication grant recorded. |
-| DW | Paused | Disabled | Public RSS availability is not being treated as partner authorization. |
+| BBC | Headlines and links only | Disabled | No permission recorded for this foundation portal. |
+| The New York Times | Headlines and links only | Disabled | Current RSS reuse permission has not been verified. |
+| Al Jazeera | Headlines and links only | Disabled | No applicable syndication grant recorded. |
+| DW | Headlines and links only | Disabled | Public RSS availability is not being treated as partner authorization. |
 | Stringer courageous-stories page | Enabled | Enabled | The site owner requested reuse of the editorial collection and explicitly confirmed “Stringer photos are fine” on 11 September 2026. This records the owner’s authorization for this portal, not an independent audit of underlying licenses. Scope is the photos matched to stories on Stringer’s courageous-stories page, not arbitrary images from the linked publishers. |
 
-The global column currently offers ordinary links to publisher home/section pages instead of imported items. The Stringer logo and favicons remain under the owner's branding instruction; that instruction is not a grant to reuse unrelated third-party marks. Original decorative graphics remain.
+The global column now displays imported headlines, publisher names, and original article links only. Copied summaries and publisher photos are stripped from both newly collected and retained data. Publication timestamps are retained for sorting but not displayed. The Stringer logo and favicons remain under the owner's branding instruction; that instruction is not a grant to reuse unrelated third-party marks. Original decorative graphics remain.
 
 ## Research notes and sources
 
@@ -43,3 +45,26 @@ These notes are repository-only and excluded from the Pages artifact. Raw source
 Copying text or image URLs out of social posts is not assumed to grant republication rights. Use publisher-owned accounts rather than unofficial mirrors, and verify the platform terms and the poster's authority over included images. An official embed is a distinct integration, not permission to extract assets into our own cards.
 
 [X supports official post embeds including photos and videos](https://help.x.com/en/using-x/how-to-embed-a-post); its [display requirements](https://docs.x.com/developer-terms/display-requirements) cover attribution, branding, presentation, and edits. Any proposed integration must follow those requirements and account for removed/unavailable posts. Platform support for embedding is not recorded here as blanket clearance of every underlying photo. No social integration has been enabled by this review.
+
+### Mastodon, Bluesky, and Nostr account findings
+
+Checked 11 September 2026. These are discovery notes, not a live feed audit or reuse authorization. “Not confirmed” means the review did not establish an official account; it does not prove that none exists. Profile names and claims of being “official” alone are insufficient evidence.
+
+| Publisher | Bluesky | Mastodon | Nostr |
+| --- | --- | --- | --- |
+| BBC | BBC-branded profiles found, but a main publisher-owned news account was not verified. | [social.bbc](https://social.bbc/about) is the BBC's server; specialist accounts were found, not a verified complete World news feed. | [BBC News (NewsBot)](https://damus.io/npub1n3wsckgal6qqy5renf7pccm0sv2xj4n8wjnp9yds30fupe8q37uqv77ykq) and RSS-style mirrors were found; BBC ownership was not established. |
+| The New York Times | [@nytimes.com](https://bsky.app/profile/nytimes.com), using the publisher's domain handle. | No official main news account confirmed. | No official account confirmed. |
+| Al Jazeera | [@aljazeera.com](https://bsky.app/profile/aljazeera.com), using the publisher's domain handle. | No official main news account confirmed. | No official account confirmed. |
+| DW | [@deutschewelle.dw.com](https://bsky.app/profile/deutschewelle.dw.com), corporate communications rather than a general English-language newswire. | [DW Innovation's announcement](https://innovation.dw.com/articles/dw-innovation-mastodon-fediverse) identifies `@dw_innovation@mastodon.social`; its scope is technology/R&D, not a general world-news feed. The announcement is historical and does not establish current posting activity. | No official account confirmed. |
+
+NYT and Al Jazeera on Bluesky are candidates for further evaluation, not enabled sources. Before implementation, recheck publisher ownership through domain verification or a publisher-site link, inspect current activity and original-story links, and evaluate how much of the desired coverage is actually posted. Domain ownership does not establish rights to every attached photograph. Unofficial mirrors must be identified as such and cannot grant rights they do not hold.
+
+### Privacy and implementation considerations
+
+- The user's preference is to avoid social embeds because of visitor privacy. Do not introduce social widgets as a shortcut for rights clearance.
+- A potential integration would collect permitted public posts in the existing scheduled job and publish sanitized text and original links in static JSON. Visitors would not need to contact social platforms merely to read that text. Remote images, avatars, scripts, and embeds would introduce third-party requests and need separate consideration.
+- Public APIs, federation, RSS, and Nostr relay availability are technical access mechanisms. Review the applicable terms and rights before enabling publication through `CONTENT_PERMISSIONS`; protocol openness is not being treated as a blanket republication license.
+- Social feeds may omit stories, contain replies/reposts or promotional content, change handles, become unavailable, or remove posts. Do not promise complete coverage. Define filtering, update/deletion handling, attribution, and failure behavior before replacing any RSS source.
+- For Nostr, establish publisher ownership of the exact public key before configuring it. The bot link above is a research reference, not an approved key or journalist source. Never substitute arbitrary accounts or unofficial mirrors for configured journalists.
+
+No Mastodon, Bluesky, or Nostr integration is enabled by these notes. The headline-only decision uses the existing publisher RSS endpoints.

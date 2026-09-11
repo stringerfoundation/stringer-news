@@ -38,7 +38,7 @@ function renderStories(target, stories, emptyMessage) {
     if (story.summary) body.append(element('p', story.summary, 'summary'));
     const meta = element('div', '', 'meta');
     meta.append(element('span', story.source || new URL(url).hostname.replace(/^www\./, ''), 'source'));
-    if (story.publishedAt) {
+    if (story.publishedAt && !story.headlineOnly) {
       const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}));
       time.dateTime = story.publishedAt; meta.append(time);
     }

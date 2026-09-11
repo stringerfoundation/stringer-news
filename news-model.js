@@ -8,12 +8,18 @@ export const SOURCES = Object.freeze([
 // Permission records are maintained by the foundation; see LEGAL.md.
 // Stringer text and photos follow the owner's explicit confirmation; see LEGAL.md.
 export const CONTENT_PERMISSIONS = Object.freeze(Object.fromEntries(SOURCES.map(source => [source.id,
-  Object.freeze({ text: source.id === 'stringer', images: source.id === 'stringer' })
+  Object.freeze({ text: true, summaries: source.id === 'stringer', images: source.id === 'stringer' })
 ])));
 export function permittedStories(sourceId, stories, permissions = CONTENT_PERMISSIONS) {
   const permission = permissions[sourceId];
   if (permission?.text !== true) return [];
-  return stories.map(story => ({ ...story, image: permission.images === true ? story.image ?? null : null }));
+  return stories.map(story => ({
+    title: story.title, url: story.url, publishedAt: story.publishedAt,
+    summary: permission.summaries === true ? story.summary : '',
+    ...(sourceId === 'stringer' ? { credits: story.credits } : {}),
+    headlineOnly: sourceId !== 'stringer' && permission.summaries !== true,
+    image: permission.images === true ? story.image ?? null : null,
+  }));
 }
 export function applyContentPermissions(snapshot, permissions = CONTENT_PERMISSIONS) {
   return { ...snapshot, sources: Object.fromEntries(SOURCES.map(source => {
