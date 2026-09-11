@@ -36,6 +36,32 @@ async function poll(page) {
   await response;
   await page.waitForFunction(()=>document.querySelector('#world-news').getAttribute('aria-busy')==='false');
 }
+test('news timestamps use the browser time zone and visibly label it', async () => {
+  for (const timezoneId of ['America/New_York', 'Asia/Tokyo']) {
+    const page = await browser.newPage({ locale: 'en-US', timezoneId });
+    await mockStoryImages(page);
+    await page.goto(base);
+    const time = page.locator('#world-news time').first();
+    await time.waitFor();
+    const timestamp = await time.getAttribute('datetime');
+    const expected = new Intl.DateTimeFormat('en-US', { timeZone: timezoneId, month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' }).format(new Date(timestamp));
+    assert.equal(await time.textContent(), expected);
+    assert.equal(await time.getAttribute('title'), `Local time (${timezoneId})`);
+    await page.close();
+  }
+});
+test('Stringer lead image has the same thumbnail size as other stories', async () => {
+  for (const width of [1280, 768, 375]) {
+    const page = await pageAt('/', width);
+    const images = page.locator('#stringer-news .story-media img');
+    const first = await images.first().boundingBox();
+    const second = await images.nth(1).boundingBox();
+    assert.equal(first.width, second.width);
+    assert.equal(first.height, second.height);
+    assert.ok(first.width <= 112);
+    await page.close();
+  }
+});
 test('desktop, 768px, and mobile layouts render two populated columns without overflow',async()=>{
   for(const width of [1280,768,375]){
     const page=await pageAt('/',width);assert.equal(await page.locator('#stringer-news article').count(),24);assert.equal(await page.locator('#world-news article').count(),worldStories(snapshot).length);

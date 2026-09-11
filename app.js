@@ -39,7 +39,8 @@ function renderStories(target, stories, emptyMessage) {
     const meta = element('div', '', 'meta');
     meta.append(element('span', story.source || new URL(url).hostname.replace(/^www\./, ''), 'source'));
     if (story.publishedAt && !story.headlineOnly) {
-      const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}));
+      const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short'}));
+      time.title = `Local time (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
       time.dateTime = story.publishedAt; meta.append(time);
     }
     body.append(meta); article.append(body); target.append(article);
