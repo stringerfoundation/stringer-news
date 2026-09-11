@@ -39,9 +39,14 @@ function renderStories(target, stories, emptyMessage) {
     const meta = element('div', '', 'meta');
     meta.append(element('span', story.source || new URL(url).hostname.replace(/^www\./, ''), 'source'));
     if (story.publishedAt) {
-      const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short'}));
+      const time = element('time', new Date(story.publishedAt).toLocaleString(undefined, {year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short'}));
       time.title = `Local time (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
       time.dateTime = story.publishedAt; meta.append(time);
+    } else if (story.publicationDate) {
+      const time = element('time', new Date(story.publicationDate + 'T12:00:00Z').toLocaleDateString(undefined, {year:'numeric',month:'short',day:'numeric',timeZone:'UTC'}));
+      time.dateTime = story.publicationDate; time.title = 'Publication date; source does not provide a confirmed time zone and time'; meta.append(time);
+    } else if (story.credits) {
+      meta.append(element('span', 'Publication date unavailable'));
     }
     body.append(meta); article.append(body); target.append(article);
   }

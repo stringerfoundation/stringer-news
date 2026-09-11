@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { load } from 'cheerio';
-import { parseFeed, parseStringer, checkBaseline, fetchText, snapshotUrl, collect } from '../scripts/collect.mjs';
+import { parseFeed, parseStringer, parsePublication, enrichPublications, checkBaseline, fetchText, snapshotUrl, collect } from '../scripts/collect.mjs';
 import { SOURCES, CONTENT_PERMISSIONS, applyContentPermissions, NEWSWIRE_LIMIT, validateSnapshot, worldStories, sourceMessage, safeUrl, safeImageUrl, STALE_MS } from '../news-model.js';
 const fixtures = Object.fromEntries(SOURCES.map(s => [s.id, readFileSync(new URL(`./fixtures/${s.id === 'stringer' ? 'stringer.html' : `${s.id}.xml`}`, import.meta.url), 'utf8')]));
 // Synthetic grants exercise parser/recovery behavior, not real publisher permission.
@@ -159,4 +159,22 @@ test('headline-only policy strips summaries and images from fresh and retained p
   assert.ok(Object.values(closed.sources).every(source=>source.status === 'paused' && !source.stories.length));
   const textOnly = applyContentPermissions(baseline, {stringer:{text:true,summaries:true,images:false}});
   assert.ok(textOnly.sources.stringer.stories.every(story=>story.image === null));
+});
+
+test('publication metadata accepts explicit publication dates, not modification dates or related stories',()=>{
+  assert.deepEqual(parsePublication('<meta property="article:published_time" content="2025-03-04T12:30:00+02:00">'),{publishedAt:'2025-03-04T10:30:00.000Z',publicationDate:null});
+  assert.deepEqual(parsePublication('<meta itemprop="datePublished" content="2025-03-04">'),{publishedAt:null,publicationDate:'2025-03-04'});
+  assert.deepEqual(parsePublication('<meta itemprop="datePublished" content="2025-03-04T12:30:00">'),{publishedAt:null,publicationDate:'2025-03-04'});
+  assert.equal(parsePublication('<script type="application/ld+json">{"@graph":[{"@type":"VideoObject","uploadDate":"2025-03-04T12:30:00Z"}]}</script>').publishedAt,'2025-03-04T12:30:00.000Z');
+  for (const html of ['<meta property="article:modified_time" content="2025-03-04T12:00:00Z">','<meta itemprop="datePublished" content="2025-02-30">','<script type="application/ld+json">{"@type":"ItemList","itemListElement":[{"@type":"Article","datePublished":"2025-01-01"}]}</script>']) assert.deepEqual(parsePublication(html),{publishedAt:null,publicationDate:null});
+});
+test('publication enrichment retains verified dates by exact story URL without blocking content',async()=>{
+  const stories=parseStringer(fixtures.stringer).slice(0,2);
+  const previous=[{...stories[0],publishedAt:'2025-01-01T12:00:00.000Z',publicationSource:stories[0].url}];
+  const result=await enrichPublications(stories,previous,async()=>{throw new Error('Unavailable')});
+  assert.equal(result[0].publishedAt,previous[0].publishedAt);
+  assert.equal(result[1].publishedAt,null);
+  assert.equal(result[1].publicationDate,null);
+  const unrelated=await enrichPublications([{...stories[0],url:'https://example.org/new'}],previous,async()=>'<html></html>');
+  assert.equal(unrelated[0].publishedAt,null);
 });

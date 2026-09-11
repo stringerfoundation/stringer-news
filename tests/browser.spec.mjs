@@ -45,7 +45,7 @@ test('news timestamps use the browser time zone and visibly label it', async () 
     const time = page.locator('#world-news time').first();
     await time.waitFor();
     const timestamp = await time.getAttribute('datetime');
-    const expected = new Intl.DateTimeFormat('en-US', { timeZone: timezoneId, month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' }).format(new Date(timestamp));
+    const expected = new Intl.DateTimeFormat('en-US', { timeZone: timezoneId, year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' }).format(new Date(timestamp));
     assert.equal(await time.textContent(), expected);
     assert.equal(await time.getAttribute('title'), `Local time (${timezoneId})`);
     await page.close();
@@ -232,4 +232,24 @@ test('production policy renders only publisher headlines and links while preserv
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   }
   await page.close();
+});
+
+test('Stringer dates preserve precision, use local zones for instants, and show unavailable dates honestly', async()=>{
+  for (const timezoneId of ['America/New_York','Asia/Tokyo']) {
+    const page=await browser.newPage({locale:'en-US',timezoneId}); await mockStoryImages(page);
+    const data=structuredClone(snapshot);
+    data.sources.stringer.stories[0].publishedAt='2025-11-05T23:30:00.000Z';
+    data.sources.stringer.stories[0].publicationSource=data.sources.stringer.stories[0].url;
+    data.sources.stringer.stories[1].publicationDate='2025-11-05';
+    data.sources.stringer.stories[1].publicationSource=data.sources.stringer.stories[1].url;
+    await page.route('**/data/news.json',route=>route.fulfill({json:data}));
+    await page.goto(base); await page.waitForSelector('#stringer-news article');
+    const cards=page.locator('#stringer-news article');
+    const expected=new Intl.DateTimeFormat('en-US',{timeZone:timezoneId,year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'}).format(new Date(data.sources.stringer.stories[0].publishedAt));
+    assert.equal(await cards.nth(0).locator('time').textContent(),expected);
+    assert.equal(await cards.nth(1).locator('time').textContent(),'Nov 5, 2025');
+    assert.equal(await cards.nth(1).locator('time').getAttribute('datetime'),'2025-11-05');
+    assert.match(await cards.nth(2).innerText(),/Publication date unavailable/);
+    await page.close();
+  }
 });

@@ -76,6 +76,55 @@ export function parseStringer(html) {
   if (!stories.length) throw new Error('Stringer extraction returned no stories');
   return stories;
 }
+// Use publication metadata only; never infer dates from URLs or modification times.
+export function parsePublication(html) {
+  const $ = load(html);
+  const candidates = [];
+  for (const selector of ['meta[property="article:published_time"]', 'meta[itemprop="datePublished"]', 'meta[itemprop="uploadDate"]']) {
+    $(selector).each((_, el)=>candidates.push($(el).attr('content')));
+  }
+  const entities = [];
+  function visit(value) {
+    if (Array.isArray(value)) { value.forEach(visit); return; }
+    if (!value || typeof value !== 'object') return;
+    if (array(value['@type']).some(type=>['NewsArticle','Article','ReportageNewsArticle','BlogPosting','VideoObject','Book'].includes(type))) entities.push(value);
+    if (value['@graph']) visit(value['@graph']);
+    if (value.mainEntity) visit(value.mainEntity);
+  }
+  $('script[type="application/ld+json"]').each((_, el)=>{try { visit(JSON.parse($(el).text())); } catch { /* Invalid metadata is ignored. */ }});
+  // Multiple article entities may describe related stories: don't guess between them.
+  if (entities.length === 1) candidates.push(entities[0].datePublished || entities[0].uploadDate);
+  for (const value of candidates) {
+    if (typeof value !== 'string') continue;
+    const raw = value.trim();
+    const day = raw.slice(0,10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isFinite(Date.parse(day)) || new Date(day).toISOString().slice(0,10) !== day) continue;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return { publishedAt: null, publicationDate: day };
+    if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(raw)) {
+      if (/(Z|[+-]\d{2}:?\d{2})$/.test(raw) && Number.isFinite(Date.parse(raw))) return { publishedAt: new Date(raw).toISOString(), publicationDate: null };
+      // A local timestamp without an offset does not establish an instant.
+      if (Number.isFinite(Date.parse(raw))) return { publishedAt: null, publicationDate: day };
+    }
+  }
+  return { publishedAt: null, publicationDate: null };
+}
+export async function enrichPublications(stories, previous = [], request = fetchText) {
+  let cursor = 0;
+  const result = [...stories];
+  await Promise.all(Array.from({length:4}, async()=>{
+    while (cursor < stories.length) {
+      const index = cursor++; const story = stories[index];
+      let publication;
+      try { publication = parsePublication(await request(story.url, {attempts:1})); } catch { /* Keep reporting available if metadata cannot be fetched. */ }
+      if (!publication?.publishedAt && !publication?.publicationDate) {
+        const old = previous.find(item=>item.url === story.url && item.publicationSource === story.url);
+        publication = { publishedAt: old?.publishedAt || null, publicationDate: old?.publicationDate || null };
+      }
+      result[index] = { ...story, ...publication, publicationSource: publication.publishedAt || publication.publicationDate ? story.url : null };
+    }
+  }));
+  return result;
+}
 export function checkBaseline(stories, previous, reset = false) {
   if (!reset && previous?.length && stories.length < previous.length * 0.75) throw new Error('Stringer count fell by over 25%; a reviewed baseline reset is required');
   return stories;
@@ -108,7 +157,7 @@ export async function collect({ pagesUrl, request = fetchText, now = () => new D
     if (permissions[source.id]?.text !== true) return [source.id, { stories: [], attemptedAt, lastSuccessAt: null, status: 'paused', error: null }];
     try {
       const body = await request(source.url);
-      const stories = source.id === 'stringer' ? checkBaseline(parseStringer(body), old?.stories, resetStringerBaseline) : parseFeed(body);
+      const stories = source.id === 'stringer' ? await enrichPublications(checkBaseline(parseStringer(body), old?.stories, resetStringerBaseline), old?.stories, request) : parseFeed(body);
       return [source.id, { stories, attemptedAt, lastSuccessAt: attemptedAt, status: 'success', error: null }];
     } catch (error) {
       log(`${source.name}: ${error.message}`);

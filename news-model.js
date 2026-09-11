@@ -16,7 +16,7 @@ export function permittedStories(sourceId, stories, permissions = CONTENT_PERMIS
   return stories.map(story => ({
     title: story.title, url: story.url, publishedAt: story.publishedAt,
     summary: permission.summaries === true ? story.summary : '',
-    ...(sourceId === 'stringer' ? { credits: story.credits } : {}),
+    ...(sourceId === 'stringer' ? { credits: story.credits, publicationDate: story.publicationDate ?? null, publicationSource: story.publicationSource ?? null } : {}),
     headlineOnly: sourceId !== 'stringer' && permission.summaries !== true,
     image: permission.images === true ? story.image ?? null : null,
   }));
@@ -68,8 +68,10 @@ export function validateSnapshot(value) {
     if (source.id !== 'stringer' && entry.stories.length > (value.schemaVersion === 1 ? 5 : NEWSWIRE_LIMIT)) throw new Error('Too many publisher stories');
     for (const story of entry.stories) {
       if (!story || !nonempty(story.title) || !safeUrl(story.url) || typeof story.summary !== 'string' || !(story.publishedAt === null || timestamp(story.publishedAt))) throw new Error('Invalid story');
+      if (story.publicationDate != null && (!/^\d{4}-\d{2}-\d{2}$/.test(story.publicationDate) || !Number.isFinite(Date.parse(story.publicationDate)) || new Date(story.publicationDate).toISOString().slice(0,10) !== story.publicationDate)) throw new Error('Invalid publication date');
+      if (story.publicationSource != null && story.publicationSource !== story.url) throw new Error('Invalid publication source');
       if (story.image != null && (!safeImageUrl(story.image.url) || typeof story.image.alt !== 'string' || typeof story.image.credit !== 'string')) throw new Error('Invalid story image');
-      if (source.id === 'stringer' && (!nonempty(story.credits) || !nonempty(story.summary) || story.publishedAt !== null)) throw new Error('Invalid Stringer story');
+      if (source.id === 'stringer' && (!nonempty(story.credits) || !nonempty(story.summary))) throw new Error('Invalid Stringer story');
     }
   }
   return value;
