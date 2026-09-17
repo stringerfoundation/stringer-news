@@ -1,4 +1,4 @@
-import { SOURCES, applyContentPermissions, STALE_MS, safeUrl, safeImageUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
+import { SOURCES, applyContentPermissions, safeUrl, safeImageUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
 const feedback = document.querySelector('#refresh-status');
 const interval = 5 * 60 * 1000;
 let snapshot = null;
@@ -80,9 +80,7 @@ function renderStatuses() {
     for (const source of sources) {
       const entry = snapshot.sources[source.id];
       if (entry.status === 'paused') continue;
-      const warning = entry.status === 'failure' || Date.now() - Date.parse(entry.lastSuccessAt) >= STALE_MS;
-      if (warning) target.append(element('p', sourceMessage(source, entry), 'warning'));
-      else if (!entry.stories.length) target.append(element('p', `${source.name}: No stories returned.`));
+      target.append(element('p', sourceMessage(source, entry), entry.status === 'failure' ? 'warning' : ''));
     }
   }
 }
