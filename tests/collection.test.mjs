@@ -90,8 +90,8 @@ test('bounded requests retry failures and stop after the configured attempts',as
   await assert.rejects(fetchText('https://example.org',options),/Timeout/);assert.equal(calls,3);
   calls=0;assert.equal(await fetchText('https://example.org',{...options,fetchImpl:async()=>{calls++;return new Response('ok')}}),'ok');assert.equal(calls,1);
 });
-test('staleness follows last successful collection even if snapshots stop updating',()=>{
-  assert.match(sourceMessage(SOURCES[0],baseline.sources.bbc,Date.parse(now)+STALE_MS),/over two hours old/);
+test('collection timestamps stay concise even if snapshots stop updating',()=>{
+  assert.match(sourceMessage(SOURCES[0],baseline.sources.bbc,Date.parse(now)+STALE_MS),/^BBC World: last collected /);
   assert.doesNotMatch(sourceMessage(SOURCES[0],baseline.sources.bbc,Date.parse(now)+1000),/over two hours old/);
 });
 

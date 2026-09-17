@@ -76,9 +76,9 @@ export function validateSnapshot(value) {
   }
   return value;
 }
-export function sourceMessage(source, entry, now = Date.now()) {
+export function sourceMessage(source, entry) {
   const last = entry.lastSuccessAt ? new Date(entry.lastSuccessAt).toLocaleString(undefined, {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : null;
-  const stale = entry.lastSuccessAt && now - Date.parse(entry.lastSuccessAt) >= STALE_MS;
-  if (entry.status === 'failure') return `${source.name}: refresh unavailable. ${last ? `Showing retained collection from ${last}.` : 'No stories available.'}${stale ? ' Collection is over two hours old.' : ''}`;
-  return `${source.name}: ${stale ? 'collection is over two hours old; last collected' : 'collected'} ${last}.${entry.stories.length ? '' : ' No stories returned.'}`;
+  const collected = last ? `last collected ${last}` : 'No collection available';
+  if (entry.status === 'failure') return `${source.name}: refresh unavailable. ${collected}`;
+  return `${source.name}: ${collected}${entry.stories.length ? '' : '. No stories returned.'}`;
 }
