@@ -54,11 +54,12 @@ test('news timestamps use the browser time zone and visibly label it', async () 
 test('Stringer lead image has the same thumbnail size as other stories', async () => {
   for (const width of [1280, 768, 375]) {
     const page = await pageAt('/', width);
-    for (const group of ['world', 'stringer']) {
-      const news = await page.locator(`#${group}-news`).boundingBox();
-      const status = await page.locator(`#${group}-status`).boundingBox();
-      assert.ok(status.y >= news.y + news.height);
-    }
+    assert.equal(await page.locator('.feed-status:visible').count(), 0);
+    const placeholder = page.locator('#stringer-news article').filter({hasText:'Mais Katt'}).locator('.story-placeholder');
+    assert.equal(await placeholder.count(), 1);
+    const circle = await placeholder.boundingBox();
+    assert.equal(circle.width, circle.height);
+    assert.equal(await placeholder.evaluate(el=>getComputedStyle(el).borderRadius), '50%');
     const images = page.locator('#stringer-news .story-media img');
     const first = await images.first().boundingBox();
     for (const image of await images.all()) {
@@ -86,20 +87,20 @@ test('relative assets and JSON work at /stringer-news/ and a domain root',async(
 });
 test('automatic refresh of the same snapshot stays quiet and preserves publication timestamps',async()=>{
   const page=await pageAt();const status=await page.locator('#world-news time').allTextContents();await poll(page);assert.equal(await page.locator('#refresh-status').textContent(),'');
-  assert.deepEqual(await page.locator('#world-news time').allTextContents(),status);assert.match(await page.locator('#world-status').textContent(),/last collected/);await page.close();
+  assert.deepEqual(await page.locator('#world-news time').allTextContents(),status);assert.equal(await page.locator('#world-status').textContent(),'');await page.close();
 });
 test('failed browser refresh retains displayed stories; first-load failure is visible',async()=>{
   const page=await pageAt();await page.route('**/data/news.json',route=>route.fulfill({status:503,body:'Unavailable'}));await poll(page);await page.waitForFunction(()=>document.querySelector('#refresh-status').textContent.includes('Could not check'));
   assert.equal(await page.locator('#stringer-news article').count(),24);assert.equal(await page.locator('#world-news').getAttribute('aria-busy'),'false');
   await page.reload();await page.waitForFunction(()=>document.querySelector('#world-status').textContent==='Headlines unavailable.');assert.equal(await page.locator('#world-news article').count(),0);await page.close();
 });
-test('retained-source failures, valid empty newswire, and collection timestamps are displayed',async()=>{
+test('failures and empty news remain visible without collection timestamps',async()=>{
   const page=await browser.newPage();await mockStoryImages(page);await page.clock.install({time:new Date(Date.parse(snapshot.generatedAt)+3*60*60*1000)});let changed=structuredClone(snapshot);
   for(const s of SOURCES){changed.sources[s.id].status='failure';changed.sources[s.id].error='Unavailable';}
-  await page.route('**/data/news.json',route=>route.fulfill({json:changed}));await page.goto(base);await page.waitForSelector('#stringer-news article');assert.match(await page.locator('#world-status').innerText(),/refresh unavailable.*last collected/);
+  await page.route('**/data/news.json',route=>route.fulfill({json:changed}));await page.goto(base);await page.waitForSelector('#stringer-news article');assert.match(await page.locator('#world-status').innerText(),/refresh unavailable.*Showing previously collected stories/);
   changed=structuredClone(snapshot);for(const s of SOURCES.filter(s=>s.id!=='stringer'))changed.sources[s.id].stories=[];
-  await poll(page);await page.waitForSelector('#world-news .empty');assert.match(await page.locator('#world-status').innerText(),/No stories returned/);
-  await page.clock.fastForward(30_000);assert.match(await page.locator('#stringer-status').innerText(),/^Stringer: last collected /);assert.doesNotMatch(await page.locator('#stringer-status').innerText(),/over two hours old/);await page.close();
+  await poll(page);await page.waitForSelector('#world-news .empty');assert.equal(await page.locator('#world-status').textContent(),'');
+  await page.clock.fastForward(30_000);assert.equal(await page.locator('#stringer-status').textContent(),'');assert.doesNotMatch(await page.locator('body').innerText(),/last collected|over two hours old/);await page.close();
 });
 test('malicious snapshot is rejected and remote markup is rendered as text',async()=>{
   const page=await pageAt();const bad=structuredClone(snapshot);bad.sources.stringer.stories[0].url='javascript:alert(1)';await page.route('**/data/news.json',route=>route.fulfill({json:bad}));await poll(page);await page.waitForFunction(()=>document.querySelector('#refresh-status').textContent.includes('Could not check'));assert.equal(await page.locator('#stringer-news article').count(),24);
@@ -198,16 +199,16 @@ test('desktop newswire reaches the Stringer stories with distinct real headlines
   }
   await page.close();
 });
-test('story images load lazily, preserve attribution, and disappear cleanly on failure', async () => {
+test('story images load lazily, preserve attribution, and fall back to a circle on failure', async () => {
   const page = await pageAt();
   assert.equal(await page.locator('#stringer-news .story-media img').count(), 23);
   assert.equal(await page.locator('#stringer-news .story-media img').nth(1).getAttribute('loading'), 'lazy');
   const first = page.locator('#stringer-news article').first();
   await first.locator('img').evaluate(el=>el.dispatchEvent(new Event('error')));
-  assert.equal(await first.locator('.story-media').count(), 0);
+  assert.equal(await first.locator('img').count(), 0);assert.equal(await first.locator('.story-placeholder').count(), 1);
   assert.equal(await first.locator('h3').textContent(), snapshot.sources.stringer.stories[0].title);
   assert.equal(await first.locator('.credits').textContent(), snapshot.sources.stringer.stories[0].credits);
-  assert.equal(await first.evaluate(el=>el.classList.contains('with-image')), false);
+  assert.equal(await first.evaluate(el=>el.classList.contains('with-image')), true);
   const credited = snapshot.sources.nyt.stories.find(story=>story.image?.credit);
   assert.ok((await page.locator('#world-news figcaption').allTextContents()).includes(credited.image.credit));
   await page.close();

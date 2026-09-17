@@ -1,4 +1,4 @@
-import { SOURCES, applyContentPermissions, safeUrl, safeImageUrl, validateSnapshot, worldStories, sourceMessage } from './news-model.js';
+import { SOURCES, applyContentPermissions, safeUrl, safeImageUrl, validateSnapshot, worldStories } from './news-model.js';
 const feedback = document.querySelector('#refresh-status');
 const interval = 5 * 60 * 1000;
 let snapshot = null;
@@ -12,10 +12,17 @@ function element(tag, text, className) {
 }
 function renderStories(target, stories, emptyMessage) {
   target.replaceChildren();
+  const usePlaceholder = target.id === 'stringer-news';
   for (const [index, story] of stories.entries()) {
     const url = safeUrl(story.url); if (!url) continue;
     const article = element('article', '', 'story');
     const body = element('div', '', 'story-body');
+    const showPlaceholder = () => {
+      const placeholder = element('div', '', 'story-media story-placeholder');
+      placeholder.setAttribute('aria-hidden', 'true');
+      article.classList.add('with-image');
+      article.prepend(placeholder);
+    };
     const imageUrl = safeImageUrl(story.image?.url);
     if (imageUrl) {
       const figure = element('figure', '', 'story-media');
@@ -25,12 +32,16 @@ function renderStories(target, stories, emptyMessage) {
       image.loading = index === 0 ? 'eager' : 'lazy';
       image.decoding = 'async'; image.referrerPolicy = 'no-referrer';
       image.addEventListener('error', () => {
-        figure.remove(); article.classList.remove('with-image'); balanceNewswire();
+        figure.remove(); article.classList.remove('with-image');
+        if (usePlaceholder) showPlaceholder();
+        balanceNewswire();
       }, { once: true });
       image.src = imageUrl;
       figure.append(image);
       if (story.image.credit) figure.append(element('figcaption', story.image.credit));
       article.classList.add('with-image'); article.append(figure);
+    } else if (usePlaceholder) {
+      showPlaceholder();
     }
     const link = element('a'); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
     link.append(element('h3', story.title)); body.append(link);
@@ -80,7 +91,7 @@ function renderStatuses() {
     for (const source of sources) {
       const entry = snapshot.sources[source.id];
       if (entry.status === 'paused') continue;
-      target.append(element('p', sourceMessage(source, entry), entry.status === 'failure' ? 'warning' : ''));
+      if (entry.status === 'failure') target.append(element('p', `${source.name}: refresh unavailable.${entry.stories.length ? ' Showing previously collected stories.' : ' No stories available.'}`, 'warning'));
     }
   }
 }
