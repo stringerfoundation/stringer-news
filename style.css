@@ -112,6 +112,7 @@
 .story[hidden] { display: none; }
 .story-body { min-width: 0; }
 .story-media { margin: 0; min-width: 0; }
+.story-placeholder { width: 100%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
 .story-media img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: var(--soft); }
 .story-media figcaption { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.35; overflow-wrap: anywhere; }
 @media (max-width: 1000px) {
