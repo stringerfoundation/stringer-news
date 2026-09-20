@@ -56,6 +56,12 @@ export function parseStringer(html) {
   // Fail closed if even one text group no longer uses the inspected source structure.
   if (section.find('p').toArray().some(el => !$(el).closest('.text-box').length)) throw new Error('Stringer text group structure changed');
   const images = new Map();
+  // Owner-selected image (20 September 2026); the source image anchor links
+  // to a different Daraj article. Keep this explicit mapping across refreshes.
+  images.set(imageStoryKey('https://unbiasthenews.org/syria-war-poisoned-soil/'), {
+    url: 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/YNqM8ZwbkKHLbB3N/syria-3talawjYJe7gOOcj.png',
+    alt: '', credit: '',
+  });
   section.find('a img').each((index, el) => {
     const key = imageStoryKey($(el).closest('a').attr('href'));
     const url = safeImageUrl($(el).attr('src'));

@@ -20,6 +20,8 @@ The global column now displays imported headlines, publisher names, and original
 
 ## Research notes and sources
 
+On 20 September 2026, the owner explicitly selected the courageous-stories image `syria-3talawjYJe7gOOcj.png` for “Syria’s Poisoned Earth” by Mais Katt and Loujeina Haj Youssef. This asset-specific mapping is authorized for the news portal despite the source image anchor pointing to a different Daraj article. It remains subject to the Stringer image publication gate.
+
 - [BBC terms, 31 March 2022, section 15](https://downloads.bbc.co.uk/usingthebbc/bbc_terms_of_use_31March2022english.pdf) distinguish personal RSS use subject to conditions from business use requiring permission. This is a dated document, not verification of current terms. The current terms page could not be retrieved during review. Do not assume nonprofit status qualifies the portal for personal use.
 - [Al Jazeera terms, section 6](https://terms.aljazeera.net/) restrict general use to personal, noncommercial purposes and require permission for reproduction. Verify whether a specific agreement or RSS license supersedes those general terms for the proposed use.
 - [DW's German News Service](https://amp.dw.com/en/benefit-from-smart-content-made-in-germany/a-19470839) describes an organizational syndication route with its own terms and contact, gns@dw.com. This is not evidence that our currently configured public feed is licensed for this use.

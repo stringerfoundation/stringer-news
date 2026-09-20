@@ -55,11 +55,9 @@ test('Stringer lead image has the same thumbnail size as other stories', async (
   for (const width of [1280, 768, 375]) {
     const page = await pageAt('/', width);
     assert.equal(await page.locator('.feed-status:visible').count(), 0);
-    const placeholder = page.locator('#stringer-news article').filter({hasText:'Mais Katt'}).locator('.story-placeholder');
-    assert.equal(await placeholder.count(), 1);
-    const circle = await placeholder.boundingBox();
-    assert.equal(circle.width, circle.height);
-    assert.equal(await placeholder.evaluate(el=>getComputedStyle(el).borderRadius), '50%');
+    const maisStory = page.locator('#stringer-news article').filter({hasText:'Mais Katt'});
+    assert.equal(await maisStory.locator('.story-placeholder').count(), 0);
+    assert.match(await maisStory.locator('img').getAttribute('src'), /syria-3talawjYJe7gOOcj\.png$/);
     const images = page.locator('#stringer-news .story-media img');
     const first = await images.first().boundingBox();
     for (const image of await images.all()) {
@@ -201,7 +199,7 @@ test('desktop newswire reaches the Stringer stories with distinct real headlines
 });
 test('story images load lazily, preserve attribution, and fall back to a circle on failure', async () => {
   const page = await pageAt();
-  assert.equal(await page.locator('#stringer-news .story-media img').count(), 23);
+  assert.equal(await page.locator('#stringer-news .story-media img').count(), 24);
   assert.equal(await page.locator('#stringer-news .story-media img').nth(1).getAttribute('loading'), 'lazy');
   const first = page.locator('#stringer-news article').first();
   await first.locator('img').evaluate(el=>el.dispatchEvent(new Event('error')));
@@ -229,7 +227,7 @@ test('production policy renders only publisher headlines and links while preserv
   assert.ok(await page.locator('#world-news .source').count() > 0);
   assert.equal(await page.locator('#world-news article a').first().getAttribute('rel'),'noopener noreferrer');
   assert.equal(await page.locator('#world-news img').count(),0);
-  assert.equal(await page.locator('#stringer-news img').count(),23);
+  assert.equal(await page.locator('#stringer-news img').count(),24);
   assert.equal(await page.locator('#stringer-news article').count(),24);
   const approvedImages = new Set(snapshot.sources.stringer.stories.flatMap(story=>story.image ? [story.image.url] : []));
   assert.ok(imageRequests.every(url=>url.startsWith(base) || approvedImages.has(url)), 'Only approved Stringer photos are requested');

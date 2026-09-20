@@ -105,10 +105,10 @@ test('RSS thumbnail and media-content metadata stay tied to their item, includin
 });
 test('Stringer images match destinations, not their position; missing images remain absent', () => {
   const stories = parseStringer(fixtures.stringer);
-  assert.equal(stories.filter(story => story.image).length, 23);
+  assert.equal(stories.filter(story => story.image).length, 24);
   assert.match(stories[0].image.url, /readinglist1-/);
   assert.match(stories[1].image.url, /readinglist2-/);
-  assert.equal(stories[14].image, null);
+  assert.match(stories[14].image.url, /syria-3talawjYJe7gOOcj\.png$/);
   const $ = load(fixtures.stringer);
   const pictures = $('section > a').remove().get().reverse();
   $('section').prepend(pictures);
