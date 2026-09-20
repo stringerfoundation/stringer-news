@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { load } from 'cheerio';
+import { VERIFIED_PUBLICATIONS } from '../scripts/verified-publications.mjs';
 import { parseFeed, parseStringer, parsePublication, enrichPublications, checkBaseline, fetchText, snapshotUrl, collect } from '../scripts/collect.mjs';
 import { SOURCES, CONTENT_PERMISSIONS, applyContentPermissions, NEWSWIRE_LIMIT, validateSnapshot, worldStories, sourceMessage, safeUrl, safeImageUrl, STALE_MS } from '../news-model.js';
 const fixtures = Object.fromEntries(SOURCES.map(s => [s.id, readFileSync(new URL(`./fixtures/${s.id === 'stringer' ? 'stringer.html' : `${s.id}.xml`}`, import.meta.url), 'utf8')]));
@@ -177,4 +178,22 @@ test('publication enrichment retains verified dates by exact story URL without b
   assert.equal(result[1].publicationDate,null);
   const unrelated=await enrichPublications([{...stories[0],url:'https://example.org/new'}],previous,async()=>'<html></html>');
   assert.equal(unrelated[0].publishedAt,null);
+});
+test('reviewed publication dates survive missing metadata and outages without leaking to other URLs', async()=>{
+  const stories=parseStringer(fixtures.stringer);
+  for (const request of [async()=>'<html></html>', async()=>{throw new Error('Unavailable')}]) {
+    const result=await enrichPublications(stories,[],request);
+    assert.equal(result.filter(s=>s.publishedAt || s.publicationDate).length,7);
+    for (const [url, verified] of VERIFIED_PUBLICATIONS) {
+      const story=result.find(s=>s.url===url);
+      assert.equal(story.publishedAt,verified.publishedAt || null);
+      assert.equal(story.publicationDate,verified.publicationDate || null);
+      assert.equal(story.publicationSource,url);
+    }
+    const changed=await enrichPublications([{...stories[4],url:stories[4].url+'-different'}],[],request);
+    assert.equal(changed[0].publishedAt,null);
+    assert.equal(changed[0].publicationDate,null);
+  }
+  const fresh=await enrichPublications([stories[4]],[],async()=>'<meta itemprop="datePublished" content="2025-07-23">');
+  assert.equal(fresh[0].publicationDate,'2025-07-23');
 });

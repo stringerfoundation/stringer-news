@@ -247,7 +247,7 @@ test('production policy renders only publisher headlines and links while preserv
   assert.ok(await page.locator('#world-news article').count() > 0);
   assert.equal(await page.locator('#world-news .summary').count(),0);
   assert.ok(await page.locator('#world-news time').count() > 0);
-  assert.equal(await page.locator('#stringer-news time').count(),0);
+  assert.equal(await page.locator('#stringer-news time').count(),7);
   assert.ok(await page.locator('#world-news .source').count() > 0);
   assert.equal(await page.locator('#world-news article a').first().getAttribute('rel'),'noopener noreferrer');
   assert.equal(await page.locator('#world-news img').count(),0);

@@ -2,6 +2,7 @@ import { load } from 'cheerio';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+import { VERIFIED_PUBLICATIONS } from './verified-publications.mjs';
 import { SOURCES, CONTENT_PERMISSIONS, applyContentPermissions, NEWSWIRE_LIMIT, safeUrl, safeImageUrl, urlIdentity, uniqueStories, newestFirst, validateSnapshot } from '../news-model.js';
 
 function text(html) {
@@ -123,8 +124,10 @@ export async function enrichPublications(stories, previous = [], request = fetch
       let publication;
       try { publication = parsePublication(await request(story.url, {attempts:1})); } catch { /* Keep reporting available if metadata cannot be fetched. */ }
       if (!publication?.publishedAt && !publication?.publicationDate) {
+        const verified = VERIFIED_PUBLICATIONS.get(story.url);
         const old = previous.find(item=>item.url === story.url && item.publicationSource === story.url);
-        publication = { publishedAt: old?.publishedAt || null, publicationDate: old?.publicationDate || null };
+        const fallback = verified || old;
+        publication = { publishedAt: fallback?.publishedAt || null, publicationDate: fallback?.publicationDate || null };
       }
       result[index] = { ...story, ...publication, publicationSource: publication.publishedAt || publication.publicationDate ? story.url : null };
     }
