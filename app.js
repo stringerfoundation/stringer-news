@@ -4,6 +4,14 @@ const interval = 5 * 60 * 1000;
 let snapshot = null;
 let loading = false;
 let lastAttempt = 0;
+// Per-page random ranks keep the complete collection stable during polling.
+const stringerOrder = new Map();
+function shuffledStringerStories(stories) {
+  for (const story of stories) {
+    if (!stringerOrder.has(story.url)) stringerOrder.set(story.url, Math.random());
+  }
+  return [...stories].sort((a, b) => stringerOrder.get(a.url) - stringerOrder.get(b.url));
+}
 function element(tag, text, className) {
   const node = document.createElement(tag);
   if (text) node.textContent = text;
@@ -98,7 +106,7 @@ function renderStatuses() {
 function render() {
   const worldPaused = SOURCES.filter(source => source.id !== 'stringer').every(source => snapshot.sources[source.id].status === 'paused');
   renderStories(document.querySelector('#world-news'), worldStories(snapshot), worldPaused ? 'Global headlines are paused while reuse permissions are confirmed.' : 'No headlines available in this collection.');
-  renderStories(document.querySelector('#stringer-news'), snapshot.sources.stringer.stories, 'Courageous stories are currently unavailable. Visit the Stringer collection below.');
+  renderStories(document.querySelector('#stringer-news'), shuffledStringerStories(snapshot.sources.stringer.stories), 'Courageous stories are currently unavailable. Visit the Stringer collection below.');
   if (worldPaused) {
     const links = element('p', '', 'publisher-links');
     for (const [name, url] of [['BBC News', 'https://www.bbc.com/news'], ['The New York Times', 'https://www.nytimes.com/section/world'], ['Al Jazeera', 'https://www.aljazeera.com/'], ['DW', 'https://www.dw.com/']]) {

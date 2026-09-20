@@ -83,6 +83,28 @@ test('desktop, 768px, and mobile layouts render two populated columns without ov
 test('relative assets and JSON work at /stringer-news/ and a domain root',async()=>{
   for(const path of ['/','/stringer-news/']){const page=await pageAt(path);assert.equal(await page.locator('#world-news article').count(),worldStories(snapshot).length);assert.equal(await page.locator('.main-nav [aria-current]').getAttribute('href'),'./');await page.close();}
 });
+test('each page load shuffles the full Stringer list and polling preserves its order', async()=>{
+  const page=await browser.newPage();
+  await mockStoryImages(page);
+  await page.clock.install();
+  await page.addInitScript(()=>{
+    const visits=Number(sessionStorage.getItem('shuffle-test-visits') || 0);
+    sessionStorage.setItem('shuffle-test-visits', String(visits+1));
+    let seed=visits+1;
+    Math.random=()=>((seed=(seed*16807)%2147483647)/2147483647);
+  });
+  const urls=()=>page.locator('#stringer-news article a').evaluateAll(links=>links.map(a=>a.href));
+  const expected=snapshot.sources.stringer.stories.map(story=>story.url).sort();
+  await page.goto(base); await page.waitForSelector('#stringer-news article');
+  const first=await urls();
+  assert.deepEqual([...first].sort(), expected);
+  await poll(page); assert.deepEqual(await urls(), first);
+  await page.reload(); await page.waitForSelector('#stringer-news article');
+  const second=await urls();
+  assert.deepEqual([...second].sort(), expected);
+  assert.notDeepEqual(second, first);
+  await page.close();
+});
 test('automatic refresh of the same snapshot stays quiet and preserves publication timestamps',async()=>{
   const page=await pageAt();const status=await page.locator('#world-news time').allTextContents();await poll(page);assert.equal(await page.locator('#refresh-status').textContent(),'');
   assert.deepEqual(await page.locator('#world-news time').allTextContents(),status);assert.equal(await page.locator('#world-status').textContent(),'');await page.close();
@@ -102,7 +124,7 @@ test('failures and empty news remain visible without collection timestamps',asyn
 });
 test('malicious snapshot is rejected and remote markup is rendered as text',async()=>{
   const page=await pageAt();const bad=structuredClone(snapshot);bad.sources.stringer.stories[0].url='javascript:alert(1)';await page.route('**/data/news.json',route=>route.fulfill({json:bad}));await poll(page);await page.waitForFunction(()=>document.querySelector('#refresh-status').textContent.includes('Could not check'));assert.equal(await page.locator('#stringer-news article').count(),24);
-  bad.sources.stringer.stories[0].url='https://example.org/story';bad.sources.stringer.stories[0].title='<img src=x onerror=alert(1)>';await poll(page);await page.waitForFunction(()=>document.querySelector('#stringer-news h3').textContent.startsWith('<img'));
+  bad.sources.stringer.stories[0].url='https://example.org/story';bad.sources.stringer.stories[0].title='<img src=x onerror=alert(1)>';await poll(page);await page.waitForFunction(()=>[...document.querySelectorAll('#stringer-news h3')].some(el=>el.textContent.startsWith('<img')));
   assert.equal(await page.locator('#stringer-news img[src="x"]').count(),0);await page.close();
 });
 test('visible polling, hidden-page pause, visibility catch-up, and overlap prevention',async()=>{
@@ -202,10 +224,12 @@ test('story images load lazily, preserve attribution, and fall back to a circle 
   assert.equal(await page.locator('#stringer-news .story-media img').count(), 24);
   assert.equal(await page.locator('#stringer-news .story-media img').nth(1).getAttribute('loading'), 'lazy');
   const first = page.locator('#stringer-news article').first();
+  const firstUrl = await first.locator('a').getAttribute('href');
+  const firstStory = snapshot.sources.stringer.stories.find(story => story.url === firstUrl);
   await first.locator('img').evaluate(el=>el.dispatchEvent(new Event('error')));
   assert.equal(await first.locator('img').count(), 0);assert.equal(await first.locator('.story-placeholder').count(), 1);
-  assert.equal(await first.locator('h3').textContent(), snapshot.sources.stringer.stories[0].title);
-  assert.equal(await first.locator('.credits').textContent(), snapshot.sources.stringer.stories[0].credits);
+  assert.equal(await first.locator('h3').textContent(), firstStory.title);
+  assert.equal(await first.locator('.credits').textContent(), firstStory.credits);
   assert.equal(await first.evaluate(el=>el.classList.contains('with-image')), true);
   const credited = snapshot.sources.nyt.stories.find(story=>story.image?.credit);
   assert.ok((await page.locator('#world-news figcaption').allTextContents()).includes(credited.image.credit));
@@ -248,12 +272,12 @@ test('Stringer dates preserve precision, use local zones for instants, and show 
     data.sources.stringer.stories[1].publicationSource=data.sources.stringer.stories[1].url;
     await page.route('**/data/news.json',route=>route.fulfill({json:data}));
     await page.goto(base); await page.waitForSelector('#stringer-news article');
-    const cards=page.locator('#stringer-news article');
+    const cards=data.sources.stringer.stories.map(story=>page.locator('#stringer-news article').filter({has:page.locator('h3', {hasText:story.title})}));
     const expected=new Intl.DateTimeFormat('en-US',{timeZone:timezoneId,year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'}).format(new Date(data.sources.stringer.stories[0].publishedAt));
-    assert.equal(await cards.nth(0).locator('time').textContent(),expected);
-    assert.equal(await cards.nth(1).locator('time').textContent(),'Nov 5, 2025');
-    assert.equal(await cards.nth(1).locator('time').getAttribute('datetime'),'2025-11-05');
-    assert.match(await cards.nth(2).innerText(),/Publication date unavailable/);
+    assert.equal(await cards[0].locator('time').textContent(),expected);
+    assert.equal(await cards[1].locator('time').textContent(),'Nov 5, 2025');
+    assert.equal(await cards[1].locator('time').getAttribute('datetime'),'2025-11-05');
+    assert.match(await cards[2].innerText(),/Publication date unavailable/);
     await page.close();
   }
 });
