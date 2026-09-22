@@ -57,6 +57,10 @@ export const VERIFIED_PUBLICATIONS = new Map([
     publicationDate: '2024-03-28',
     evidence: 'Publisher article byline displays Thu 28 Mar 2024; 9 May is marked as last modified.',
   }],
+  ['https://panel.animalpolitico.com/corrupcion-detras-desabasto-medicamentos/', {
+    publicationDate: '2025-07-26',
+    evidence: 'Publisher’s special-project listing displays 26 July 2025 for this investigation.',
+  }],
   ['https://www.youtube.com/watch?v=fyGdDKA097E', {
     publishedAt: '2025-07-22T12:01:21.000Z',
     evidence: 'Original video meta itemprop=datePublished: 2025-07-22T05:01:21-07:00.',
