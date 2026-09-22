@@ -247,7 +247,7 @@ test('production policy renders only publisher headlines and links while preserv
   assert.ok(await page.locator('#world-news article').count() > 0);
   assert.equal(await page.locator('#world-news .summary').count(),0);
   assert.ok(await page.locator('#world-news time').count() > 0);
-  assert.equal(await page.locator('#stringer-news time').count(),7);
+  assert.equal(await page.locator('#stringer-news time').count(),snapshot.sources.stringer.stories.filter(story=>story.publishedAt || story.publicationDate).length);
   assert.ok(await page.locator('#world-news .source').count() > 0);
   assert.equal(await page.locator('#world-news article a').first().getAttribute('rel'),'noopener noreferrer');
   assert.equal(await page.locator('#world-news img').count(),0);
@@ -270,6 +270,7 @@ test('Stringer dates preserve precision, use local zones for instants, and show 
     data.sources.stringer.stories[0].publicationSource=data.sources.stringer.stories[0].url;
     data.sources.stringer.stories[1].publicationDate='2025-11-05';
     data.sources.stringer.stories[1].publicationSource=data.sources.stringer.stories[1].url;
+    const unavailableIndex=data.sources.stringer.stories.findIndex(story=>!story.publishedAt && !story.publicationDate);
     await page.route('**/data/news.json',route=>route.fulfill({json:data}));
     await page.goto(base); await page.waitForSelector('#stringer-news article');
     const cards=data.sources.stringer.stories.map(story=>page.locator('#stringer-news article').filter({has:page.locator('h3', {hasText:story.title})}));
@@ -277,7 +278,8 @@ test('Stringer dates preserve precision, use local zones for instants, and show 
     assert.equal(await cards[0].locator('time').textContent(),expected);
     assert.equal(await cards[1].locator('time').textContent(),'Nov 5, 2025');
     assert.equal(await cards[1].locator('time').getAttribute('datetime'),'2025-11-05');
-    assert.match(await cards[2].innerText(),/Publication date unavailable/);
+    assert.ok(unavailableIndex >= 0);
+    assert.match(await cards[unavailableIndex].innerText(),/Publication date unavailable/);
     await page.close();
   }
 });
