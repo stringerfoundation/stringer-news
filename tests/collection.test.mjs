@@ -175,7 +175,8 @@ test('publication enrichment retains verified dates by exact story URL without b
   const result=await enrichPublications(stories,previous,async()=>{throw new Error('Unavailable')});
   assert.equal(result[0].publishedAt,previous[0].publishedAt);
   assert.equal(result[1].publishedAt,null);
-  assert.equal(result[1].publicationDate,null);
+  assert.equal(result[1].publicationDate,'2025-11-05');
+  assert.equal(result[1].publicationSource,stories[1].url);
   const unrelated=await enrichPublications([{...stories[0],url:'https://example.org/new'}],previous,async()=>'<html></html>');
   assert.equal(unrelated[0].publishedAt,null);
 });
@@ -183,7 +184,7 @@ test('reviewed publication dates survive missing metadata and outages without le
   const stories=parseStringer(fixtures.stringer);
   for (const request of [async()=>'<html></html>', async()=>{throw new Error('Unavailable')}]) {
     const result=await enrichPublications(stories,[],request);
-    assert.equal(result.filter(s=>s.publishedAt || s.publicationDate).length,7);
+    assert.equal(result.filter(s=>s.publishedAt || s.publicationDate).length,VERIFIED_PUBLICATIONS.size);
     for (const [url, verified] of VERIFIED_PUBLICATIONS) {
       const story=result.find(s=>s.url===url);
       assert.equal(story.publishedAt,verified.publishedAt || null);
