@@ -61,6 +61,10 @@ export const VERIFIED_PUBLICATIONS = new Map([
     publicationDate: '2025-07-26',
     evidence: 'Publisher’s special-project listing displays 26 July 2025 for this investigation.',
   }],
+  ['https://www.facebook.com/anasglobal/videos/watch-galamsey-economy-video/858993851792503/', {
+    publicationDate: '2022-11-16',
+    evidence: 'Owner confirmed the Facebook video publication date as 16 November 2022.',
+  }],
   ['https://www.youtube.com/watch?v=fyGdDKA097E', {
     publishedAt: '2025-07-22T12:01:21.000Z',
     evidence: 'Original video meta itemprop=datePublished: 2025-07-22T05:01:21-07:00.',
