@@ -8,8 +8,8 @@
   "scripts": {
     "collect": "node scripts/collect.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node --check app.js && node --check news-model.js && node --check scripts/collect.mjs",
-    "test:browser": "node --test tests/browser.spec.mjs"
+    "check": "node --check app.js && node --check news-model.js && node --check nip5claim.js && node --check scripts/collect.mjs",
+    "test:browser": "node --test tests/browser.spec.mjs tests/nip5claim.browser.mjs"
   },
   "dependencies": {
     "cheerio": "1.2.0",

@@ -60,6 +60,10 @@ Stringer extraction rejects incomplete groups, changed text-group structure, emp
 
 `.github/workflows/pages.yml` publishes an explicit allowlist: `index.html`, `style.css`, `app.js`, `news-model.js`, the Stringer logo and favicons, and generated JSON. Instructions, this README, `PLAN.md`, dependencies, tests, and collection scripts remain in the repository and are not included in the Pages artifact. A push to `main` deploys publicly. After publishing, check the workflow, live page, and live `data/news.json`; failures are recorded in workflow logs and source metadata.
 
+The allowlist also publishes `/.well-known/nostr.json` for the Stringer News Nostr account. Its `_` entry maps the bare-domain NIP-05 identifier `news.stringerjournalism.org` (`_@news.stringerjournalism.org`) to that account's public key. Nostr clients display the identifier only after the account's signed kind 0 profile also sets `nip05` to `_@news.stringerjournalism.org`. The profile is managed by the separate `news2` service; this repository does not contain its signing key.
+
+`/nip5claim.html` lets an operator holding that account in a NIP-07 browser signer publish the profile update. It checks the live NIP-05 mapping and signer key, reads and verifies the latest signed profile, previews the change, then asks the extension to sign. It reports confirmed relay acceptance. The claim page and its bundled public-domain `nostr-tools` 2.25.2 script are the only additional published files; the page never asks for a private key. Deploy the well-known file first, then use the claim page with the account's signer.
+
 The current GitHub Pages hostname is not changed by this implementation. When domain access is available:
 
 1. Verify ownership of `stringerjournalism.org` in the GitHub organization's Pages settings using the TXT record GitHub supplies. Wait for verification.

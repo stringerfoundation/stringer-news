@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Claim Nostr address | The Stringer Foundation</title>
+  <link rel="icon" type="image/png" href="./assets/favicon-32.png" />
+  <link rel="stylesheet" href="./nip5claim.css" />
+</head>
+<body>
+  <main class="claim">
+    <a class="brand" href="./"><img src="./assets/stringer-logo.png" width="210" height="85" alt="The Stringer Foundation" /></a>
+    <p class="eyebrow">Stringer News · Nostr</p>
+    <h1>Claim our Nostr address</h1>
+    <p class="intro">This page adds <strong>_@news.stringerjournalism.org</strong> to the Stringer News Nostr profile. Your browser's NIP-07 signer must control the account listed in this site's NIP-05 record.</p>
+    <div class="address"><span>Address</span><strong>news.stringerjournalism.org</strong></div>
+    <p id="status" class="status" role="status" aria-live="polite">Connect a Nostr signer to check the account and its current profile.</p>
+    <div class="actions">
+      <button id="connect" type="button">Connect Nostr signer</button>
+      <button id="claim" type="button" disabled>Claim address on Nostr</button>
+    </div>
+    <section id="preview" class="preview" aria-labelledby="preview-title" hidden>
+      <h2 id="preview-title">Profile update</h2>
+      <dl><dt>Account</dt><dd id="account"></dd><dt>Current NIP-05</dt><dd id="current-identifier"></dd><dt>New NIP-05</dt><dd>_@news.stringerjournalism.org</dd></dl>
+      <p>Your other profile fields will be preserved. The signer will ask you to approve a public profile event; no private key is sent to this site.</p>
+    </section>
+    <p class="note">This address identifies the Stringer News account. Story links still lead to the original publishers. <a href="./">Back to the news</a></p>
+  </main>
+  <script src="./assets/nostr-tools-2.25.2.js"></script>
+  <script type="module" src="./nip5claim.js"></script>
+</body>
+</html>

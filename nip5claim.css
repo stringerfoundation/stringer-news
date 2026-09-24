@@ -1,0 +1,28 @@
+:root { color-scheme: light; font-family: Barlow, Arial, sans-serif; color: #4b3126; background: #fdfcfb; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.claim { width: min(100% - 36px, 640px); margin: 48px auto 80px; }
+.brand img { display: block; width: 210px; height: auto; }
+.eyebrow { margin: 42px 0 10px; color: #a33923; font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+h1 { margin: 0; font-family: Montserrat, Arial, sans-serif; font-size: clamp(32px, 6vw, 48px); line-height: 1.12; }
+.intro { margin: 22px 0; font-size: 19px; line-height: 1.55; }
+.address { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding: 17px 20px; border: 1px solid #e7dcd6; border-radius: 8px; background: #fff; overflow-wrap: anywhere; }
+.address span { color: #766760; }
+.status { min-height: 3em; margin: 24px 0 12px; font-size: 16px; line-height: 1.5; }
+.status[data-tone="error"] { color: #a32c19; }
+.status[data-tone="success"] { color: #2c6644; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button { padding: 12px 20px; border: 1px solid #4b3126; border-radius: 28px; background: #4b3126; color: #fff; font: 700 15px Barlow, Arial, sans-serif; cursor: pointer; }
+button:hover:not(:disabled), button:focus-visible:not(:disabled) { background: #a33923; border-color: #a33923; }
+button:disabled { opacity: .42; cursor: not-allowed; }
+button:focus-visible, a:focus-visible { outline: 3px solid #fe3b1f; outline-offset: 3px; }
+.preview { margin-top: 30px; padding: 22px; border: 1px solid #e7dcd6; border-radius: 8px; background: #fff; }
+.preview h2 { margin: 0 0 14px; font-size: 21px; }
+.preview dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 18px; margin: 0; overflow-wrap: anywhere; }
+.preview dt { color: #766760; }
+.preview dd { margin: 0; font-weight: 700; }
+.preview p, .note { font-size: 14px; line-height: 1.55; color: #766760; }
+.preview p { margin-bottom: 0; }
+.note { margin-top: 34px; }
+a { color: #4b3126; text-underline-offset: 3px; }
+@media (max-width: 480px) { .claim { margin-top: 24px; } .eyebrow { margin-top: 30px; } .actions button { width: 100%; } .preview dl { grid-template-columns: 1fr; gap: 2px; } .preview dd { margin-bottom: 10px; } }

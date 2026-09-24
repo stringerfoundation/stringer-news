@@ -51,10 +51,13 @@ jobs:
           RESET_STRINGER_BASELINE: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_stringer_baseline && 'true' || 'false' }}
       - name: Stage public site files only
         run: |
-          mkdir -p _site/assets _site/data
+          mkdir -p _site/assets _site/data _site/.well-known
           cp index.html style.css app.js news-model.js _site/
+          cp nip5claim.html nip5claim.css nip5claim.js _site/
           cp assets/stringer-logo.png assets/favicon-16.png assets/favicon-32.png assets/favicon-192.png assets/favicon-180.png _site/assets/
+          cp assets/nostr-tools-2.25.2.js _site/assets/
           cp data/news.json _site/data/
+          cp .well-known/nostr.json _site/.well-known/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
