@@ -1,6 +1,10 @@
 // Reviewed 20 September 2026. Exact original URLs only; dates are never inferred
 // from URL paths, search crawl dates, related articles, or modification times.
 export const VERIFIED_PUBLICATIONS = new Map([
+  ['https://www.instagram.com/reel/DMsRo8JNRY8/?igsh=MWc5aXJiZml4c2l4cA==', {
+    publicationDate: '2025-07-29',
+    evidence: 'Publication date supplied by the site owner for this exact Instagram reel on 25 September 2026.',
+  }],
   ['https://theblacksea.eu/special-reports/turkeys-escobar-key-to-new-cocaine-drop-offs/', {
     publicationDate: '2025-07-24',
     evidence: 'Publisher byline displays 24 July 2025.',

@@ -274,6 +274,8 @@ test('Stringer dates preserve precision, use local zones for instants, and show 
     await page.route('**/data/news.json',route=>route.fulfill({json:data}));
     await page.goto(base); await page.waitForSelector('#stringer-news article');
     const cards=data.sources.stringer.stories.map(story=>page.locator('#stringer-news article').filter({has:page.locator('h3', {hasText:story.title})}));
+    const gazaCard=page.locator('#stringer-news article').filter({has:page.locator('h3', {hasText:'Gaza Under Bombardment'})});
+    assert.equal(await gazaCard.locator('time').getAttribute('datetime'),'2025-07-29');
     const expected=new Intl.DateTimeFormat('en-US',{timeZone:timezoneId,year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'}).format(new Date(data.sources.stringer.stories[0].publishedAt));
     assert.equal(await cards[0].locator('time').textContent(),expected);
     assert.equal(await cards[1].locator('time').textContent(),'Nov 5, 2025');
