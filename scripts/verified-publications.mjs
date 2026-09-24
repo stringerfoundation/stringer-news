@@ -1,4 +1,4 @@
-// Reviewed 20 September 2026. Exact original URLs only; dates are never inferred
+// Reviewed dates for exact original URLs only; dates are never inferred
 // from URL paths, search crawl dates, related articles, or modification times.
 export const VERIFIED_PUBLICATIONS = new Map([
   ['https://www.instagram.com/reel/DMsRo8JNRY8/?igsh=MWc5aXJiZml4c2l4cA==', {
