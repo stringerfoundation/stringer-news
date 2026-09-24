@@ -56,6 +56,7 @@ test('NIP-07 claim requires the mapped account, preserves its profile, and repor
       });
     });
     await page.goto(`http://127.0.0.1:${server.address().port}/`);
+    assert.match(await page.locator('.profile-links').textContent(), /Primal.*njump.*NIP-05 record/);
     await page.locator('#connect').click();
     await page.getByText('This signer does not control the Stringer News account.').waitFor();
     assert.equal(await page.locator('#claim').isDisabled(), true);
@@ -67,10 +68,10 @@ test('NIP-07 claim requires the mapped account, preserves its profile, and repor
     assert.equal(await page.locator('#current-identifier').textContent(), 'None');
     assert.equal(await page.locator('#claim').isEnabled(), true);
     await page.locator('#claim').click();
-    await page.getByText(/Claim published to 3 of 3 relays/).waitFor();
+    await page.getByText(/Address and banner published to 3 of 3 relays/).waitFor();
     assert.ok(published.length >= 1);
     assert.ok(published.every(event => verifyEvent(event) && event.pubkey === pubkey && event.kind === 0));
-    assert.deepEqual(JSON.parse(published[0].content), { ...original, nip05: '_@news.stringerjournalism.org' });
+    assert.deepEqual(JSON.parse(published[0].content), { ...original, nip05: '_@news.stringerjournalism.org', banner: 'https://news.stringerjournalism.org/assets/nostr-banner.png' });
     assert.equal(await page.locator('#claim').isDisabled(), true);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     assert.deepEqual(errors, []);

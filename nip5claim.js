@@ -1,4 +1,5 @@
 const IDENTIFIER = '_@news.stringerjournalism.org';
+const BANNER = 'https://news.stringerjournalism.org/assets/nostr-banner.png';
 const PUBKEY = 'b8225dbedf6ae7949e880e7979e975d8e6f238f32d318bc4a562ecb198fcd707';
 const RELAYS = ['wss://relay.nos.social', 'wss://nos.lol', 'wss://relay.damus.io'];
 const { SimplePool, verifyEvent } = window.NostrTools;
@@ -17,7 +18,7 @@ function report(message, tone = '') {
 
 function busy(value) {
   connectButton.disabled = value;
-  claimButton.disabled = value || !currentProfile || currentMetadata?.nip05 === IDENTIFIER;
+  claimButton.disabled = value || !currentProfile || (currentMetadata?.nip05 === IDENTIFIER && currentMetadata?.banner === BANNER);
 }
 
 async function checkMapping() {
@@ -59,14 +60,16 @@ connectButton.addEventListener('click', async () => {
     currentMetadata = metadata;
     document.querySelector('#account').textContent = metadata.display_name || metadata.name || 'Stringer News';
     document.querySelector('#current-identifier').textContent = metadata.nip05 || 'None';
+    document.querySelector('#current-banner').textContent = metadata.banner || 'None';
     preview.hidden = false;
-    report(metadata.nip05 === IDENTIFIER ? 'This profile already claims the address.' : 'Ready. Review the change, then approve it in your signer.', metadata.nip05 === IDENTIFIER ? 'success' : '');
+    const complete = metadata.nip05 === IDENTIFIER && metadata.banner === BANNER;
+    report(complete ? 'This profile already has the address and banner.' : 'Ready. Review the change, then approve it in your signer.', complete ? 'success' : '');
   } catch (error) { report(error.message || 'Could not check the Nostr account.', 'error'); }
   finally { busy(false); }
 });
 
 claimButton.addEventListener('click', async () => {
-  if (!currentProfile || !currentMetadata || currentMetadata.nip05 === IDENTIFIER) return;
+  if (!currentProfile || !currentMetadata || (currentMetadata.nip05 === IDENTIFIER && currentMetadata.banner === BANNER)) return;
   busy(true);
   try {
     await checkMapping();
@@ -74,7 +77,7 @@ claimButton.addEventListener('click', async () => {
     if (!signedClaim) {
       const createdAt = Math.max(Math.floor(Date.now() / 1000), currentProfile.created_at + 1);
       if (createdAt > Math.floor(Date.now() / 1000) + 60) throw new Error('The current profile date is ahead of this device. Check your clock.');
-      const content = JSON.stringify({ ...currentMetadata, nip05: IDENTIFIER });
+      const content = JSON.stringify({ ...currentMetadata, nip05: IDENTIFIER, banner: BANNER });
       const tags = currentProfile.tags;
       report('Approve the updated public profile in your signer…');
       const event = await window.nostr.signEvent({ kind: 0, created_at: createdAt, tags, content });
@@ -94,8 +97,10 @@ claimButton.addEventListener('click', async () => {
       throw new Error('No relay confirmed receipt. Retry will publish the same signed profile.');
     }
     currentMetadata.nip05 = IDENTIFIER;
+    currentMetadata.banner = BANNER;
     document.querySelector('#current-identifier').textContent = IDENTIFIER;
-    report(`Claim published to ${accepted} of ${RELAYS.length} relays. Nostr clients may take a little time to show it.`, 'success');
+    document.querySelector('#current-banner').textContent = BANNER;
+    report(`Address and banner published to ${accepted} of ${RELAYS.length} relays. Nostr clients may take a little time to show them.`, 'success');
   } catch (error) { report(error.message || 'The claim was not published.', 'error'); }
   finally { busy(false); }
 });

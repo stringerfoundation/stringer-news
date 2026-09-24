@@ -23,6 +23,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid #fe3b1f; outline-offs
 .preview dd { margin: 0; font-weight: 700; }
 .preview p, .note { font-size: 14px; line-height: 1.55; color: #766760; }
 .preview p { margin-bottom: 0; }
+.profile-links { margin-top: 34px; padding-top: 22px; border-top: 1px solid #e7dcd6; }
+.profile-links h2 { margin: 0 0 8px; font-size: 19px; }
+.profile-links p { margin: 0; color: #766760; font-size: 14px; line-height: 1.6; }
 .note { margin-top: 34px; }
 a { color: #4b3126; text-underline-offset: 3px; }
 @media (max-width: 480px) { .claim { margin-top: 24px; } .eyebrow { margin-top: 30px; } .actions button { width: 100%; } .preview dl { grid-template-columns: 1fr; gap: 2px; } .preview dd { margin-bottom: 10px; } }
