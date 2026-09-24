@@ -2,8 +2,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { runInThisContext } from 'node:vm';
 import { chromium } from '@playwright/test';
-import { finalizeEvent, generateSecretKey, getPublicKey, verifyEvent } from 'nostr-tools';
+
+const nostr = runInThisContext((await readFile(new URL('../assets/nostr-tools-2.25.2.js', import.meta.url), 'utf8')) + '\nNostrTools');
+const { finalizeEvent, generateSecretKey, getPublicKey, verifyEvent } = nostr;
 
 const secret = generateSecretKey();
 const pubkey = getPublicKey(secret);
